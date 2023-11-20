@@ -9,6 +9,7 @@ import { ENS_REGISTRAR_ADDRESSES, MULTICALL_ADDRESS } from 'constants/addresses'
 import { useActiveWeb3React } from 'hooks'
 import { useMemo } from 'react'
 import { getContract } from 'utils/contract'
+import { RPC_PROVIDERS } from 'constants/rpc/providers'
 
 // returns null on errors
 export function useContract<T extends Contract = Contract>(
@@ -19,12 +20,13 @@ export function useContract<T extends Contract = Contract>(
   const { library, account, chainId } = useActiveWeb3React()
 
   return useMemo(() => {
-    if (!addressOrAddressMap || !ABI || !library || !chainId) return null
+    if (!addressOrAddressMap || !ABI || !chainId) return null
     let address: string | undefined
     if (typeof addressOrAddressMap === 'string') address = addressOrAddressMap
     else address = addressOrAddressMap[chainId]
     if (!address) return null
     try {
+      if (!library) return getContract(address, ABI, RPC_PROVIDERS[chainId])
       return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
     } catch (error) {
       console.error('Failed to get contract', error)

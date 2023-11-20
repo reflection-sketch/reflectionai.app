@@ -1,12 +1,12 @@
-import { ChainId, ChainInfo } from '@particle-network/chains'
+import { ChainInfo } from '@particle-network/chains'
 import { useNetwork, useAccountInfo } from '@particle-network/connect-react-ui'
 import { useMemo } from 'react'
 import { providers } from 'ethers'
 import { EVMProvider } from '@particle-network/auth'
-import { DEFAULT_CHAIN_ID } from 'constants/chains'
+import { DEFAULT_CHAIN_ID, SupportedChainId } from 'constants/chains'
 
 export function useActiveWeb3React(): {
-  chainId?: ChainId
+  chainId?: SupportedChainId
   account?: string
   chainInfo?: ChainInfo
   library?: providers.Web3Provider
@@ -29,7 +29,7 @@ export function useActiveWeb3React(): {
       connectId,
       account,
       chainInfo: chain,
-      chainId: chain?.id,
+      chainId: chain?.id || DEFAULT_CHAIN_ID,
       library: provider
     }),
     [account, chain, connectId, provider]
