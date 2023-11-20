@@ -1,21 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers } from 'redux'
 // TOTD  There seems to be wrong
 import { load, save } from 'next-redux-localstorage-simple'
-
+import multicall from './multicall'
 import application from './application/reducer'
 import { updateVersion } from './global/actions'
 import transactions from './transactions/reducer'
 
-const PERSISTED_KEYS: string[] = ['transactions', 'userWallet']
+const PERSISTED_KEYS: string[] = ['transactions']
+
+const reducer = combineReducers({
+  [multicall.reducerPath]: multicall.reducer,
+  application,
+  transactions
+})
 
 const store = configureStore({
-  reducer: {
-    application,
-    // user,
-    transactions
-    // multicall,
-    // users
-  },
+  reducer,
   // middleware: [...getDefaultMiddleware({ thunk: true }), save({ states: PERSISTED_KEYS })],
   middleware: getDefaultMiddleware => getDefaultMiddleware({ thunk: true }).concat(save({ states: PERSISTED_KEYS })),
   preloadedState: load({ states: PERSISTED_KEYS })

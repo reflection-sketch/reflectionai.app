@@ -3,11 +3,13 @@ import type { AppProps } from 'next/app'
 import ParticleProvider from 'provider/ParticleProvider'
 import StateProvider from 'provider/StateProvider'
 import ApplicationUpdater from 'state/application/updater'
+import { MulticallUpdater } from 'state/multicall'
 
 function Updater() {
   return (
     <>
       <ApplicationUpdater />
+      <MulticallUpdater />
     </>
   )
 }
