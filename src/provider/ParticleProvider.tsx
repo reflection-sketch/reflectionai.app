@@ -1,6 +1,6 @@
 import { ModalProvider } from '@particle-network/connect-react-ui'
 import { WalletEntryPosition } from '@particle-network/auth'
-import { Ethereum, EthereumGoerli } from '@particle-network/chains'
+import { Ethereum, EthereumSepolia } from '@particle-network/chains'
 import { evmWallets } from '@particle-network/connect'
 import '@particle-network/connect-react-ui/esm/index.css'
 
@@ -11,12 +11,12 @@ export default function ParticleProvider({ children }: { children: React.ReactNo
         projectId: '7b96ff1f-6628-442d-91d8-20874cf19ab2',
         clientKey: 'cXZeTagloKdoWn13nsoXUqn5dYhFLtFbO88nTXCi',
         appId: '0b4cabf4-e7f0-4d3a-a32b-363273857aa1',
-        chains: [Ethereum, EthereumGoerli],
+        chains: [EthereumSepolia, Ethereum],
         particleWalletEntry: {
           //optional: particle wallet config
           displayWalletEntry: true, //display wallet button when connect particle success.
           defaultWalletEntryPosition: WalletEntryPosition.BR,
-          supportChains: [Ethereum, EthereumGoerli],
+          supportChains: [EthereumSepolia, Ethereum],
           customStyle: {} //optional: custom wallet style
         },
         wallets: evmWallets({

@@ -2,6 +2,8 @@ import { ChainId, ChainInfo } from '@particle-network/chains'
 import { useNetwork, useAccountInfo } from '@particle-network/connect-react-ui'
 import { useMemo } from 'react'
 import { providers } from 'ethers'
+import { EVMProvider } from '@particle-network/auth'
+import { DEFAULT_CHAIN_ID } from 'constants/chains'
 
 export function useActiveWeb3React(): {
   chainId?: ChainId
@@ -15,8 +17,12 @@ export function useActiveWeb3React(): {
 
   const provider = useMemo(() => {
     if (!particleProvider) return undefined
-    return new providers.Web3Provider(particleProvider as any)
-  }, [particleProvider])
+    const network = {
+      name: chain?.name || '',
+      chainId: chain?.id || DEFAULT_CHAIN_ID
+    }
+    return new providers.Web3Provider(particleProvider as EVMProvider, network)
+  }, [chain?.id, chain?.name, particleProvider])
 
   return useMemo(
     () => ({
