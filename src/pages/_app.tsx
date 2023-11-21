@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import ParticleProvider from 'provider/ParticleProvider'
 import StateProvider from 'provider/StateProvider'
 import ApplicationUpdater from 'state/application/updater'
+import TransactionsUpdater from 'state/transactions/updater'
 import { MulticallUpdater } from 'state/multicall'
 import GoogleAnalyticsReporter from 'components/analytics/GoogleAnalyticsReporter'
 
@@ -11,6 +12,7 @@ function Updater() {
     <>
       <ApplicationUpdater />
       <MulticallUpdater />
+      <TransactionsUpdater />
     </>
   )
 }

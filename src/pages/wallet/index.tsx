@@ -7,6 +7,7 @@ import { useSwitchNetwork } from 'hooks/useSwitchNetwork'
 import { useApproveCallback } from 'hooks/useApproveCallback'
 import { useCurrencyBalance, useToken } from 'hooks/useToken'
 import { CurrencyAmount } from 'constants/token'
+import { useAllTransactions } from 'state/transactions/hooks'
 
 export default function Wallet() {
   const { chainId } = useActiveWeb3React()
@@ -22,6 +23,8 @@ export default function Wallet() {
   )
   const bal = useCurrencyBalance('0x5718D9C95D15a766E9DdE6579D7B93Eaa88a26b8', token || undefined, 11155111)
   console.log('🚀 ~ file: index.tsx:24 ~ Wallet ~ bal:', bal?.toSignificant())
+  const allTransactions = useAllTransactions()
+  console.log('🚀 ~ file: index.tsx:27 ~ Wallet ~ allTransactions:', allTransactions)
 
   return (
     <div>
