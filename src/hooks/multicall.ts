@@ -1,4 +1,6 @@
+import { SupportedChainId } from 'constants/chains'
 import { useActiveWeb3React } from 'hooks'
+import { useMemo } from 'react'
 import { useBlockNumber } from 'state/application/hooks'
 import multicall from 'state/multicall'
 
@@ -7,37 +9,46 @@ export { NEVER_RELOAD } from '@uniswap/redux-multicall' // re-export for conveni
 
 // Create wrappers for hooks so consumers don't need to get latest block themselves
 
-type MulticallParams<T extends (chainId: number | undefined, latestBlock: number | undefined, ...args: any) => any> =
-  Parameters<T> extends [any, any, ...infer P] ? P : never
+type MulticallParams<
+  T extends (chainId: SupportedChainId | undefined, latestBlock: number | undefined, ...args: any) => any
+> = Parameters<T> extends [any, any, ...infer P] ? P : never
 
 export function useMultipleContractSingleData(
+  chainId: SupportedChainId | undefined,
   ...args: MulticallParams<typeof multicall.hooks.useMultipleContractSingleData>
 ) {
-  const { chainId, latestBlock } = useCallContext()
-  return multicall.hooks.useMultipleContractSingleData(chainId, latestBlock, ...args)
+  const [queryChainId, latestBlock] = useCallContext(chainId)
+  return multicall.hooks.useMultipleContractSingleData(queryChainId, latestBlock, ...args)
 }
 
-export function useSingleCallResult(...args: MulticallParams<typeof multicall.hooks.useSingleCallResult>) {
-  const { chainId, latestBlock } = useCallContext()
-  return multicall.hooks.useSingleCallResult(chainId, latestBlock, ...args)
+export function useSingleCallResult(
+  chainId: SupportedChainId | undefined,
+  ...args: MulticallParams<typeof multicall.hooks.useSingleCallResult>
+) {
+  const [queryChainId, latestBlock] = useCallContext(chainId)
+  return multicall.hooks.useSingleCallResult(queryChainId, latestBlock, ...args)
 }
 
 export function useSingleContractMultipleData(
+  chainId: SupportedChainId | undefined,
   ...args: MulticallParams<typeof multicall.hooks.useSingleContractMultipleData>
 ) {
-  const { chainId, latestBlock } = useCallContext()
-  return multicall.hooks.useSingleContractMultipleData(chainId, latestBlock, ...args)
+  const [queryChainId, latestBlock] = useCallContext(chainId)
+  return multicall.hooks.useSingleContractMultipleData(queryChainId, latestBlock, ...args)
 }
 
 export function useSingleContractWithCallData(
+  chainId: SupportedChainId | undefined,
   ...args: MulticallParams<typeof multicall.hooks.useSingleContractWithCallData>
 ) {
-  const { chainId, latestBlock } = useCallContext()
-  return multicall.hooks.useSingleContractWithCallData(chainId, latestBlock, ...args)
+  const [queryChainId, latestBlock] = useCallContext(chainId)
+  return multicall.hooks.useSingleContractWithCallData(queryChainId, latestBlock, ...args)
 }
 
-function useCallContext() {
-  const { chainId } = useActiveWeb3React()
-  const latestBlock = useBlockNumber()
-  return { chainId, latestBlock }
+function useCallContext(chainId?: number) {
+  const { chainId: curChainId } = useActiveWeb3React()
+  const queryChainId = useMemo(() => chainId || curChainId, [chainId, curChainId])
+
+  const latestBlock = useBlockNumber(queryChainId)
+  return [queryChainId, latestBlock]
 }

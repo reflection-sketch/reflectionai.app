@@ -1,20 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ConnectButton } from '@particle-network/connect-react-ui'
 import { useTokenContract } from 'hooks/useContract'
 import { useSingleCallResult } from 'hooks/multicall'
+import { useActiveWeb3React } from 'hooks'
 
 export default function Wallet() {
+  const { chainId } = useActiveWeb3React()
   const tokenContract = useTokenContract('0x85eDB7A0cbAcf5BD641e0FF5D6270bEf9C72Bd6B', false)
-  const res = useSingleCallResult(tokenContract, 'name')
-  console.log('🚀 ~ file: index.tsx:9 ~ Wallet ~ res:', res)
-  useEffect(() => {
-    console.log(
-      '🚀 ~ file: index.tsx:9 ~ tokenContract?.name ~ res:',
-      tokenContract?.name().then((res: any) => {
-        console.log('🚀 ~ file: index.tsx:11 ~ console.log ~ res:', res)
-      })
-    )
-  }, [tokenContract])
+  const res = useSingleCallResult(11155111, tokenContract, 'balanceOf', ['0x5718D9C95D15a766E9DdE6579D7B93Eaa88a26b8'])
+  console.log('🚀 ~ file: index.tsx:9 ~ Wallet ~ res:', chainId, res.result?.[0].toString())
 
   return (
     <div>
