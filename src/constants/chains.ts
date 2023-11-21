@@ -5,9 +5,11 @@ export enum SupportedChainId {
   SEPOLIA = 11155111
 }
 
-export const SupportedChainIds: SupportedChainId[] = [1, 11155111]
+export const SupportedChainIds: SupportedChainId[] = process.env.NEXT_PUBLIC_CHAIN_IDS
+  ? process.env.NEXT_PUBLIC_CHAIN_IDS.split(',').map(v => Number(v) as SupportedChainId)
+  : [SupportedChainId.MAINNET]
 
-export const DEFAULT_CHAIN_ID = SupportedChainId.SEPOLIA
+export const DEFAULT_CHAIN_ID = Number(process.env.NEXT_PUBLIC_DEFAULT_CHAIN_ID) || SupportedChainId.MAINNET
 
 export const SupportedChainsInfo: { [x in SupportedChainId]: ChainInfo } = (() => {
   const list: { [x in SupportedChainId]: ChainInfo } = {} as { [x in SupportedChainId]: ChainInfo }
@@ -20,3 +22,7 @@ export const SupportedChainsInfo: { [x in SupportedChainId]: ChainInfo } = (() =
   }
   return list
 })()
+
+export const SupportedChainList = SupportedChainIds.map(chain => chains.getEVMChainInfoById(chain)).filter(
+  i => i
+) as ChainInfo[]
