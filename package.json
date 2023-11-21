@@ -7,6 +7,7 @@
     "build": "next build",
     "prepare": "husky install",
     "tsc": "tsc",
+    "type:abi": "pnpm typechain --target ethers-v5 --out-dir src/abis/types \"./src/abis/**/*.json\"",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix"
@@ -48,6 +49,8 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.2",
     "@commitlint/config-conventional": "^18.4.2",
+    "@ethersproject/abi": "^5.7.0",
+    "@typechain/ethers-v5": "^11.1.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -58,6 +61,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
     "prettier": "^3.1.0",
+    "typechain": "^8.3.2",
     "typescript": "^5"
   }
 }

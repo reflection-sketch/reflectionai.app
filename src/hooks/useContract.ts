@@ -4,7 +4,7 @@ import ENS_ABI from 'abis/ens-registrar.json'
 import ERC20_ABI from 'abis/erc20.json'
 import MulticallABI from 'abis/multicall.json'
 import ERC20_BYTES32_ABI from 'abis/erc20_bytes32.json'
-// import { EnsPublicResolver, EnsRegistrar, Erc20 } from 'abis/types'
+import { EnsPublicResolver, EnsRegistrar, Erc20, Erc20_bytes32, Multicall } from 'abis/types'
 import { ENS_REGISTRAR_ADDRESSES, MULTICALL_ADDRESS } from 'constants/addresses'
 import { useActiveWeb3React } from 'hooks'
 import { useMemo } from 'react'
@@ -41,21 +41,21 @@ export function useContract<T extends Contract = Contract>(
 }
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean) {
-  return useContract(tokenAddress, ERC20_ABI, withSignerIfPossible)
+  return useContract<Erc20>(tokenAddress, ERC20_ABI, withSignerIfPossible)
 }
 
 export function useENSRegistrarContract(withSignerIfPossible?: boolean) {
-  return useContract(ENS_REGISTRAR_ADDRESSES, ENS_ABI, withSignerIfPossible)
+  return useContract<EnsRegistrar>(ENS_REGISTRAR_ADDRESSES, ENS_ABI, withSignerIfPossible)
 }
 
 export function useENSResolverContract(address: string | undefined, withSignerIfPossible?: boolean) {
-  return useContract(address, ENS_PUBLIC_RESOLVER_ABI, withSignerIfPossible)
+  return useContract<EnsPublicResolver>(address, ENS_PUBLIC_RESOLVER_ABI, withSignerIfPossible)
 }
 
 export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(tokenAddress, ERC20_BYTES32_ABI, withSignerIfPossible)
+  return useContract<Erc20_bytes32>(tokenAddress, ERC20_BYTES32_ABI, withSignerIfPossible)
 }
 
 export function useInterfaceMulticall(chainId?: SupportedChainId) {
-  return useContract(MULTICALL_ADDRESS, MulticallABI, false, chainId)
+  return useContract<Multicall>(MULTICALL_ADDRESS, MulticallABI, false, chainId)
 }
