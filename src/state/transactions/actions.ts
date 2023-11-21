@@ -18,15 +18,20 @@ export interface UserSubmittedProp {
   key?: string | number
 }
 
-export const addTransaction = createAction<{
-  chainId: SupportedChainId
-  hash: string
-  from: string
+export interface ITransactionCustomData {
   approval?: { tokenAddress: string; spender: string }
   claim?: { recipient: string }
   userSubmitted?: UserSubmittedProp
   summary?: string
-}>('transactions/addTransaction')
+}
+
+export const addTransaction = createAction<
+  {
+    chainId: SupportedChainId
+    hash: string
+    from: string
+  } & ITransactionCustomData
+>('transactions/addTransaction')
 export const clearAllTransactions = createAction<{ chainId: SupportedChainId }>('transactions/clearAllTransactions')
 export const finalizeTransaction = createAction<{
   chainId: SupportedChainId
