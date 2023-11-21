@@ -4,6 +4,7 @@ import ParticleProvider from 'provider/ParticleProvider'
 import StateProvider from 'provider/StateProvider'
 import ApplicationUpdater from 'state/application/updater'
 import { MulticallUpdater } from 'state/multicall'
+import GoogleAnalyticsReporter from 'components/analytics/GoogleAnalyticsReporter'
 
 function Updater() {
   return (
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ParticleProvider>
       <StateProvider>
         <Updater />
+        <GoogleAnalyticsReporter />
         <Component {...pageProps} />
       </StateProvider>
     </ParticleProvider>

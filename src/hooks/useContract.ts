@@ -2,9 +2,11 @@ import { Contract } from '@ethersproject/contracts'
 import ENS_PUBLIC_RESOLVER_ABI from 'abis/ens-public-resolver.json'
 import ENS_ABI from 'abis/ens-registrar.json'
 import ERC20_ABI from 'abis/erc20.json'
+import ERC721_ABI from 'abis/erc721.json'
+import ERC1155_ABI from 'abis/erc1155.json'
 import MulticallABI from 'abis/multicall.json'
 import ERC20_BYTES32_ABI from 'abis/erc20_bytes32.json'
-import { EnsPublicResolver, EnsRegistrar, Erc20, Erc20_bytes32, Multicall } from 'abis/types'
+import { EnsPublicResolver, EnsRegistrar, Erc20, Erc721, Erc1155, Erc20_bytes32, Multicall } from 'abis/types'
 import { ENS_REGISTRAR_ADDRESSES, MULTICALL_ADDRESS } from 'constants/addresses'
 import { useActiveWeb3React } from 'hooks'
 import { useMemo } from 'react'
@@ -42,6 +44,14 @@ export function useContract<T extends Contract = Contract>(
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean) {
   return useContract<Erc20>(tokenAddress, ERC20_ABI, withSignerIfPossible)
+}
+
+export function useERC721Contract(tokenAddress?: string, withSignerIfPossible?: boolean) {
+  return useContract<Erc721>(tokenAddress, ERC721_ABI, withSignerIfPossible)
+}
+
+export function useERC1155Contract(tokenAddress?: string, withSignerIfPossible?: boolean) {
+  return useContract<Erc1155>(tokenAddress, ERC1155_ABI, withSignerIfPossible)
 }
 
 export function useENSRegistrarContract(withSignerIfPossible?: boolean) {
