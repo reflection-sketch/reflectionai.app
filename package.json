@@ -63,5 +63,11 @@
     "prettier": "^3.1.0",
     "typechain": "^8.3.2",
     "typescript": "^5"
+  },
+  "engines": {
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm",
+    "node": "18.x",
+    "pnpm": ">=8"
   }
 }
