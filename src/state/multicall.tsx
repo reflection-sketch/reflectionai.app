@@ -1,7 +1,7 @@
 import { createMulticall } from '@uniswap/redux-multicall'
 import { useInterfaceMulticall } from 'hooks/useContract'
 import { useBlockNumber } from './application/hooks'
-import { SupportedChainId, SupportedChainIds } from 'constants/chains'
+import { SupportedChainId, SUPPORT_NETWORK_CHAIN_IDS } from 'constants/chains'
 
 const multicall = createMulticall()
 
@@ -16,7 +16,7 @@ export function MulticallUpdaterSingle({ chainId }: { chainId: SupportedChainId 
 export function MulticallUpdater() {
   return (
     <>
-      {SupportedChainIds.map(chainId => (
+      {SUPPORT_NETWORK_CHAIN_IDS.map(chainId => (
         <MulticallUpdaterSingle key={chainId} chainId={chainId}></MulticallUpdaterSingle>
       ))}
     </>

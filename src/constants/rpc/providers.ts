@@ -1,4 +1,4 @@
-import { SupportedChainId, SupportedChainIds } from 'constants/chains'
+import { SupportedChainId, SUPPORT_NETWORK_CHAIN_IDS } from 'constants/chains'
 import AppStaticJsonRpcProvider from './StaticJsonRpcProvider'
 import StaticJsonRpcProvider from './StaticJsonRpcProvider'
 import { JSON_RPC_FALLBACK_ENDPOINTS } from './jsonRpcEndpoints'
@@ -14,7 +14,7 @@ export const RPC_PROVIDERS: { [key in SupportedChainId]: StaticJsonRpcProvider }
   const list: { [key in SupportedChainId]: StaticJsonRpcProvider } = {} as {
     [key in SupportedChainId]: StaticJsonRpcProvider
   }
-  for (const chainId of SupportedChainIds) {
+  for (const chainId of SUPPORT_NETWORK_CHAIN_IDS) {
     // list[chainId] = providerFactory(chainId)
     list[chainId] = new AppRpcProvider(
       chainId,

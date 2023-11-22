@@ -4,7 +4,7 @@ import useDebounce from '../../hooks/useDebounce'
 import useIsWindowVisible from '../../hooks/useIsWindowVisible'
 import { updateBlockNumber } from './actions'
 import { useDispatch } from 'react-redux'
-import { SupportedChainIds } from 'constants/chains'
+import { SUPPORT_NETWORK_CHAIN_IDS } from 'constants/chains'
 import { RPC_PROVIDERS } from 'constants/rpc/providers'
 
 export default function Updater(): null {
@@ -55,7 +55,7 @@ export default function Updater(): null {
     dispatch(updateBlockNumber({ chainId: debouncedState.chainId, blockNumber: debouncedState.blockNumber }))
   }, [windowVisible, dispatch, debouncedState.blockNumber, debouncedState.chainId])
 
-  const providers = useMemo(() => SupportedChainIds.map(v => RPC_PROVIDERS[v]), [])
+  const providers = useMemo(() => SUPPORT_NETWORK_CHAIN_IDS.map(v => RPC_PROVIDERS[v]), [])
   const [timeInt, setTimeInt] = useState(0)
   useEffect(() => {
     setTimeout(() => setTimeInt(timeInt + 1), 60000)
@@ -63,7 +63,7 @@ export default function Updater(): null {
       (provider, index) =>
         provider
           ?.getBlockNumber()
-          .then(bn => dispatch(updateBlockNumber({ chainId: SupportedChainIds[index], blockNumber: bn })))
+          .then(bn => dispatch(updateBlockNumber({ chainId: SUPPORT_NETWORK_CHAIN_IDS[index], blockNumber: bn })))
     )
   }, [providers, timeInt, dispatch])
 

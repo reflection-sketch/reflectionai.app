@@ -1,4 +1,4 @@
-import { SupportedChainIds, SupportedChainId, SupportedChainsInfo } from '../chains'
+import { SUPPORT_NETWORK_CHAIN_IDS, SupportedChainId, SupportedChainsInfo } from '../chains'
 
 /**
  * Fallback JSON RPC endpoints.
@@ -23,7 +23,7 @@ const CUSTOM_JSON_RPC_FALLBACK_ENDPOINTS: { [x in SupportedChainId]?: string[] }
 
 export const JSON_RPC_FALLBACK_ENDPOINTS: Record<SupportedChainId, string[]> = (() => {
   const list: Record<SupportedChainId, string[]> = {} as Record<SupportedChainId, string[]>
-  for (const chainId of SupportedChainIds) {
+  for (const chainId of SUPPORT_NETWORK_CHAIN_IDS) {
     const costom = CUSTOM_JSON_RPC_FALLBACK_ENDPOINTS?.[chainId]
     list[chainId] = costom ? [...costom, SupportedChainsInfo[chainId].rpcUrl] : [SupportedChainsInfo[chainId].rpcUrl]
   }

@@ -3,7 +3,7 @@ import JSBI from 'jsbi'
 import { SolidityType } from './constants'
 import { validateSolidityTypeInstance } from './utils'
 import invariant from 'tiny-invariant'
-import { DEFAULT_CHAIN_ID } from 'constants/chains'
+import { NETWORK_CHAIN_ID } from 'constants/chains'
 
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 /**
@@ -18,9 +18,8 @@ export class Currency {
   public readonly symbol?: string
   public readonly name?: string
   public readonly logo?: string
-  public readonly dangerous?: boolean
 
-  private static readonly defaultETHER: Currency = new Currency(DEFAULT_CHAIN_ID, ZERO_ADDRESS, 18, 'ETH')
+  private static readonly defaultETHER: Currency = new Currency(NETWORK_CHAIN_ID, ZERO_ADDRESS, 18, 'ETH')
   /**
    * Constructs an instance of the base class `Currency`.
    * @param decimals decimals of the currency
@@ -33,8 +32,7 @@ export class Currency {
     decimals: number,
     symbol?: string,
     name?: string,
-    logo?: string,
-    dangerous?: boolean
+    logo?: string
   ) {
     validateSolidityTypeInstance(JSBI.BigInt(decimals), SolidityType.uint8)
 
@@ -44,7 +42,6 @@ export class Currency {
     this.symbol = symbol
     this.name = name
     this.logo = logo
-    this.dangerous = dangerous
   }
 
   public equals(other: Currency): boolean {
