@@ -1,9 +1,8 @@
+import { ConnectButton } from '@particle-network/connect-react-ui'
+import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import styles from 'styles/Home.module.css'
-import { ConnectButton } from '@particle-network/connect-react-ui'
-
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
