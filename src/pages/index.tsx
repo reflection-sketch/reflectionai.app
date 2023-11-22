@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { ConnectButton } from '@particle-network/connect-react-ui'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
@@ -23,8 +23,18 @@ export default function Home() {
             <code className={styles.code}>src/pages/index.tsx</code>
           </p>
           <Button variant={'outlined'} onClick={() => toggleThemeMode()}>
-            <span style={{ color: '#121212' }}>123</span>
+            <span>toggle theme</span>
           </Button>
+          <Typography
+            sx={{
+              fontWeight: 500,
+              color: 'var(--ps-white)',
+              fontSize: '16px'
+            }}
+            mb={'12px'}
+          >
+            Color test
+          </Typography>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

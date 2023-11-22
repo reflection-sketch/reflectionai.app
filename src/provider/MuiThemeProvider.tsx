@@ -614,13 +614,14 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 export const useMuiThemes = () => {
   const [mode, setMode] = useState<PaletteMode>('light')
   const toggleThemeMode = useCallback(() => {
+    console.log('toggleThemeMode>>>', mode)
     setMode(mode === 'light' ? 'dark' : 'light')
   }, [mode])
   const themes = useMemo(() => {
     const theme = getDesignTokens(mode)
+    console.log('change >>>', theme)
     return createTheme(theme)
   }, [mode])
-
   return {
     themes,
     toggleThemeMode
