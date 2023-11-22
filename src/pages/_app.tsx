@@ -1,7 +1,6 @@
-import { ThemeProvider } from '@mui/material/styles'
 import GoogleAnalyticsReporter from 'components/analytics/GoogleAnalyticsReporter'
 import type { AppProps } from 'next/app'
-import muiTheme from 'provider/MuiThemeProvider'
+import MuiThemeProvider from 'provider/MuiThemeProvider'
 import ParticleProvider from 'provider/ParticleProvider'
 import StateProvider from 'provider/StateProvider'
 import ApplicationUpdater from 'state/application/updater'
@@ -20,11 +19,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ParticleProvider>
       <StateProvider>
-        <ThemeProvider theme={muiTheme}>
+        <MuiThemeProvider>
           <Updater />
           <GoogleAnalyticsReporter />
           <Component {...pageProps} />
-        </ThemeProvider>
+        </MuiThemeProvider>
       </StateProvider>
     </ParticleProvider>
   )
