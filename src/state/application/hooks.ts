@@ -36,8 +36,14 @@ export function useWalletModalToggle(): () => void {
   return useToggleModal(ApplicationModal.WALLET)
 }
 
-export function useSwitchNetworkModalToggle(): () => void {
-  return useToggleModal(ApplicationModal.SWITCH_NETWORK)
+export function useSwitchNetworkModalControl() {
+  const dispatch = useDispatch<AppDispatch>()
+  return {
+    open: useCallback(() => {
+      dispatch(setOpenModal(ApplicationModal.SWITCH_NETWORK))
+    }, [dispatch]),
+    close: useCallback(() => dispatch(setOpenModal(null)), [dispatch])
+  }
 }
 
 export function useSignLoginModalControl() {
