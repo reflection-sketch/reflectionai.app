@@ -1,28 +1,10 @@
-import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { Contract } from '@ethersproject/contracts'
 import { JsonRpcProvider, JsonRpcSigner } from '@ethersproject/providers'
 import JSBI from 'jsbi'
 import { CurrencyAmount } from 'constants/token'
 import { BigNumber } from 'ethers'
-
-// returns the checksummed address if the address is valid, otherwise returns false
-export function isAddress(value: any): string | false {
-  try {
-    return getAddress(value)
-  } catch {
-    return false
-  }
-}
-
-// shorten the checksummed version of the input address to have 0x + 4 characters at start and end
-export function shortenAddress(address: string, chars = 4): string {
-  const parsed = isAddress(address)
-  if (!parsed) {
-    throw Error(`Invalid 'address' parameter '${address}'.`)
-  }
-  return `${parsed.substring(0, chars + 2)}...${parsed.substring(42 - chars)}`
-}
+import { isAddress } from 'utils'
 
 // account is not optional
 function getSigner(provider: JsonRpcProvider, account: string): JsonRpcSigner {
@@ -41,20 +23,6 @@ export function getContract(address: string, ABI: any, provider: JsonRpcProvider
   }
 
   return new Contract(address, ABI, getProviderOrSigner(provider, account) as any)
-}
-
-export function escapeRegExp(string: string): string {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
-}
-
-export function shortenHash(hash: string, suffixLength = 6): string {
-  if (typeof hash !== 'string' || hash.length <= 4 + suffixLength) {
-    return hash // Return original hash if it's not a string or shorter than prefix + suffix length
-  }
-
-  const prefix = hash.slice(0, 4)
-  const suffix = hash.slice(-suffixLength)
-  return `${prefix}...${suffix}`
 }
 
 // add 10%

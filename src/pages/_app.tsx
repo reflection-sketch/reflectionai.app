@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import muiTheme from 'provider/MuiThemeProvider'
 import ParticleProvider from 'provider/ParticleProvider'
 import StateProvider from 'provider/StateProvider'
+import { ModalProvider } from 'provider/ModalProvider'
 import ApplicationUpdater from 'state/application/updater'
 import TransactionsUpdater from 'state/transactions/updater'
 import { MulticallUpdater } from 'state/multicall'
@@ -25,7 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={muiTheme}>
           <Updater />
           <GoogleAnalyticsReporter />
-          <Component {...pageProps} />
+          <ModalProvider>
+            <Component {...pageProps} />
+          </ModalProvider>
         </ThemeProvider>
       </StateProvider>
     </ParticleProvider>

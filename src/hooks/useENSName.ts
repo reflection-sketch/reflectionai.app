@@ -1,7 +1,7 @@
 import { namehash } from 'ethers/lib/utils'
 import { useMemo } from 'react'
 import { useSingleCallResult } from './multicall'
-import { isAddress } from '../utils/contract'
+import { isAddress } from '../utils'
 import isZero from '../utils'
 import { useENSRegistrarContract, useENSResolverContract } from './useContract'
 import useDebounce from './useDebounce'

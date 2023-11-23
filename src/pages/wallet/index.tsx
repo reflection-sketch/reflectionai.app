@@ -8,6 +8,7 @@ import { useApproveCallback } from 'hooks/useApproveCallback'
 import { useCurrencyBalance, useToken } from 'hooks/useToken'
 import { CurrencyAmount } from 'constants/token'
 import { useAllTransactions } from 'state/transactions/hooks'
+import { Button } from '@mui/material'
 
 export default function Wallet() {
   const { chainId } = useActiveWeb3React()
@@ -29,9 +30,9 @@ export default function Wallet() {
   return (
     <div>
       <ConnectButton />
-      <button onClick={() => switchNetwork(1)}>switch chain</button>
+      <Button onClick={() => switchNetwork(1)}>switch chain</Button>
       <div>
-        <button onClick={approve}>approve</button>
+        <Button onClick={approve}>approve</Button>
       </div>
     </div>
   )

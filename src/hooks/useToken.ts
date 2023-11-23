@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import ERC20_INTERFACE from '../abis/erc20'
 import { useActiveWeb3React } from '.'
 import { useBytes32TokenContract, useInterfaceMulticall, useTokenContract } from './useContract'
-import { isAddress } from '../utils/contract'
+import { isAddress } from '../utils'
 import {
   useSingleContractMultipleData,
   useMultipleContractSingleData,
