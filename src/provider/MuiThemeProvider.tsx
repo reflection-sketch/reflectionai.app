@@ -1,95 +1,117 @@
-import { createTheme } from '@mui/material/styles'
-// import { TypographyOptions } from '@mui/material/styles/createTypography'
-import { Theme } from '@mui/material'
+import { CssBaseline, Theme, ThemeOptions, ThemeProvider, createTheme, styled } from '@mui/material'
 import { CommonColors } from '@mui/material/styles/createPalette'
+import { TypographyOptions } from '@mui/material/styles/createTypography'
+import React, { createContext, useCallback, useMemo, useState } from 'react'
 
+export const TypographyComponent = {
+  fontFamily: [`"Sharp Grotesk DB Cyr Book 20"`, 'sans-serif'].join(','),
+  h1: { fontSize: 36, lineHeight: 46 / 36, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
+  h2: { fontSize: 22, lineHeight: 28 / 22, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
+  h3: { fontSize: 18, lineHeight: 26 / 18, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
+  h4: { fontSize: 16, lineHeight: 24 / 16, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
+  h5: { fontSize: 14, lineHeight: 22 / 14, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
+  h6: { fontSize: 12, lineHeight: 15 / 12, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
+  // caption: { fontSize: 12, lineHeight: 32 / 24, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
+  body1: { fontSize: 14, lineHeight: 20 / 14, fontFamily: `"Sharp Grotesk DB Cyr Book 20"` },
+  body2: { fontSize: 12, lineHeight: 15 / 12, fontFamily: `"Sharp Grotesk DB Cyr Book 20"` }
+} as TypographyOptions
+type PaletteMode = 'light' | 'dark'
+export interface IThemeModeContext {
+  toggleThemeMode: () => void
+}
 const buildVar = function (name: string) {
   const NAMESPACE = '--ps-'
   return `${NAMESPACE}${name}`
 }
-const Color = {
-  white: '#000',
-  black: '#fff',
-  primary: '#292422',
-  secondary: '#292422',
-  text: '#C1BFB3',
-  success: '#73D491',
-  warn: '#EBBC42',
-  error: '#EB4242',
-  'gray-900': '#171717',
-  'gray-800': '#404040',
-  'gray-700': '#878A8E',
-  'gray-600': '#908E96',
-  'gray-500': '#B3B7C8',
-  'gray-400': '#C5C5C5',
-  'gray-300': '#D8DBE7',
-  'gray-200': '#E6E6E6',
-  'gray-100': '#EBECEF',
-  'gray-50': '#F5F5F5',
-  'gray-30': '#EDEDED',
-  'gray-20': '#E8E9E4',
-  'border-1': 'rgba(18, 18, 18, 0.2)',
-  // Green
-  green: '#73D491',
-  'green-1': '#20994B',
-  // Blue
-  blue: '#2663FF',
-  'blue-50': '#245AE7',
-  'blue-100': '#2150CC',
-  // yellow
-  'yellow-1': '#E1F25C',
-  'yellow-2': '#B5E529',
-  // text-color or bg-color
-  'text-1': '#626262',
-  'text-2': '#959595',
-  'text-3': '#121212',
-  'text-4': '#20201E',
-  'text-5': '#D7D6D9',
-  'text-6': '#58595B',
-  'text-7': '#2B51DA',
-  'text-8': '#f6f7f3'
+const ThemeModeContext = createContext<IThemeModeContext | null>(null)
+export const ColorOptions = {
+  light: {
+    white: '#fff',
+    black: '#121212',
+    primary: '#fff',
+    secondary: '#121212',
+    text: '#171717',
+    success: '#73D491',
+    warn: '#EBBC42',
+    error: '#EB4242',
+    // Gray
+    'gray-900': '#171717',
+    'gray-800': '#404040',
+    'gray-700': '#878A8E',
+    'gray-600': '#908E96',
+    'gray-500': '#B3B7C8',
+    'gray-400': '#C5C5C5',
+    'gray-300': '#D8DBE7',
+    'gray-200': '#E6E6E6',
+    'gray-100': '#EBECEF',
+    'gray-50': '#F5F5F5',
+    'gray-30': '#EDEDED',
+    'border-1': 'rgba(18, 18, 18, 0.2)',
+    'gray-20': '#E8E9E4',
+    // Green
+    green: '#73D491',
+    'green-1': '#20994B',
+    // Blue
+    blue: '#2663FF',
+    'blue-50': '#245AE7',
+    'blue-100': '#2150CC',
+    // yellow
+    'yellow-1': '#E1F25C',
+    'yellow-2': '#B5E529',
+    // text-color or bg-color
+    'text-1': '#626262',
+    'text-2': '#959595',
+    'text-3': '#121212',
+    'text-4': '#20201E',
+    'text-5': '#D7D6D9',
+    'text-6': '#58595B',
+    'text-7': '#2B51DA',
+    'text-8': '#f6f7f3'
+  },
+  dark: {
+    white: '#000',
+    black: '#fff',
+    primary: '#292422',
+    secondary: '#292422',
+    text: '#C1BFB3',
+    success: '#73D491',
+    warn: '#EBBC42',
+    error: '#EB4242',
+    'gray-900': '#171717',
+    'gray-800': '#404040',
+    'gray-700': '#878A8E',
+    'gray-600': '#908E96',
+    'gray-500': '#B3B7C8',
+    'gray-400': '#C5C5C5',
+    'gray-300': '#D8DBE7',
+    'gray-200': '#E6E6E6',
+    'gray-100': '#EBECEF',
+    'gray-50': '#F5F5F5',
+    'gray-30': '#EDEDED',
+    'gray-20': '#E8E9E4',
+    'border-1': 'rgba(18, 18, 18, 0.2)',
+    // Green
+    green: '#73D491',
+    'green-1': '#20994B',
+    // Blue
+    blue: '#2663FF',
+    'blue-50': '#245AE7',
+    'blue-100': '#2150CC',
+    // yellow
+    'yellow-1': '#E1F25C',
+    'yellow-2': '#B5E529',
+    // text-color or bg-color
+    'text-1': '#626262',
+    'text-2': '#959595',
+    'text-3': '#121212',
+    'text-4': '#20201E',
+    'text-5': '#D7D6D9',
+    'text-6': '#58595B',
+    'text-7': '#2B51DA',
+    'text-8': '#f6f7f3'
+  }
 }
-const muiTheme = createTheme({
-  palette: {
-    mode: 'light',
-    divider: Color.text,
-    primary: {
-      main: Color.primary,
-      contrastText: Color.text
-    },
-    secondary: {
-      main: Color.secondary,
-      contrastText: Color.text
-    },
-    info: {
-      main: Color['gray-50'],
-      contrastText: Color['gray-700']
-    },
-    success: {
-      main: Color.success,
-      contrastText: Color.text
-    },
-    warning: {
-      main: Color.warn,
-      contrastText: Color.text
-    },
-    error: {
-      main: Color.error,
-      contrastText: Color.text
-    }
-  },
-  typography: {
-    fontFamily: [`"Sharp Grotesk DB Cyr Book 20"`, 'sans-serif'].join(','),
-    h1: { fontSize: 36, lineHeight: 46 / 36, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-    h2: { fontSize: 22, lineHeight: 28 / 22, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-    h3: { fontSize: 18, lineHeight: 26 / 18, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-    h4: { fontSize: 16, lineHeight: 24 / 16, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-    h5: { fontSize: 14, lineHeight: 22 / 14, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-    h6: { fontSize: 12, lineHeight: 15 / 12, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-    // caption: { fontSize: 12, lineHeight: 32 / 24, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-    body1: { fontSize: 14, lineHeight: 20 / 14, fontFamily: `"Sharp Grotesk DB Cyr Book 20"` },
-    body2: { fontSize: 12, lineHeight: 15 / 12, fontFamily: `"Sharp Grotesk DB Cyr Book 20"` }
-  },
+const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   components: {
     MuiCssBaseline: {
       styleOverrides: (theme: Theme) => {
@@ -112,7 +134,7 @@ const muiTheme = createTheme({
           body: {
             fontFamily: `"Sharp Grotesk DB Cyr Book 20"`,
             fontSize: 14,
-            color: Color.text,
+            color: ColorOptions[mode].text,
             background: '#F6F7F3'
           },
           a: {
@@ -531,6 +553,7 @@ const muiTheme = createTheme({
       }
     }
   },
+  typography: TypographyComponent,
   spacing: 1,
   shape: {
     borderRadius: 1
@@ -543,6 +566,96 @@ const muiTheme = createTheme({
       lg: 1200,
       xl: 1440
     }
+  },
+  palette: {
+    mode,
+    common: { ...ColorOptions[mode] },
+    ...{
+      divider: ColorOptions[mode].text,
+      primary: {
+        main: ColorOptions[mode].primary,
+        contrastText: ColorOptions[mode].text
+      },
+      secondary: {
+        main: ColorOptions[mode].secondary,
+        contrastText: ColorOptions[mode].text
+      },
+      info: {
+        main: ColorOptions[mode]['gray-50'],
+        contrastText: ColorOptions[mode]['gray-700']
+      },
+      success: {
+        main: ColorOptions[mode].success,
+        contrastText: ColorOptions[mode].text
+      },
+      warning: {
+        main: ColorOptions[mode].warn,
+        contrastText: ColorOptions[mode].text
+      },
+      error: {
+        main: ColorOptions[mode].error,
+        contrastText: ColorOptions[mode].text
+      }
+    }
   }
+  // gradient: {
+  //   gradient1: '#ffffff linear-gradient(154.62deg, #77C803 9.44%, #28A03E 59.25%);'
+  // },
+  // height: {
+  //   header: '76px',
+  //   mobileHeader: '51px',
+  //   footer: '60px'
+  // },
+  // width: {
+  //   sidebar: '250px',
+  //   maxContent: '1110px'
+  // }
 })
-export default muiTheme
+export const useMuiThemes = () => {
+  const [mode, setMode] = useState<PaletteMode>('light')
+  const toggleThemeMode = useCallback(() => {
+    console.log('toggleThemeMode>>>', mode)
+    setMode(mode === 'light' ? 'dark' : 'light')
+  }, [mode])
+  const themes = useMemo(() => {
+    const theme = getDesignTokens(mode)
+    console.log('change >>>', theme)
+    return createTheme(theme)
+  }, [mode])
+  return {
+    themes,
+    toggleThemeMode
+  }
+}
+type IMuiThemeProviderProps = {
+  children: React.ReactNode
+}
+export const MuiThemeProvider: React.FC<IMuiThemeProviderProps> = ({ children }) => {
+  const { themes, toggleThemeMode } = useMuiThemes()
+  return (
+    <ThemeModeContext.Provider value={{ toggleThemeMode }}>
+      <ThemeProvider theme={themes}>
+        <CssBaseline enableColorScheme />
+        {children}
+      </ThemeProvider>
+    </ThemeModeContext.Provider>
+  )
+}
+
+export const HideOnMobile = styled('div', {
+  shouldForwardProp: () => true
+})<{ breakpoint?: 'sm' | 'md' | 'lg' }>(({ theme, breakpoint }) => ({
+  [theme.breakpoints.down(breakpoint ?? 'sm')]: {
+    display: 'none'
+  }
+}))
+
+export const ShowOnMobile = styled('div', {
+  shouldForwardProp: () => true
+})<{ breakpoint?: 'sm' | 'md' }>(({ theme, breakpoint }) => ({
+  display: 'none',
+  [theme.breakpoints.down(breakpoint ?? 'sm')]: {
+    display: 'block'
+  }
+}))
+export default MuiThemeProvider

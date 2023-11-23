@@ -1,11 +1,13 @@
+import { Button, Typography } from '@mui/material'
 import { ConnectButton } from '@particle-network/connect-react-ui'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useMuiThemes } from 'provider/MuiThemeProvider'
 import styles from 'styles/Home.module.css'
 const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
+  const { toggleThemeMode } = useMuiThemes()
   return (
     <>
       <Head>
@@ -20,6 +22,19 @@ export default function Home() {
             Get started by editing&nbsp;
             <code className={styles.code}>src/pages/index.tsx</code>
           </p>
+          <Button variant={'outlined'} onClick={() => toggleThemeMode()}>
+            <span>toggle theme</span>
+          </Button>
+          <Typography
+            sx={{
+              fontWeight: 500,
+              color: 'var(--ps-white)',
+              fontSize: '16px'
+            }}
+            mb={'12px'}
+          >
+            Color test
+          </Typography>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
