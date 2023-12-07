@@ -5,6 +5,4 @@ const nextConfig = {
   reactStrictMode: true
 }
 
-export default withSvgr({
-  nextConfig
-})
+export default withSvgr(nextConfig)

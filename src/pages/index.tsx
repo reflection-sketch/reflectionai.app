@@ -1,13 +1,16 @@
-import { Button, Typography } from '@mui/material'
+import { Button, Typography, styled } from '@mui/material'
 import { ConnectButton } from '@particle-network/connect-react-ui'
-import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useMuiThemes } from 'provider/MuiThemeProvider'
+import { useUpdateThemeMode } from 'state/application/hooks'
 import styles from 'styles/Home.module.css'
-const inter = Inter({ subsets: ['latin'] })
+
+const StyledContainer = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.default
+}))
+
 export default function Home() {
-  const { toggleThemeMode } = useMuiThemes()
+  const { toggleThemeMode } = useUpdateThemeMode()
   return (
     <>
       <Head>
@@ -16,7 +19,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
+      <StyledContainer>
         <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
@@ -109,7 +112,7 @@ export default function Home() {
             <p>Instantly deploy your Next.js site to a shareable URL with&nbsp;Vercel.</p>
           </a>
         </div>
-      </main>
+      </StyledContainer>
     </>
   )
 }

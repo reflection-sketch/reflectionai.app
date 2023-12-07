@@ -1,5 +1,15 @@
 import { createReducer, nanoid } from '@reduxjs/toolkit'
-import { addPopup, PopupContent, removePopup, updateBlockNumber, ApplicationModal, setOpenModal } from './actions'
+import {
+  addPopup,
+  PopupContent,
+  removePopup,
+  updateBlockNumber,
+  ApplicationModal,
+  setOpenModal,
+  updateThemeMode
+} from './actions'
+import { PaletteMode } from '@mui/material'
+import { DEFAULT_THEME } from '../../constants'
 
 type PopupList = Array<{ key: string; show: boolean; content: PopupContent; removeAfterMs: number | null }>
 
@@ -7,12 +17,14 @@ export interface ApplicationState {
   readonly blockNumber: { readonly [chainId: number]: number }
   readonly popupList: PopupList
   readonly openModal: ApplicationModal | null
+  readonly themeModel: PaletteMode
 }
 
 const initialState: ApplicationState = {
   blockNumber: {},
   popupList: [],
-  openModal: null
+  openModal: null,
+  themeModel: DEFAULT_THEME
 }
 
 export default createReducer(initialState, builder =>
@@ -44,5 +56,9 @@ export default createReducer(initialState, builder =>
           p.show = false
         }
       })
+    })
+    .addCase(updateThemeMode, (state, action) => {
+      const { themeModel } = action.payload
+      state.themeModel = themeModel
     })
 )

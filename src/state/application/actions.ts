@@ -1,3 +1,4 @@
+import { PaletteMode } from '@mui/material'
 import { createAction } from '@reduxjs/toolkit'
 
 export type PopupContent = {
@@ -22,3 +23,4 @@ export const addPopup = createAction<{ key?: string; removeAfterMs?: number | nu
   'application/addPopup'
 )
 export const removePopup = createAction<{ key: string }>('application/removePopup')
+export const updateThemeMode = createAction<{ themeModel: PaletteMode }>('application/updateThemeMode')

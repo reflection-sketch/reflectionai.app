@@ -1,7 +1,17 @@
-import { CssBaseline, Theme, ThemeOptions, ThemeProvider, createTheme, styled } from '@mui/material'
+import {
+  CssBaseline,
+  PaletteMode,
+  StyledEngineProvider,
+  Theme,
+  ThemeOptions,
+  ThemeProvider,
+  createTheme,
+  styled
+} from '@mui/material'
 import { CommonColors } from '@mui/material/styles/createPalette'
 import { TypographyOptions } from '@mui/material/styles/createTypography'
-import React, { createContext, useCallback, useMemo, useState } from 'react'
+import React, { useEffect, useMemo } from 'react'
+import { useUpdateThemeMode } from 'state/application/hooks'
 
 export const TypographyComponent = {
   fontFamily: [`"Sharp Grotesk DB Cyr Book 20"`, 'sans-serif'].join(','),
@@ -15,15 +25,12 @@ export const TypographyComponent = {
   body1: { fontSize: 14, lineHeight: 20 / 14, fontFamily: `"Sharp Grotesk DB Cyr Book 20"` },
   body2: { fontSize: 12, lineHeight: 15 / 12, fontFamily: `"Sharp Grotesk DB Cyr Book 20"` }
 } as TypographyOptions
-type PaletteMode = 'light' | 'dark'
-export interface IThemeModeContext {
-  toggleThemeMode: () => void
-}
+
 const buildVar = function (name: string) {
   const NAMESPACE = '--ps-'
   return `${NAMESPACE}${name}`
 }
-const ThemeModeContext = createContext<IThemeModeContext | null>(null)
+
 export const ColorOptions = {
   light: {
     white: '#fff',
@@ -111,6 +118,7 @@ export const ColorOptions = {
     'text-8': '#f6f7f3'
   }
 }
+
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   components: {
     MuiCssBaseline: {
@@ -611,36 +619,33 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   //   maxContent: '1110px'
   // }
 })
-export const useMuiThemes = () => {
-  const [mode, setMode] = useState<PaletteMode>('light')
-  const toggleThemeMode = useCallback(() => {
-    console.log('toggleThemeMode>>>', mode)
-    setMode(mode === 'light' ? 'dark' : 'light')
-  }, [mode])
-  const themes = useMemo(() => {
-    const theme = getDesignTokens(mode)
-    console.log('change >>>', theme)
-    return createTheme(theme)
-  }, [mode])
-  return {
-    themes,
-    toggleThemeMode
-  }
-}
+
 type IMuiThemeProviderProps = {
   children: React.ReactNode
 }
 export const MuiThemeProvider: React.FC<IMuiThemeProviderProps> = ({ children }) => {
-  const { themes, toggleThemeMode } = useMuiThemes()
+  const { mode, setThemeMode, getLocalThemeMode } = useUpdateThemeMode()
+
+  useEffect(() => {
+    const localThemeMode = getLocalThemeMode()
+    if (localThemeMode !== mode) {
+      setThemeMode(localThemeMode)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
+
   return (
-    <ThemeModeContext.Provider value={{ toggleThemeMode }}>
-      <ThemeProvider theme={themes}>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
         <CssBaseline enableColorScheme />
         {children}
       </ThemeProvider>
-    </ThemeModeContext.Provider>
+    </StyledEngineProvider>
   )
 }
+export default MuiThemeProvider
 
 export const HideOnMobile = styled('div', {
   shouldForwardProp: () => true
@@ -658,4 +663,3 @@ export const ShowOnMobile = styled('div', {
     display: 'block'
   }
 }))
-export default MuiThemeProvider
