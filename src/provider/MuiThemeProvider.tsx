@@ -6,6 +6,7 @@ import {
   ThemeOptions,
   ThemeProvider,
   createTheme,
+  darken,
   styled
 } from '@mui/material'
 import { CommonColors } from '@mui/material/styles/createPalette'
@@ -13,17 +14,19 @@ import { TypographyOptions } from '@mui/material/styles/createTypography'
 import React, { useEffect, useMemo } from 'react'
 import { useUpdateThemeMode } from 'state/application/hooks'
 
+const fontFamily = 'Sharp Grotesk DB Cyr Book 20'
+
 export const TypographyComponent = {
-  fontFamily: [`"Sharp Grotesk DB Cyr Book 20"`, 'sans-serif'].join(','),
-  h1: { fontSize: 36, lineHeight: 46 / 36, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-  h2: { fontSize: 22, lineHeight: 28 / 22, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-  h3: { fontSize: 18, lineHeight: 26 / 18, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-  h4: { fontSize: 16, lineHeight: 24 / 16, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-  h5: { fontSize: 14, lineHeight: 22 / 14, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-  h6: { fontSize: 12, lineHeight: 15 / 12, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-  // caption: { fontSize: 12, lineHeight: 32 / 24, fontFamily: '"Sharp Grotesk DB Cyr Medium 22"' },
-  body1: { fontSize: 14, lineHeight: 20 / 14, fontFamily: `"Sharp Grotesk DB Cyr Book 20"` },
-  body2: { fontSize: 12, lineHeight: 15 / 12, fontFamily: `"Sharp Grotesk DB Cyr Book 20"` }
+  fontFamily: [`"${fontFamily}"`, 'sans-serif'].join(','),
+  h1: { fontSize: 36, lineHeight: 46 / 36 },
+  h2: { fontSize: 22, lineHeight: 28 / 22 },
+  h3: { fontSize: 18, lineHeight: 26 / 18 },
+  h4: { fontSize: 16, lineHeight: 24 / 16 },
+  h5: { fontSize: 14, lineHeight: 22 / 14 },
+  h6: { fontSize: 12, lineHeight: 15 / 12 },
+  caption: { fontSize: 12, lineHeight: 32 / 24 },
+  body1: { fontSize: 14, lineHeight: 20 / 14 },
+  body2: { fontSize: 12, lineHeight: 15 / 12 }
 } as TypographyOptions
 
 const buildVar = function (name: string) {
@@ -35,89 +38,99 @@ export const ColorOptions = {
   light: {
     white: '#fff',
     black: '#121212',
-    primary: '#fff',
-    secondary: '#121212',
-    text: '#171717',
-    success: '#73D491',
-    warn: '#EBBC42',
-    error: '#EB4242',
-    // Gray
-    'gray-900': '#171717',
-    'gray-800': '#404040',
-    'gray-700': '#878A8E',
-    'gray-600': '#908E96',
-    'gray-500': '#B3B7C8',
-    'gray-400': '#C5C5C5',
-    'gray-300': '#D8DBE7',
-    'gray-200': '#E6E6E6',
-    'gray-100': '#EBECEF',
-    'gray-50': '#F5F5F5',
-    'gray-30': '#EDEDED',
-    'border-1': 'rgba(18, 18, 18, 0.2)',
-    'gray-20': '#E8E9E4',
-    // Green
-    green: '#73D491',
-    'green-1': '#20994B',
-    // Blue
-    blue: '#2663FF',
-    'blue-50': '#245AE7',
-    'blue-100': '#2150CC',
-    // yellow
-    'yellow-1': '#E1F25C',
-    'yellow-2': '#B5E529',
-    // text-color or bg-color
-    'text-1': '#626262',
-    'text-2': '#959595',
-    'text-3': '#121212',
-    'text-4': '#20201E',
-    'text-5': '#D7D6D9',
-    'text-6': '#58595B',
-    'text-7': '#2B51DA',
-    'text-8': '#f6f7f3'
+    blue: 'blue'
   },
   dark: {
     white: '#000',
     black: '#fff',
-    primary: '#292422',
-    secondary: '#292422',
-    text: '#C1BFB3',
-    success: '#73D491',
-    warn: '#EBBC42',
-    error: '#EB4242',
-    'gray-900': '#171717',
-    'gray-800': '#404040',
-    'gray-700': '#878A8E',
-    'gray-600': '#908E96',
-    'gray-500': '#B3B7C8',
-    'gray-400': '#C5C5C5',
-    'gray-300': '#D8DBE7',
-    'gray-200': '#E6E6E6',
-    'gray-100': '#EBECEF',
-    'gray-50': '#F5F5F5',
-    'gray-30': '#EDEDED',
-    'gray-20': '#E8E9E4',
-    'border-1': 'rgba(18, 18, 18, 0.2)',
-    // Green
-    green: '#73D491',
-    'green-1': '#20994B',
-    // Blue
-    blue: '#2663FF',
-    'blue-50': '#245AE7',
-    'blue-100': '#2150CC',
-    // yellow
-    'yellow-1': '#E1F25C',
-    'yellow-2': '#B5E529',
-    // text-color or bg-color
-    'text-1': '#626262',
-    'text-2': '#959595',
-    'text-3': '#121212',
-    'text-4': '#20201E',
-    'text-5': '#D7D6D9',
-    'text-6': '#58595B',
-    'text-7': '#2B51DA',
-    'text-8': '#f6f7f3'
+    blue: 'blue'
   }
 }
+
+const themeLightColors = {
+  primary: {
+    light: '#ADDFB5',
+    main: '#1F9898',
+    dark: darken('#1F9898', 0.3),
+    contrastText: '#1A1C1E'
+  },
+  secondary: {
+    light: '#31B047',
+    main: '#99F7F4',
+    dark: '#00E4DD',
+    contrastText: '#1A1C1E'
+  },
+  error: {
+    main: '#FA0E0E',
+    light: '#FA0E0E10'
+  },
+  warning: {
+    main: '#F0B90B'
+  },
+  info: {
+    main: '#1F9898'
+  },
+  success: {
+    main: '#31B047'
+  },
+  background: {
+    default: '#F7F7F7',
+    paper: '#FFFFFF',
+    secondary: '#484D50'
+  },
+  text: {
+    primary: '#333333',
+    secondary: '#828282',
+    disabled: '#828282'
+  },
+  action: {
+    disabledOpacity: 0.6,
+    disabledBackground: '#F7F7F7'
+  }
+}
+
+const themeDarkColors = {
+  primary: {
+    light: '#ADDFB5',
+    main: '#D8FF20',
+    dark: darken('#D8FF20', 0.2),
+    contrastText: '#1A1C1E'
+  },
+  secondary: {
+    light: '#31B047',
+    main: '#99F7F4',
+    dark: '#00E4DD',
+    contrastText: '#ffffff'
+  },
+  error: {
+    main: '#FA0E0E',
+    light: '#FA0E0E10'
+  },
+  warning: {
+    main: '#F0B90B'
+  },
+  info: {
+    main: '#1F9898'
+  },
+  success: {
+    main: '#31B047'
+  },
+  background: {
+    default: '#343739',
+    paper: '#1A1C1E'
+  },
+  text: {
+    primary: '#E6EAEE',
+    secondary: '#878D92',
+    disabled: '#61666A'
+  },
+  action: {
+    disabledOpacity: 0.6,
+    disabledBackground: '#343739'
+  }
+}
+
+export const getThemeColors = (mode: PaletteMode) => (mode === 'light' ? themeLightColors : themeDarkColors)
 
 const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   components: {
@@ -133,17 +146,13 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           html: {
             ...vars,
             '*: hover': {
-              transition: '0.3s'
-            },
-            '& .PSans': {
-              fontFamily: 'Inter'
+              transition: '0.2s'
             }
           },
           body: {
-            fontFamily: `"Sharp Grotesk DB Cyr Book 20"`,
+            fontFamily,
             fontSize: 14,
-            color: ColorOptions[mode].text,
-            background: '#F6F7F3'
+            color: ColorOptions[mode].black
           },
           a: {
             textDecoration: 'none',
@@ -163,44 +172,13 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
       styleOverrides: {
         root: {
           height: 54,
-          border: '1px solid var(--ps-white)',
-          '&:hover': {
-            borderColor: 'var(--ps-yellow-1)'
-          },
-          backgroundColor: 'var(--ps-white)',
           'fieldset legend': {
             display: 'none!important'
-          },
-          '.MuiOutlinedInput-notchedOutline': {
-            borderColor: 'var(--ps-gray-300)',
-            top: 0
           },
           '&.Mui-focused': {
             fieldset: {
               borderColor: 'currentColor!important',
               borderWidth: '1px!important'
-            }
-          },
-          '&.Mui-error': {
-            color: 'var(--ps-error)',
-            borderColor: 'var(--ps-error)'
-          },
-          '&.Mui-disabled': {
-            '.Mui-disabled': {
-              color: 'var(--ps-gray-300)',
-              WebkitTextFillColor: 'var(--ps-gray-300)'
-            }
-          },
-          '&.MuiInputBase-multiline': {
-            height: 'auto',
-            position: 'relative',
-            padding: '20px 20px 36px',
-            boxSizing: 'border-box',
-            '& .endAdorn': {
-              position: 'absolute',
-              bottom: 16,
-              right: 20,
-              color: 'var(--ps-gray-700)'
             }
           }
         }
@@ -215,25 +193,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     },
     MuiInputLabel: {
       styleOverrides: {
-        root: {
-          color: 'var(--ps-gray-700)',
-          display: 'flex',
-          '&.MuiInputLabel-animated': {
-            transform: 'translate(14px, 20px) scale(1)'
-          },
-          '&.MuiInputLabel-animated.Mui-focused': {
-            transform: 'translate(14px, 12px) scale(0.75)'
-          },
-          '&.MuiInputLabel-animated.MuiFormLabel-filled': {
-            transform: 'translate(14px, 12px) scale(0.75)'
-          },
-          '&.Mui-focused': {
-            color: 'var(--ps-gray-700)'
-          },
-          '&.Mui-error': {
-            color: ' var(--ps-error)'
-          }
-        }
+        root: {}
       }
     },
     MuiInputAdornment: {
@@ -258,8 +218,6 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
         },
         paper: {
           borderRadius: 8,
-          backgroundColor: 'var(--ps-white)',
-          border: '1px solid var(--ps-gray-300)',
           boxShadow: 'none'
         },
 
@@ -271,7 +229,6 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             width: 6
           },
           '&::-webkit-scrollbar-thumb': {
-            background: 'var(--ps-gray-200)',
             borderRadius: 4
           }
         }
@@ -301,7 +258,6 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     MuiFormHelperText: {
       styleOverrides: {
         root: {
-          color: 'var(--ps-text)',
           '& .MuiInputBase-root': {
             marginTop: 0
           }
@@ -316,24 +272,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
         root: {
           textTransform: 'none',
           fontSize: 14,
-          fontFamily: `'Inter'`,
+          fontFamily,
           lineHeight: '20px',
           transition:
-            'background-color 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-          '&:disabled': {
-            // border: '1px solid var(--ps-text-5)',
-            background: 'var(--ps-text-5)',
-            color: 'var(--ps-white)'
-          },
-          '&:hover': {
-            background: 'var(--ps-yellow-1)'
-            // border: '1px solid var(--ps-yellow-1)'
-          },
-          '&:active': {
-            background: 'var(--ps-yellow-1)',
-            // border: '1px solid var(--ps-yellow-1)',
-            color: 'var(--ps-primary)'
-          }
+            'background-color 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
         },
         sizeLarge: {
           height: 72,
@@ -347,78 +289,15 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           height: 36,
           borderRadius: 8
         },
-        textPrimary: {
-          // background: 'var(--ps-gray-50)',
-          color: '#000000',
-          '&:hover': {
-            background: 'var(--ps-yellow-1)'
-          },
-          '&:active': {
-            background: 'var(--ps-yellow-1)',
-            color: '#000000'
-          }
-        },
+        textPrimary: {},
         containedPrimary: {
-          background: 'var(--ps-yellow-1)',
-          color: 'var(--ps-text-3)',
-          boxShadow: 'none',
-          '&:hover': {
-            boxShadow: 'none',
-            background: 'var(--ps-gray-900)',
-            borderColor: 'var(--ps-yellow-1)',
-            color: 'var(--ps-white)'
-          },
-          '&:active': {
-            background: 'var(--ps-gray-900)',
-            color: 'var(--ps-white)'
-          },
-          '&:disabled': {
-            border: '1px solid var(--ps-text-5)',
-            background: 'var(--ps-text-5)',
-            color: 'var(--ps-white)'
-          }
+          boxShadow: 'none'
         },
-        outlinedPrimary: {
-          border: '1px solid var(--ps-gray-20)',
-          background: 'var(--ps-primary)',
-          color: 'var(--ps-gray-900)',
-          '&:hover': {
-            background: 'var(--ps-yellow-1)',
-            border: '1px solid var(--ps-yellow-1)'
-          },
-          '&:active': {
-            background: 'var(--ps-yellow-1)',
-            border: '1px solid var(--ps-yellow-1)',
-            color: 'var(--ps-primary)'
-          },
-          '&:disabled': {
-            border: '1px solid var(--ps-text-5)',
-            background: 'var(--ps-text-5)',
-            color: 'var(--ps-white)'
-          }
-        },
+        outlinedPrimary: {},
         containedSecondary: {
-          background: 'var(--ps-gray-900)',
-          color: 'var(--ps-white)',
-          boxShadow: 'none',
-          '&:hover': {
-            boxShadow: 'none',
-            background: 'var(--ps-yellow-1)',
-            color: 'var(--ps-text-3)'
-          }
+          boxShadow: 'none'
         },
-        outlinedSecondary: {
-          border: '1px solid var(--ps-gray-20)',
-          backgroundColor: 'var(--ps-white)',
-          '&:hover': {
-            border: '1px solid var(--ps-yellow-1)',
-            backgroundColor: 'var(--ps-white)'
-          },
-          '&:active': {
-            border: '1px solid var(--ps-yellow-1)',
-            backgroundColor: 'var(--ps-white)'
-          }
-        }
+        outlinedSecondary: {}
       }
     },
     MuiSelect: {
@@ -427,15 +306,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           PaperProps: {
             sx: {
               marginTop: 16,
-              border: '1px solid #E4E4E4',
               borderRadius: 20,
               maxHeight: 350,
               boxShadow: 'none',
-              '&:focus': {
-                border: '1px solid var(--ps-yellow-1)'
-              },
               '& .MuiMenu-list .MuiListSubheader-sticky': {
-                color: '#878A8E',
                 fontSize: 12,
                 lineHeight: 20 / 12,
                 marginTop: 10,
@@ -445,28 +319,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           },
           MenuListProps: {
             sx: {
-              padding: '6px !important',
-              '& .MuiMenuItem-root.Mui-selected': {
-                justifyContent: 'space-between',
-                color: '#121212',
-                height: 48,
-                borderRadius: 100,
-                background: '#E1F25C'
-                // '&::after': {
-                //   content: `' '`,
-                //   width: 20,
-                //   height: 20,
-                //   background: `url(${CheckedSVG}) no-repeat center`
-                // },
-              },
-              '& .MuiMenuItem-root': {
-                color: '#121212',
-                height: 48
-              },
-              '& .MuiMenuItem-root:hover': {
-                color: '#A4D220',
-                background: 'transparent'
-              }
+              padding: '6px !important'
             }
           }
         }
@@ -474,30 +327,12 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
       styleOverrides: {
         root: {
           borderRadius: 8,
-          background: 'var(--ps-white)',
           border: 0,
-          fieldset: { borderColor: 'var(--ps-text-8)' },
           '&:before': {
             border: 0
           },
           '&:after': {
             border: 0
-          },
-          '&:hover, &:active, &:focus': {
-            background: 'var(--ps-text-8)',
-            border: '1px solid var(--ps-yellow-1)',
-            fieldset: { borderColor: 'unset !important', borderWidth: 0, border: 0 },
-            '&:not(.Mui-disabled):before': {
-              border: 'none'
-            }
-          },
-          '&.Mui-focused': {
-            background: 'var(--ps-white)',
-            border: '1px solide var(--ps-yellow-1)',
-            fieldset: { borderColor: 'var(--ps-yellow-1) !important', borderWidth: 'unset !impoartant' }
-          },
-          '&.Mui-disabled': {
-            background: 'var(--ps-white)'
           }
         },
         select: {
@@ -513,12 +348,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          color: '#000000',
-          borderRadius: 5,
-          padding: '7px 10px',
-          '&.Mui-checked': {
-            color: '#2663FF'
-          }
+          borderRadius: 5
         }
       }
     },
@@ -527,21 +357,6 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
         root: {
           '& .MuiPagination-ul': {
             // alignItems: 'baseline'
-          },
-          ' .MuiPagination-ul>li:not(:first-of-type):not(:last-child) .MuiPaginationItem-root': {
-            border: 0,
-            color: 'var(--ps-text-3)',
-            fontFamily: `'Inter'`,
-            fontWight: 400,
-            fontSize: 16,
-            '&.Mui-selected': {
-              color: 'var(--ps-text-3)',
-              background: 'var(--ps-yellow-1)'
-            },
-            '&:hover': {
-              backgroundColor: 'var(--ps-text-1)',
-              color: '#fff'
-            }
           },
 
           '& .MuiPaginationItem-root': {
@@ -556,7 +371,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
     MuiTypography: {
       styleOverrides: {
         root: {
-          fontFamily: `'Inter'`
+          fontFamily
         }
       }
     }
@@ -578,46 +393,11 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
   palette: {
     mode,
     common: { ...ColorOptions[mode] },
-    ...{
-      divider: ColorOptions[mode].text,
-      primary: {
-        main: ColorOptions[mode].primary,
-        contrastText: ColorOptions[mode].text
-      },
-      secondary: {
-        main: ColorOptions[mode].secondary,
-        contrastText: ColorOptions[mode].text
-      },
-      info: {
-        main: ColorOptions[mode]['gray-50'],
-        contrastText: ColorOptions[mode]['gray-700']
-      },
-      success: {
-        main: ColorOptions[mode].success,
-        contrastText: ColorOptions[mode].text
-      },
-      warning: {
-        main: ColorOptions[mode].warn,
-        contrastText: ColorOptions[mode].text
-      },
-      error: {
-        main: ColorOptions[mode].error,
-        contrastText: ColorOptions[mode].text
-      }
-    }
+    ...getThemeColors(mode)
   }
   // gradient: {
   //   gradient1: '#ffffff linear-gradient(154.62deg, #77C803 9.44%, #28A03E 59.25%);'
   // },
-  // height: {
-  //   header: '76px',
-  //   mobileHeader: '51px',
-  //   footer: '60px'
-  // },
-  // width: {
-  //   sidebar: '250px',
-  //   maxContent: '1110px'
-  // }
 })
 
 type IMuiThemeProviderProps = {
