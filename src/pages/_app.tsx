@@ -7,6 +7,10 @@ import { ModalProvider } from 'provider/ModalProvider'
 import ApplicationUpdater from 'state/application/updater'
 import TransactionsUpdater from 'state/transactions/updater'
 import { MulticallUpdater } from 'state/multicall'
+import BigNumber from 'bignumber.js'
+import Popups from 'components/essential/Popups'
+
+BigNumber.config({ EXPONENTIAL_AT: [-20, 40], ROUNDING_MODE: BigNumber.ROUND_DOWN })
 
 function Updater() {
   return (
@@ -24,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <StateProvider>
         <MuiThemeProvider>
           <Updater />
+          <Popups />
           <GoogleAnalyticsReporter />
           <ModalProvider>
             <Component {...pageProps} />
