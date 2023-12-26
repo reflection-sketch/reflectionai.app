@@ -2,6 +2,9 @@ import { Box, Button, Container, Stack, Typography, styled } from '@mui/material
 import { ConnectButton } from '@particle-network/connect-react-ui'
 import Checkbox from 'components/Checkbox'
 import Input from 'components/Input'
+import { SupportedChainId } from 'constants/chains'
+import { Currency, CurrencyAmount } from 'constants/token'
+import { useApproveCallback } from 'hooks/useApproveCallback'
 import Head from 'next/head'
 import { useUpdateThemeMode } from 'state/application/hooks'
 
@@ -13,6 +16,13 @@ const StyledContainer = styled(Container)(({ theme }) => ({
 
 export default function Home() {
   const { toggleThemeMode } = useUpdateThemeMode()
+  const [, run] = useApproveCallback(
+    new CurrencyAmount(
+      new Currency(SupportedChainId.SEPOLIA, '0x50cfe8075Ff70CBBe14b65D46a12AB71bCf79758', 18, 'ST'),
+      '10000000000000000000'
+    ),
+    '0x5069129410122A4C1F2448c77becDc5A8A784a5D'
+  )
 
   return (
     <>
@@ -25,6 +35,7 @@ export default function Home() {
             <span>toggle theme</span>
           </Button>
           <ConnectButton />
+          <Button onClick={run}>run</Button>
         </Box>
         <Stack spacing={10}>
           <Typography variant="h1">h1 Typography</Typography>

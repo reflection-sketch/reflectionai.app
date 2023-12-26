@@ -1,5 +1,5 @@
 import { MaxUint256 } from '@ethersproject/constants'
-import { TransactionResponse, TransactionReceipt } from '@ethersproject/providers'
+import { TransactionResponse } from '@ethersproject/providers'
 import { useCallback, useMemo } from 'react'
 import { useTokenAllowance } from './useAllowances'
 import { useTransactionAdder, useHasPendingApproval } from '../state/transactions/hooks'
@@ -7,6 +7,7 @@ import { calculateGasMargin } from '../utils/contract'
 import { useTokenContract } from './useContract'
 import { useActiveWeb3React } from './index'
 import { CurrencyAmount } from '../constants/token/fractions'
+import { useTransactionModalWrapper } from './useTransactionModalWrapper'
 
 export enum ApprovalState {
   UNKNOWN,
@@ -20,7 +21,7 @@ export function useApproveCallback(
   amountToApprove?: CurrencyAmount,
   spender?: string,
   useExact?: boolean
-): [ApprovalState, () => Promise<{ transactionReceipt: Promise<TransactionReceipt> }>] {
+): [ApprovalState, () => Promise<void>, () => Promise<TransactionResponse>] {
   const { account } = useActiveWeb3React()
   const token = amountToApprove instanceof CurrencyAmount ? amountToApprove.currency : undefined
   const currentAllowance = useTokenAllowance(token, account ?? undefined, spender)
@@ -43,7 +44,7 @@ export function useApproveCallback(
   const tokenContract = useTokenContract(!token?.isNative ? token?.address : undefined)
   const addTransaction = useTransactionAdder()
 
-  const approve = useCallback(async (): Promise<{ transactionReceipt: Promise<TransactionReceipt> }> => {
+  const approve = useCallback(async (): Promise<TransactionResponse> => {
     if (approvalState !== ApprovalState.NOT_APPROVED) {
       console.error('approve was called unnecessarily')
       return Promise.reject('approve was called unnecessarily')
@@ -81,7 +82,7 @@ export function useApproveCallback(
           summary: 'Approve ' + amountToApprove.currency.symbol,
           approval: { tokenAddress: token.address, spender: spender }
         })
-        return { transactionReceipt: response.wait(1) }
+        return response
       })
       .catch((error: Error) => {
         console.debug('Failed to approve token', error)
@@ -89,5 +90,7 @@ export function useApproveCallback(
       })
   }, [approvalState, token, tokenContract, amountToApprove, spender, useExact, addTransaction])
 
-  return [approvalState, approve]
+  const approveWithModal = useTransactionModalWrapper(approve)
+
+  return [approvalState, approveWithModal, approve]
 }

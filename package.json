@@ -40,6 +40,7 @@
     "@particle-network/connect-react-ui": "^1.2.1",
     "@reduxjs/toolkit": "^1.9.7",
     "@uniswap/redux-multicall": "^1.1.8",
+    "ahooks": "^3.7.8",
     "big.js": "^6.2.1",
     "bignumber.js": "^9.1.2",
     "copy-to-clipboard": "^3.3.3",
