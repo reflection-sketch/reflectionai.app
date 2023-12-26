@@ -6,14 +6,14 @@ import TransactionSubmittedModal from 'components/Modal/TransactionModals/Transa
 import TransactionConfirmedModal from 'components/Modal/TransactionModals/TransactionConfirmedModal'
 import MessageBox from 'components/Modal/TransactionModals/MessageBox'
 
-export function useTransactionModalWrapper(event: () => Promise<TransactionResponse>) {
+export function useTransactionModalWrapper<T extends any[]>(event: (...args: T) => Promise<TransactionResponse>) {
   const { showModal } = useModal()
 
   const { runAsync } = useRequest(
-    async () => {
+    async (...args: T) => {
       try {
         showModal(<TransactionPendingModal />)
-        const { hash, wait } = await event()
+        const { hash, wait } = await event(...args)
         const ret = new Promise((resolve, reject) => {
           showModal(<TransactionSubmittedModal hash={hash} beforeClose={() => reject()} />)
           wait(1).then(curReceipt => {
