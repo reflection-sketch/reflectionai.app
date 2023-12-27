@@ -129,5 +129,5 @@ export function getEtherscanLink(
   type: 'transaction' | 'token' | 'address' | 'block'
 ): string {
   const builder = chains[chainId]?.builder || explorers.etherscan
-  return builder(SupportedChainsInfo[chainId]?.blockExplorerUrl, data, type)
+  return builder(SupportedChainsInfo[chainId]?.blockExplorers?.default.url || '', data, type)
 }

@@ -24,8 +24,12 @@ const CUSTOM_JSON_RPC_FALLBACK_ENDPOINTS: { [x in SupportedChainId]?: string[] }
 export const JSON_RPC_FALLBACK_ENDPOINTS: Record<SupportedChainId, string[]> = (() => {
   const list: Record<SupportedChainId, string[]> = {} as Record<SupportedChainId, string[]>
   for (const chainId of SUPPORT_NETWORK_CHAIN_IDS) {
-    const costom = CUSTOM_JSON_RPC_FALLBACK_ENDPOINTS?.[chainId]
-    list[chainId] = costom ? [...costom, SupportedChainsInfo[chainId].rpcUrl] : [SupportedChainsInfo[chainId].rpcUrl]
+    const custom = CUSTOM_JSON_RPC_FALLBACK_ENDPOINTS?.[chainId]
+    const _default: string[] = [
+      ...SupportedChainsInfo[chainId].rpcUrls.default.http,
+      ...SupportedChainsInfo[chainId].rpcUrls.public.http
+    ]
+    list[chainId] = custom ? [...custom, ..._default] : _default
   }
   return list
 })()

@@ -1,5 +1,5 @@
 import { Box, Button, Container, Stack, Typography, styled } from '@mui/material'
-import { ConnectButton } from '@particle-network/connect-react-ui'
+import { ConnectKitButton } from 'connectkit'
 import Checkbox from 'components/Checkbox'
 import Input from 'components/Input'
 import { SupportedChainId } from 'constants/chains'
@@ -34,7 +34,7 @@ export default function Home() {
           <Button variant={'outlined'} onClick={() => toggleThemeMode()}>
             <span>toggle theme</span>
           </Button>
-          <ConnectButton />
+          <ConnectKitButton />
           <Button onClick={run}>run</Button>
         </Box>
         <Stack spacing={10}>

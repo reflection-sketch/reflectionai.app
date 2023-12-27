@@ -14,8 +14,8 @@ export function triggerSwitchChain(library: Web3Provider | undefined, chainId: S
     obj.chainId = numberToHex(chainId)
     obj.chainName = params?.name
     obj.nativeCurrency = params?.nativeCurrency
-    obj.rpcUrls = params?.rpcUrl
-    obj.blockExplorerUrls = params?.blockExplorerUrl
+    obj.rpcUrls = params?.rpcUrls.default.http
+    obj.blockExplorerUrls = params?.blockExplorers?.default.url
 
     library?.send('wallet_addEthereumChain', [obj, account])
   })

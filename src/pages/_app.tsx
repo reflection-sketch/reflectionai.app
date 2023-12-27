@@ -1,7 +1,7 @@
 import GoogleAnalyticsReporter from 'components/analytics/GoogleAnalyticsReporter'
 import type { AppProps } from 'next/app'
 import MuiThemeProvider from 'provider/MuiThemeProvider'
-import ParticleProvider from 'provider/ParticleProvider'
+import ConnectProvider from 'provider/ConnectProvider'
 import StateProvider from 'provider/StateProvider'
 import { ModalProvider } from 'provider/ModalProvider'
 import ApplicationUpdater from 'state/application/updater'
@@ -24,7 +24,7 @@ function Updater() {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ParticleProvider>
+    <ConnectProvider>
       <StateProvider>
         <MuiThemeProvider>
           <Updater />
@@ -35,6 +35,6 @@ export default function App({ Component, pageProps }: AppProps) {
           </ModalProvider>
         </MuiThemeProvider>
       </StateProvider>
-    </ParticleProvider>
+    </ConnectProvider>
   )
 }

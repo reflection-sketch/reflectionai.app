@@ -1,37 +1,43 @@
-import { ChainInfo } from '@particle-network/chains'
-import { useNetwork, useAccountInfo } from '@particle-network/connect-react-ui'
 import { useMemo } from 'react'
 import { providers } from 'ethers'
-import { EVMProvider } from '@particle-network/auth'
-import { NETWORK_CHAIN_ID, SupportedChainId } from 'constants/chains'
+import * as React from 'react'
+import { type WalletClient, useWalletClient, useChainId, useAccount } from 'wagmi'
+import { CHAINS, ChainInfo, NETWORK_CHAIN_ID, SupportedChainId } from 'constants/chains'
 
 export function useActiveWeb3React(): {
   chainId?: SupportedChainId
   account?: string
   chainInfo?: ChainInfo
   library?: providers.Web3Provider
-  connectId?: string
 } {
-  const { chain } = useNetwork()
-  const { account, connectId, particleProvider } = useAccountInfo()
-
-  const provider = useMemo(() => {
-    if (!particleProvider) return undefined
-    const network = {
-      name: chain?.name || '',
-      chainId: chain?.id || NETWORK_CHAIN_ID
-    }
-    return new providers.Web3Provider(particleProvider as EVMProvider, network)
-  }, [chain?.id, chain?.name, particleProvider])
+  const chainId = useChainId()
+  const { address } = useAccount()
+  const provider = useEthersSigner({ chainId })
 
   return useMemo(
     () => ({
-      connectId,
-      account,
-      chainInfo: chain,
-      chainId: chain?.id || NETWORK_CHAIN_ID,
+      account: address,
+      chainInfo: CHAINS?.[chainId as SupportedChainId],
+      chainId: chainId || NETWORK_CHAIN_ID,
       library: provider
     }),
-    [account, chain, connectId, provider]
+    [address, chainId, provider]
   )
+}
+
+export function walletClientToSigner(walletClient: WalletClient) {
+  const { chain, transport } = walletClient
+  const network = {
+    chainId: chain.id,
+    name: chain.name,
+    ensAddress: chain.contracts?.ensRegistry?.address
+  }
+  const provider = new providers.Web3Provider(transport, network)
+  return provider
+}
+
+/** Hook to convert a viem Wallet Client to an ethers.js Signer. */
+export function useEthersSigner({ chainId }: { chainId?: number } = {}) {
+  const { data: walletClient } = useWalletClient({ chainId })
+  return React.useMemo(() => (walletClient ? walletClientToSigner(walletClient) : undefined), [walletClient])
 }

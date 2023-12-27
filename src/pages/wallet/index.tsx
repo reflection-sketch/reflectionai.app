@@ -1,5 +1,4 @@
 import React from 'react'
-import { ConnectButton } from '@particle-network/connect-react-ui'
 import { useTokenContract } from 'hooks/useContract'
 import { useSingleCallResult } from 'hooks/multicall'
 import { useActiveWeb3React } from 'hooks'
@@ -29,7 +28,6 @@ export default function Wallet() {
 
   return (
     <div>
-      <ConnectButton />
       <Button onClick={() => switchNetwork(1)}>switch chain</Button>
       <div>
         <Button onClick={approve}>approve</Button>
