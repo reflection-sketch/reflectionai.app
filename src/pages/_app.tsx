@@ -24,8 +24,8 @@ function Updater() {
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ConnectProvider>
-      <StateProvider>
+    <StateProvider>
+      <ConnectProvider>
         <MuiThemeProvider>
           <Updater />
           <Popups />
@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </ModalProvider>
         </MuiThemeProvider>
-      </StateProvider>
-    </ConnectProvider>
+      </ConnectProvider>
+    </StateProvider>
   )
 }
