@@ -9,6 +9,7 @@ import TransactionsUpdater from 'state/transactions/updater'
 import { MulticallUpdater } from 'state/multicall'
 import BigNumber from 'bignumber.js'
 import Popups from 'components/essential/Popups'
+import 'styles/globals.css'
 
 BigNumber.config({ EXPONENTIAL_AT: [-20, 40], ROUNDING_MODE: BigNumber.ROUND_DOWN })
 

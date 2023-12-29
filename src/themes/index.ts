@@ -1,6 +1,7 @@
 import { styled } from '@mui/material'
 
 export * from './defaultTheme'
+export { getCustomTheme } from './customTheme'
 
 export const HideOnMobile = styled('div', {
   shouldForwardProp: () => true

@@ -1,4 +1,4 @@
-import { Box, Button, Container, Stack, Typography, styled } from '@mui/material'
+import { Box, Button, Container, Divider, Stack, Typography, styled } from '@mui/material'
 import { ConnectKitButton } from 'connectkit'
 import Checkbox from 'components/Checkbox'
 import Input from 'components/Input'
@@ -7,6 +7,7 @@ import { Currency, CurrencyAmount } from 'constants/token'
 import { useApproveCallback } from 'hooks/useApproveCallback'
 import Head from 'next/head'
 import { useUpdateThemeMode } from 'state/application/hooks'
+import { MuiCustomThemeProvider } from 'provider/MuiThemeProvider'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -35,7 +36,9 @@ export default function Home() {
             <span>toggle theme</span>
           </Button>
           <ConnectKitButton />
-          <Button onClick={run}>run</Button>
+          <Button onClick={run} variant="contained" fullWidth>
+            run
+          </Button>
         </Box>
         <Stack spacing={10}>
           <Typography variant="h1">h1 Typography</Typography>
@@ -43,6 +46,15 @@ export default function Home() {
           <Input value={''} label="label" />
 
           <Checkbox checked />
+
+          <Divider />
+
+          <MuiCustomThemeProvider>
+            <Typography variant="h1">Custom Theme</Typography>
+            <Button onClick={run} variant="contained">
+              run
+            </Button>
+          </MuiCustomThemeProvider>
         </Stack>
       </StyledContainer>
     </>

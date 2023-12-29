@@ -1,13 +1,13 @@
 import { PaletteMode, ThemeOptions } from '@mui/material'
 import { TypographyOptions } from '@mui/material/styles/createTypography'
-import { defaultThemeColorOptions, defaultThemeDarkColors, defaultThemeLightColors } from './color'
+import { customThemeColors, defaultThemeColorOptions } from './color'
 import { getDefaultComponents } from './components'
 
-export const fontFamily = 'Roboto'
+export const fontFamily = 'Poppins'
 
 const TypographyComponent = {
   fontFamily: [`"${fontFamily}"`, 'sans-serif'].join(','),
-  h1: { fontSize: 36, lineHeight: 46 / 36 },
+  h1: { fontSize: 36, lineHeight: 46 / 36, color: 'red' },
   h2: { fontSize: 22, lineHeight: 28 / 22 },
   h3: { fontSize: 18, lineHeight: 26 / 18 },
   h4: { fontSize: 16, lineHeight: 24 / 16 },
@@ -18,10 +18,9 @@ const TypographyComponent = {
   body2: { fontSize: 12, lineHeight: 15 / 12 }
 } as TypographyOptions
 
-const getThemeColors = (mode: PaletteMode) => (mode === 'light' ? defaultThemeLightColors : defaultThemeDarkColors)
-
-export const getDesignSystemTheme = (mode: PaletteMode): ThemeOptions => ({
-  components: getDefaultComponents(defaultThemeColorOptions[mode].black, fontFamily),
+const mode: PaletteMode = 'light'
+export const getCustomTheme = (): ThemeOptions => ({
+  components: getDefaultComponents('#222', fontFamily),
   typography: TypographyComponent,
   spacing: 1,
   shape: {
@@ -39,7 +38,7 @@ export const getDesignSystemTheme = (mode: PaletteMode): ThemeOptions => ({
   palette: {
     mode,
     common: { ...defaultThemeColorOptions[mode] },
-    ...getThemeColors(mode)
+    ...customThemeColors
   }
   // gradient: {
   //   gradient1: '#ffffff linear-gradient(154.62deg, #77C803 9.44%, #28A03E 59.25%);'

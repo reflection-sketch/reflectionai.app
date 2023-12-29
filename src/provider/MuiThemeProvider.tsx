@@ -1,7 +1,7 @@
 import { CssBaseline, StyledEngineProvider, ThemeProvider, createTheme } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
 import { useUpdateThemeMode } from 'state/application/hooks'
-import { getDesignSystemTheme } from 'themes'
+import { getCustomTheme, getDesignSystemTheme } from 'themes'
 
 const MuiThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { mode, setThemeMode, getLocalThemeMode } = useUpdateThemeMode()
@@ -26,3 +26,7 @@ const MuiThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
   )
 }
 export default MuiThemeProvider
+
+export function MuiCustomThemeProvider({ children }: { children: React.ReactNode }) {
+  return <ThemeProvider theme={createTheme(getCustomTheme())}>{children}</ThemeProvider>
+}
