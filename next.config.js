@@ -1,4 +1,5 @@
-import withSvgr from 'next-plugin-svgr'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withSvgr = require('next-plugin-svgr')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -6,4 +7,4 @@ const nextConfig = {
   transpilePackages: ['ahooks']
 }
 
-export default withSvgr(nextConfig)
+module.exports = withSvgr(nextConfig)
