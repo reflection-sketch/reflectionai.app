@@ -28,7 +28,7 @@ export function useTransactionModalWrapper<T extends any[]>(event: (...args: T) 
       } catch (error: any) {
         showModal(
           <MessageBox type="error" header="Transaction Error">
-            {error?.reason || error?.message || error?.toString()}
+            {error?.reason || error?.error?.message || error?.data?.message || error?.message || error?.toString()}
           </MessageBox>
         )
       }

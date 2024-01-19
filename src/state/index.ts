@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
-// TOTD  There seems to be wrong
-import { load, save } from 'next-redux-localstorage-simple'
+import { load, save } from 'redux-localstorage-simple-next'
 import multicall from './multicall'
 import application from './application/reducer'
 import { updateVersion } from './global/actions'

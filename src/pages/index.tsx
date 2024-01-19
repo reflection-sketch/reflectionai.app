@@ -37,7 +37,7 @@ export default function Home() {
           </Button>
           <ConnectKitButton />
           <Button onClick={run} variant="contained" fullWidth>
-            run
+            Approve
           </Button>
         </Box>
         <Stack spacing={10}>

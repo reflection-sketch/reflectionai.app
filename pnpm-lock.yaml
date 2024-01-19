@@ -86,9 +86,6 @@ dependencies:
   next:
     specifier: 13.5.6
     version: 13.5.6(@babel/core@7.23.3)(react-dom@18.2.0)(react@18.2.0)
-  next-redux-localstorage-simple:
-    specifier: ^2.4.2
-    version: 2.4.2
   pino-pretty:
     specifier: ^10.2.3
     version: 10.2.3
@@ -110,6 +107,9 @@ dependencies:
   redux:
     specifier: ^4.2.1
     version: 4.2.1
+  redux-localstorage-simple-next:
+    specifier: ^2.5.3
+    version: 2.5.3
   tiny-invariant:
     specifier: ^1.3.1
     version: 1.3.1
@@ -9143,12 +9143,6 @@ packages:
       - webpack
     dev: true
 
-  /next-redux-localstorage-simple@2.4.2:
-    resolution: {integrity: sha512-+tEw8+3TNIVyG69lhYbL2K/9BA2a5sk2DAASOdsnlgZWXcqbnNB8EkefJnGlfjBV3Z3gJEGamOZ3h2NNFpxSdg==}
-    dependencies:
-      merge: 2.1.1
-    dev: false
-
   /next@13.5.6(@babel/core@7.23.3)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Y2wTcTbO4WwEsVb4A8VSnOsG1I9ok+h74q0ZdxkwM3EODqrs4pasq7O0iUxbcS9VtWMicG7f3+HAj0r1+NtKSw==}
     engines: {node: '>=16.14.0'}
@@ -10223,6 +10217,12 @@ packages:
     resolution: {integrity: sha512-EJ4UNY/U1t2P/2k6oqotuX2Cc3T6nxJwsM0N0asT7dhrtH1ltUxDn4NalSYmPE2rCkVpcf/X6R0wDwcFpzhd4w==}
     engines: {node: '>=6'}
     dev: true
+
+  /redux-localstorage-simple-next@2.5.3:
+    resolution: {integrity: sha512-QRPofobzdzeSR7vC0UYHI5HT/DS+5xJCzZRYw4KLwG3KhqeOf9ejK5//ujiNg/MRfYS9alg2qub+KRfyo3gJwA==}
+    dependencies:
+      merge: 2.1.1
+    dev: false
 
   /redux-thunk@2.4.2(redux@4.2.1):
     resolution: {integrity: sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==}
