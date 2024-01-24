@@ -44,7 +44,7 @@
     "copy-to-clipboard": "^3.3.3",
     "decimal.js-light": "^2.5.1",
     "ethers": "5",
-    "jsbi": "^4.3.0",
+    "jsbi": "^3.1.4",
     "next": "13.5.6",
     "redux-localstorage-simple-next": "^2.5.3",
     "pino-pretty": "^10.2.3",
