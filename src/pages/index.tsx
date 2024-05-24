@@ -1,19 +1,46 @@
 import { Box, Button, Container, Divider, Stack, Typography, styled } from '@mui/material'
-import { ConnectKitButton } from 'connectkit'
+
 import Checkbox from 'components/Checkbox'
 import Input from 'components/Input'
 import { SupportedChainId } from 'constants/chains'
 import { Currency, CurrencyAmount } from 'constants/token'
 import { useApproveCallback } from 'hooks/useApproveCallback'
 import Head from 'next/head'
-import { useUpdateThemeMode } from 'state/application/hooks'
+import { useUpdateThemeMode, useWalletModalToggle } from 'state/application/hooks'
 import { MuiCustomThemeProvider } from 'provider/MuiThemeProvider'
+import { useActiveWeb3React } from 'hooks'
+import { shortenAddress } from 'utils'
+import { useEffect, useState } from 'react'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   padding: 20,
   minHeight: '100vh'
 }))
+
+function ConnectButton() {
+  const { account } = useActiveWeb3React()
+  const walletModalToggle = useWalletModalToggle()
+
+  // fix hydration err
+  const [isClient, setIsClient] = useState(false)
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  return (
+    <Stack>
+      <Button
+        variant={'outlined'}
+        onClick={() => {
+          walletModalToggle()
+        }}
+      >
+        {<>{isClient && account ? shortenAddress(account) : 'wallet connect'}</>}
+      </Button>
+    </Stack>
+  )
+}
 
 export default function Home() {
   const { toggleThemeMode } = useUpdateThemeMode()
@@ -35,7 +62,7 @@ export default function Home() {
           <Button variant={'outlined'} onClick={() => toggleThemeMode()}>
             <span>toggle theme</span>
           </Button>
-          <ConnectKitButton />
+          <ConnectButton />
           <Button onClick={run} variant="contained" fullWidth>
             Approve
           </Button>
