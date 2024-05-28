@@ -59,7 +59,13 @@
     "toformat": "^2.0.0",
     "ua-parser-js": "^1.0.37",
     "viem": "^1.18.0",
-    "wagmi": "^1.4.12"
+    "wagmi": "^1.4.12",
+    "yup": "0.32.11",
+    "formik": "2.2.9",
+    "@mui/x-date-pickers": "^6.19.6",
+    "dayjs": "^1.11.3",
+    "@ebay/nice-modal-react": "1.2.8",
+    "@mui/lab": "5.0.0-alpha.111"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.2",
