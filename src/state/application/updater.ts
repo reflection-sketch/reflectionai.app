@@ -6,6 +6,8 @@ import { updateBlockNumber } from './actions'
 import { useDispatch } from 'react-redux'
 import { SUPPORT_NETWORK_CHAIN_IDS } from 'constants/chains'
 import { RPC_PROVIDERS } from 'constants/rpc/providers'
+import { useWeb3ModalTheme } from '@web3modal/wagmi/react'
+import { useUpdateThemeMode } from './hooks'
 
 export default function Updater(): null {
   const { library, chainId } = useActiveWeb3React()
@@ -67,5 +69,15 @@ export default function Updater(): null {
     )
   }, [providers, timeInt, dispatch])
 
+  // update wallet modal theme
+  const { setThemeMode } = useWeb3ModalTheme()
+  const { mode } = useUpdateThemeMode()
+  useEffect(() => {
+    if (mode === 'dark') {
+      setThemeMode('dark')
+    } else {
+      setThemeMode('light')
+    }
+  }, [mode, setThemeMode])
   return null
 }

@@ -6,6 +6,7 @@ import { AppDispatch, AppState } from '../index'
 import { addPopup, ApplicationModal, PopupContent, removePopup, setOpenModal, updateThemeMode } from './actions'
 import { PaletteMode } from '@mui/material'
 import { DEFAULT_THEME } from '../../constants'
+import { useWeb3Modal, useWeb3ModalState } from '@web3modal/wagmi/react'
 
 export function useBlockNumber(chainId?: SupportedChainId): number | undefined {
   const { chainId: curChainId } = useActiveWeb3React()
@@ -35,7 +36,10 @@ export function useCloseModals(): () => void {
 }
 
 export function useWalletModalToggle(): () => void {
-  return useToggleModal(ApplicationModal.WALLET)
+  // return useToggleModal(ApplicationModal.WALLET)
+  const { open } = useWeb3ModalState()
+  const { open: openModal, close: closeModal } = useWeb3Modal()
+  return useCallback(() => (open ? closeModal() : openModal()), [closeModal, open, openModal])
 }
 
 export function useSwitchNetworkModalControl() {
