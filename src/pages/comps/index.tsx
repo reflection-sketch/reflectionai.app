@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material'
 import BasicDateTimePicker from 'components/DatePicker'
-import { DialogControl } from 'components/Dialog'
+import { DialogControl, globalDialogControl } from 'components/Dialog'
 import BaseDialog from 'components/Dialog/baseDialog'
 import { useState } from 'react'
 import { useUpdateThemeMode } from 'state/application/hooks'
@@ -43,6 +43,7 @@ export default function Comps() {
       </Button>
       <ShowModal />
       <BasicDateTimePicker />
+      <Button onClick={() => globalDialogControl.show('SelectTokenDialog')}>show token list dialog</Button>
     </div>
   )
 }

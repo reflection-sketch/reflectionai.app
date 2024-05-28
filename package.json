@@ -65,7 +65,11 @@
     "@mui/x-date-pickers": "^6.19.6",
     "dayjs": "^1.11.3",
     "@ebay/nice-modal-react": "1.2.8",
-    "@mui/lab": "5.0.0-alpha.111"
+    "@mui/lab": "5.0.0-alpha.111",
+    "react-dropzone": "^14.2.3",
+    "react-virtualized-auto-sizer": "^1.0.23",
+    "react-window": "^1.8.10",
+    "@types/react-window": "^1.8.8"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.2",
