@@ -63,6 +63,9 @@ export default function Home() {
             <span>toggle theme</span>
           </Button>
           <ConnectButton />
+          <Button variant={'outlined'} onClick={() => toggleThemeMode()}>
+            <span>Report Errors</span>
+          </Button>
           <Button onClick={run} variant="contained" fullWidth>
             Approve
           </Button>
