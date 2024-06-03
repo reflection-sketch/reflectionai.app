@@ -10,7 +10,8 @@ import { useUpdateThemeMode, useWalletModalToggle } from 'state/application/hook
 import { MuiCustomThemeProvider } from 'provider/MuiThemeProvider'
 import { useActiveWeb3React } from 'hooks'
 import { shortenAddress } from 'utils'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import * as Sentry from '@sentry/nextjs'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -52,6 +53,17 @@ export default function Home() {
     '0x5069129410122A4C1F2448c77becDc5A8A784a5D'
   )
 
+  const reportError = useCallback(async (fn: () => void) => {
+    if (Sentry) {
+      try {
+        fn()
+      } catch (error: any) {
+        Sentry.captureException(error)
+        console.log('sending over')
+      }
+    }
+  }, [])
+
   return (
     <>
       <Head>
@@ -63,7 +75,16 @@ export default function Home() {
             <span>toggle theme</span>
           </Button>
           <ConnectButton />
-          <Button variant={'outlined'} onClick={() => toggleThemeMode()}>
+          <Button
+            variant={'outlined'}
+            onClick={async () => {
+              const fn = () => {
+                const errorStr = 'sentry test error'
+                throw new Error(errorStr)
+              }
+              await reportError(fn)
+            }}
+          >
             <span>Report Errors</span>
           </Button>
           <Button onClick={run} variant="contained" fullWidth>
