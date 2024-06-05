@@ -1,8 +1,9 @@
 import { useMemo } from 'react'
 import { providers } from 'ethers'
 import * as React from 'react'
-import { type WalletClient, useWalletClient, useChainId, useAccount } from 'wagmi'
+import { useWalletClient, useChainId, useAccount } from 'wagmi'
 import { CHAINS, ChainInfo, NETWORK_CHAIN_ID, SupportedChainId } from 'constants/chains'
+import { WalletClient } from 'viem'
 
 export function useActiveWeb3React(): {
   chainId?: SupportedChainId
@@ -27,6 +28,7 @@ export function useActiveWeb3React(): {
 
 export function walletClientToSigner(walletClient: WalletClient) {
   const { chain, transport } = walletClient
+  if (!chain) throw new Error('Not chain')
   const network = {
     chainId: chain.id,
     name: chain.name,

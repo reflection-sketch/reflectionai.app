@@ -39,8 +39,8 @@
     "@sentry/nextjs": "8",
     "@uniswap/redux-multicall": "^1.1.8",
     "@wagmi/chains": "^1.8.0",
-    "@wagmi/core": "^1.4.12",
-    "@web3modal/wagmi": "3.5.7",
+    "@wagmi/core": "^2.10.5",
+    "@web3modal/wagmi": "4.2.3",
     "ahooks": "^3.7.8",
     "big.js": "^6.2.1",
     "bignumber.js": "^9.1.2",
@@ -62,8 +62,8 @@
     "tiny-warning": "^1.0.3",
     "toformat": "^2.0.0",
     "ua-parser-js": "^1.0.37",
-    "viem": "^1.18.0",
-    "wagmi": "^1.4.12"
+    "viem": "^2.13.5",
+    "wagmi": "^2.9.8"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "1.5.0",

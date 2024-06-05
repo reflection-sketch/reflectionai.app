@@ -10,7 +10,7 @@ import { useUpdateThemeMode, useWalletModalToggle } from 'state/application/hook
 import { MuiCustomThemeProvider } from 'provider/MuiThemeProvider'
 import { useActiveWeb3React } from 'hooks'
 import { shortenAddress } from 'utils'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import * as Sentry from '@sentry/nextjs'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -24,10 +24,10 @@ function ConnectButton() {
   const walletModalToggle = useWalletModalToggle()
 
   // fix hydration err
-  const [isClient, setIsClient] = useState(false)
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
+  // const [isClient, setIsClient] = useState(false)
+  // useEffect(() => {
+  //   setIsClient(true)
+  // }, [])
 
   return (
     <Stack>
@@ -37,7 +37,7 @@ function ConnectButton() {
           walletModalToggle()
         }}
       >
-        {<>{isClient && account ? shortenAddress(account) : 'wallet connect'}</>}
+        {<>{account ? shortenAddress(account) : 'wallet connect'}</>}
       </Button>
     </Stack>
   )

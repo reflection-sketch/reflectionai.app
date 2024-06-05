@@ -10,23 +10,7 @@ import { MulticallUpdater } from 'state/multicall'
 import BigNumber from 'bignumber.js'
 import Popups from 'components/essential/Popups'
 import 'styles/globals.css'
-import { createWeb3Modal } from '@web3modal/wagmi/react'
-import { projectId, wagmiConfig } from 'provider/ConnectProvider'
-import { SupportedChainList } from 'constants/chains'
-
 BigNumber.config({ EXPONENTIAL_AT: [-20, 40], ROUNDING_MODE: BigNumber.ROUND_DOWN })
-
-// Must be introduced using @web3modal/wagmi/react， Cannot use @web3modal/wagmi
-// Consistent with defaultWagmiConfig
-createWeb3Modal({
-  themeVariables: {
-    '--w3m-z-index': 10000
-  },
-  projectId,
-  wagmiConfig,
-  featuredWalletIds: ['8a0ee50d1f22f6651afcae7eb4253e52a3310b90af5daef78a8c4929a9bb99d4'], // default show wallet type
-  chains: SupportedChainList
-})
 
 function Updater() {
   return (

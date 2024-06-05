@@ -1,11 +1,16 @@
+import { defineChain } from 'viem'
 import { sepolia, mainnet, Chain } from 'viem/chains'
 
 export type ChainInfo = Chain
 
-const lootChain: ChainInfo = {
+const lootChain = defineChain({
   id: 5151706,
-  network: 'Loot Chain',
   name: 'Loot Chain',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'AGLD',
+    symbol: 'AGLD'
+  },
   rpcUrls: {
     alchemy: {
       http: ['https://rpc.lootchain.com/http']
@@ -20,18 +25,13 @@ const lootChain: ChainInfo = {
       http: ['https://rpc.lootchain.com/http']
     }
   },
-  nativeCurrency: {
-    decimals: 18,
-    name: 'AGLD',
-    symbol: 'AGLD'
-  },
   blockExplorers: {
     default: {
       name: 'loot',
       url: 'https://explorer.lootchain.com/'
     }
   }
-}
+})
 
 export enum SupportedChainId {
   MAINNET = 1,

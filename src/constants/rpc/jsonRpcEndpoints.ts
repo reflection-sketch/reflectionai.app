@@ -25,10 +25,9 @@ export const JSON_RPC_FALLBACK_ENDPOINTS: Record<SupportedChainId, string[]> = (
   const list: Record<SupportedChainId, string[]> = {} as Record<SupportedChainId, string[]>
   for (const chainId of SUPPORT_NETWORK_CHAIN_IDS) {
     const custom = CUSTOM_JSON_RPC_FALLBACK_ENDPOINTS?.[chainId]
-    const _default: string[] = [
-      ...SupportedChainsInfo[chainId].rpcUrls.default.http,
-      ...SupportedChainsInfo[chainId].rpcUrls.public.http
-    ]
+    const publicUrls = SupportedChainsInfo[chainId].rpcUrls?.['public']
+    const _default: string[] = [...SupportedChainsInfo[chainId].rpcUrls.default?.http]
+    if (publicUrls) _default.concat([...publicUrls.http])
     list[chainId] = custom ? [...custom, ..._default] : _default
   }
   return list
