@@ -63,7 +63,17 @@
     "toformat": "^2.0.0",
     "ua-parser-js": "^1.0.37",
     "viem": "^2.13.5",
-    "wagmi": "^2.9.8"
+    "wagmi": "^2.9.8",
+    "yup": "0.32.11",
+    "formik": "2.2.9",
+    "@mui/x-date-pickers": "^6.19.6",
+    "dayjs": "^1.11.3",
+    "@ebay/nice-modal-react": "1.2.8",
+    "@mui/lab": "5.0.0-alpha.111",
+    "react-dropzone": "^14.2.3",
+    "react-virtualized-auto-sizer": "^1.0.23",
+    "react-window": "^1.8.10",
+    "@types/react-window": "^1.8.8"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "1.5.0",
@@ -97,7 +107,7 @@
   "engines": {
     "npm": "please-use-pnpm",
     "yarn": "please-use-pnpm",
-    "node": "18.x",
+    "node": ">=18.17.x",
     "pnpm": ">=8"
   }
 }

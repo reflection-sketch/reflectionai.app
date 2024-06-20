@@ -1,36 +1,87 @@
-import { TransactionResponse } from '@ethersproject/providers'
+import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
 import { useRequest } from 'ahooks'
-import useModal from './useModal'
-import TransactionPendingModal from 'components/Modal/TransactionModals/TransactionPendingModal'
-import TransactionSubmittedModal from 'components/Modal/TransactionModals/TransactionSubmittedModal'
-import TransactionConfirmedModal from 'components/Modal/TransactionModals/TransactionConfirmedModal'
-import MessageBox from 'components/Modal/TransactionModals/MessageBox'
+import { globalDialogControl } from 'components/Dialog'
 
-export function useTransactionModalWrapper<T extends any[]>(event: (...args: T) => Promise<TransactionResponse>) {
-  const { showModal } = useModal()
-
+export function useTransactionModalWrapper<T extends any[]>(
+  event: (...args: T) => Promise<TransactionResponse>,
+  option?: {
+    isApprove?: boolean
+    hideSuccessTip?: boolean
+    successTipsTitle?: string
+    successTipsText?: string
+    cancelText?: string
+    onSuccess?: () => void
+    modalSuccessCancel?: (output?: TransactionReceipt) => void
+    modalSuccessClose?: () => void
+  }
+) {
   const { runAsync } = useRequest(
     async (...args: T) => {
       try {
-        showModal(<TransactionPendingModal />)
-        const { hash, wait } = await event(...args)
+        globalDialogControl.show('PendingTipDialog', {
+          title: option?.isApprove ? 'Requesting Wallet Approval' : 'Requests wallet interaction',
+          subTitle: option?.isApprove
+            ? 'Please manually approve the transaction in your wallet.'
+            : 'Please open your wallet and confirm in the transaction activity to proceed your order.'
+        })
+
+        const { wait } = await event(...args)
         const ret = new Promise((resolve, reject) => {
-          showModal(<TransactionSubmittedModal hash={hash} beforeClose={() => reject()} />)
-          wait(1).then(curReceipt => {
+          globalDialogControl.show('PendingTipDialog', {
+            title: 'Waiting for Transaction Settlement',
+            subTitle: 'Please wait for the transaction to be settled on-chain.',
+            onClose() {
+              reject()
+            }
+          })
+
+          wait(1).then((curReceipt: TransactionReceipt) => {
             resolve(curReceipt)
           })
         })
-        ret
-          .then(() => {
-            showModal(<TransactionConfirmedModal hash={hash} />)
-          })
-          .catch()
-      } catch (error: any) {
-        showModal(
-          <MessageBox type="error" header="Transaction Error">
-            {error?.reason || error?.error?.message || error?.data?.message || error?.message || error?.toString()}
-          </MessageBox>
-        )
+        try {
+          const output = (await ret) as unknown as TransactionReceipt
+          globalDialogControl.hide('PendingTipDialog')
+          !option?.hideSuccessTip &&
+            globalDialogControl.show('ResultTipDialog', {
+              iconType: 'success',
+              actionParams: output,
+              title: option?.successTipsTitle || 'Congratulations!',
+              subTitle: option?.successTipsText || `The transaction has been successfully confirmed`,
+              cancelBtn: option?.cancelText || 'OK',
+              onCancel: option?.modalSuccessCancel && (() => option?.modalSuccessCancel?.(output)),
+              onClose: option?.modalSuccessClose
+            })
+          option?.onSuccess && option.onSuccess()
+          return output
+        } catch (error) {
+          throw 'user cancel'
+        }
+      } catch (err: any) {
+        if (err === 'user cancel') throw err
+        globalDialogControl.hide('PendingTipDialog')
+        let errMsg =
+          err?.reason ||
+          err?.error?.message ||
+          err?.data?.message ||
+          err?.message ||
+          err?.toString() ||
+          'Something went wrong'
+        if (
+          typeof errMsg === 'string' &&
+          (errMsg.includes(`Non-200 status code: '403'`) || errMsg.includes(`JSON-RPC error`))
+        ) {
+          errMsg = `Rate limit,please try again later.`
+        }
+        globalDialogControl.show('ResultTipDialog', {
+          iconType: 'error',
+          title: 'Oops..',
+          againBtn: 'Try Again',
+          cancelBtn: 'Cancel',
+          onAgain: () => runAsync(...args),
+          subTitle: errMsg
+        })
+        throw err
       }
     },
     {

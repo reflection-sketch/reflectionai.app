@@ -10,6 +10,8 @@ import { MulticallUpdater } from 'state/multicall'
 import BigNumber from 'bignumber.js'
 import Popups from 'components/essential/Popups'
 import 'styles/globals.css'
+import NiceModal from '@ebay/nice-modal-react'
+
 BigNumber.config({ EXPONENTIAL_AT: [-20, 40], ROUNDING_MODE: BigNumber.ROUND_DOWN })
 
 function Updater() {
@@ -27,12 +29,14 @@ export default function App({ Component, pageProps }: AppProps) {
     <StateProvider>
       <ConnectProvider>
         <MuiThemeProvider>
-          <Updater />
-          <Popups />
-          <GoogleAnalyticsReporter />
-          <ModalProvider>
-            <Component {...pageProps} />
-          </ModalProvider>
+          <NiceModal.Provider>
+            <Updater />
+            <Popups />
+            <GoogleAnalyticsReporter />
+            <ModalProvider>
+              <Component {...pageProps} />
+            </ModalProvider>
+          </NiceModal.Provider>
         </MuiThemeProvider>
       </ConnectProvider>
     </StateProvider>

@@ -1,5 +1,5 @@
 import { MaxUint256 } from '@ethersproject/constants'
-import { TransactionResponse } from '@ethersproject/providers'
+import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
 import { useCallback, useMemo } from 'react'
 import { useTokenAllowance } from './useAllowances'
 import { useTransactionAdder, useHasPendingApproval } from '../state/transactions/hooks'
@@ -21,7 +21,7 @@ export function useApproveCallback(
   amountToApprove?: CurrencyAmount,
   spender?: string,
   useExact?: boolean
-): [ApprovalState, () => Promise<void>, () => Promise<TransactionResponse>] {
+): [ApprovalState, () => Promise<TransactionReceipt>, () => Promise<TransactionResponse>] {
   const { account } = useActiveWeb3React()
   const token = amountToApprove instanceof CurrencyAmount ? amountToApprove.currency : undefined
   const currentAllowance = useTokenAllowance(token, account ?? undefined, spender)
@@ -90,7 +90,7 @@ export function useApproveCallback(
       })
   }, [approvalState, token, tokenContract, amountToApprove, spender, useExact, addTransaction])
 
-  const approveWithModal = useTransactionModalWrapper(approve)
+  const approveWithModal = useTransactionModalWrapper(approve, { isApprove: true, hideSuccessTip: true })
 
   return [approvalState, approveWithModal, approve]
 }
