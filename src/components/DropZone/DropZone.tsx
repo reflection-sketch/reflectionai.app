@@ -1,3 +1,4 @@
+'use client'
 import Dropzone, { Accept } from 'react-dropzone'
 import DownloadIcon from 'assets/images/toolBox/ri_download-cloud-fill.svg'
 import { Box, Typography, styled } from '@mui/material'

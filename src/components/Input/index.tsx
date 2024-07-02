@@ -1,3 +1,4 @@
+'use client'
 import React, { ChangeEvent, InputHTMLAttributes, useCallback } from 'react'
 import { InputBase, styled, Typography } from '@mui/material'
 import { inputBaseClasses } from '@mui/material/InputBase'

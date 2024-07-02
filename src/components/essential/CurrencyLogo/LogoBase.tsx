@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined'
 

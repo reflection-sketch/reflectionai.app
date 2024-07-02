@@ -1,3 +1,4 @@
+'use client'
 import { useCallback, useEffect } from 'react'
 import { styled } from '@mui/material'
 import { animated, useSpring } from 'react-spring'

@@ -1,4 +1,5 @@
-import { Button, Typography } from '@mui/material'
+'use client'
+import { Button, Container, Typography } from '@mui/material'
 import BasicDateTimePicker from 'components/DatePicker'
 import { DialogControl, globalDialogControl } from 'components/Dialog'
 import BaseDialog from 'components/Dialog/baseDialog'
@@ -37,13 +38,13 @@ function ShowModal() {
 export default function Comps() {
   const { toggleThemeMode } = useUpdateThemeMode()
   return (
-    <div>
+    <Container maxWidth="lg">
       <Button variant={'outlined'} onClick={() => toggleThemeMode()}>
         <span>toggle theme</span>
       </Button>
       <ShowModal />
       <BasicDateTimePicker />
       <Button onClick={() => globalDialogControl.show('SelectTokenDialog')}>show token list dialog</Button>
-    </div>
+    </Container>
   )
 }

@@ -1,3 +1,4 @@
+'use client'
 import NiceModal from '@ebay/nice-modal-react'
 import React from 'react'
 

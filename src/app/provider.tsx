@@ -1,5 +1,6 @@
+'use client'
+
 import GoogleAnalyticsReporter from 'components/analytics/GoogleAnalyticsReporter'
-import type { AppProps } from 'next/app'
 import MuiThemeProvider from 'provider/MuiThemeProvider'
 import ConnectProvider from 'provider/ConnectProvider'
 import StateProvider from 'provider/StateProvider'
@@ -11,6 +12,7 @@ import BigNumber from 'bignumber.js'
 import Popups from 'components/essential/Popups'
 import 'styles/globals.css'
 import NiceModal from '@ebay/nice-modal-react'
+import { ReactNode } from 'react'
 
 BigNumber.config({ EXPONENTIAL_AT: [-20, 40], ROUNDING_MODE: BigNumber.ROUND_DOWN })
 
@@ -24,7 +26,7 @@ function Updater() {
   )
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function Provider({ children }: { children: ReactNode }) {
   return (
     <StateProvider>
       <ConnectProvider>
@@ -33,9 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Updater />
             <Popups />
             <GoogleAnalyticsReporter />
-            <ModalProvider>
-              <Component {...pageProps} />
-            </ModalProvider>
+            <ModalProvider>{children}</ModalProvider>
           </NiceModal.Provider>
         </MuiThemeProvider>
       </ConnectProvider>

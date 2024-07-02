@@ -1,3 +1,5 @@
+'use client'
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 import { CssBaseline, StyledEngineProvider, ThemeProvider, createTheme } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
 import { useUpdateThemeMode } from 'state/application/hooks'
@@ -18,10 +20,12 @@ const MuiThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children })
 
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <CssBaseline enableColorScheme />
-        {children}
-      </ThemeProvider>
+      <AppRouterCacheProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline enableColorScheme />
+          {children}
+        </ThemeProvider>
+      </AppRouterCacheProvider>
     </StyledEngineProvider>
   )
 }

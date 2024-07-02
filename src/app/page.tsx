@@ -1,3 +1,4 @@
+'use client'
 import { Box, Button, Container, Divider, Stack, Typography, styled } from '@mui/material'
 
 import Checkbox from 'components/Checkbox'

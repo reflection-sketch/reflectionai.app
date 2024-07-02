@@ -1,3 +1,4 @@
+'use client'
 import { styled } from '@mui/material/styles'
 import { useActivePopups } from 'state/application/hooks'
 import PopupItem from './PopupItem'

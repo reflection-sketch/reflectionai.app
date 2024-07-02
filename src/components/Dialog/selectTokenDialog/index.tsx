@@ -1,3 +1,4 @@
+'use client'
 import { useMemo, useState } from 'react'
 import BaseDialog from '../baseDialog'
 import Input from 'components/Input'
