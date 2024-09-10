@@ -7,11 +7,38 @@ import Image from 'components/Image'
 import ArrowSvg from 'assets/header/arrow.svg'
 import Features from './Features'
 import Highlights from './Highlights'
-
+import { useEffect, useState } from 'react'
+const textArray = ['Search Your AI Models.', 'Search Your AI Models22.', 'Search Your AI Models333.']
+const textWidthArray = [170.5, 189, 198]
 export default function Page() {
   const isSm = useBreakpoint('sm')
-
   isSm
+  const [textNum, setTextNum] = useState(0)
+  const [isDelay, setIsDelay] = useState(false)
+  const [textWidth, setTextWidth] = useState(textWidthArray[textNum])
+  const [text, setText] = useState(textArray[textNum])
+  useEffect(() => {
+    // Set a timer to update textWidth after 2 seconds
+    const timer = setTimeout(() => {
+      setIsDelay(true)
+    }, 5000)
+    return () => clearTimeout(timer)
+  }, [])
+  useEffect(() => {
+    if (!isDelay) return
+    // Function to update textNum and corresponding text and textWidth
+    const updateText = () => {
+      setTextNum(prevTextNum => {
+        const newTextNum = (prevTextNum + 1) % textArray.length
+        setText(textArray[newTextNum])
+        setTextWidth(textWidthArray[newTextNum])
+        return newTextNum
+      })
+    }
+    const intervalId = setInterval(updateText, 8000)
+    return () => clearInterval(intervalId)
+  }, [isDelay])
+
   return (
     <Stack alignItems={'center'} width={1440} margin={'0 auto'} position={'relative'}>
       <RadiusBox />
@@ -28,9 +55,7 @@ export default function Page() {
       </Typography1>
       <Typography1 variant="h1">just one click away.</Typography1>
       <StartBox>
-        <Typography variant="h4" fontWeight={500} color={'#ABAEBC'}>
-          Search Your AI Models.
-        </Typography>
+        <StartText width={textWidth}>{text}</StartText>
         <StartButton>
           <Typography variant="h4" color={'#FFF'}>
             Get Start
@@ -80,11 +105,12 @@ const Typography1 = styled(Typography)`
 `
 
 const StartBox = styled(Box)`
+  width: 406px;
   display: flex;
   padding: 8px 8px 8px 23px;
   margin: 48px 0 44px;
   align-items: center;
-  gap: 66px;
+  justify-content: space-between;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(2px);
@@ -100,3 +126,29 @@ const StartButton = styled(Box)`
   border-radius: 15px;
   border: 2px solid #fff;
 `
+
+const StartText = styled(Typography)(({ width }: { width: number | string }) => ({
+  width: 0,
+  fontSize: 16,
+  fontStyle: 'normal',
+  fontWeight: 500,
+  lineHeight: 'normal',
+  color: '#abaebc',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  animation: 'blink 8s linear infinite 5s',
+  '@keyframes blink': {
+    '0%': {
+      width: 0
+    },
+    '45%': {
+      width: width
+    },
+    '55%': {
+      width: width
+    },
+    '100%': {
+      width: 0
+    }
+  }
+}))
