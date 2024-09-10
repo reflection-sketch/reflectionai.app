@@ -40,7 +40,7 @@ export function useENSNameForETH(address?: string): { ENSName: string | null; lo
 
   const changed = debouncedAddress !== address
   return {
-    ENSName: changed ? null : name.result?.[0] ?? null,
+    ENSName: changed ? null : (name.result?.[0] ?? null),
     loading: changed || resolverAddress.loading || name.loading
   }
 }

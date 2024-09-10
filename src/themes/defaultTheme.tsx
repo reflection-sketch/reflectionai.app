@@ -3,19 +3,19 @@ import { TypographyOptions } from '@mui/material/styles/createTypography'
 import { defaultThemeColorOptions, defaultThemeDarkColors, defaultThemeLightColors } from './color'
 import { getDefaultComponents } from './components'
 
-export const fontFamily = 'Roboto'
+export const fontFamily = 'DM Sans'
 
 const TypographyComponent = {
   fontFamily: [`"${fontFamily}"`, 'sans-serif'].join(','),
-  h1: { fontSize: 36, lineHeight: 46 / 36 },
-  h2: { fontSize: 22, lineHeight: 28 / 22 },
-  h3: { fontSize: 18, lineHeight: 26 / 18 },
-  h4: { fontSize: 16, lineHeight: 24 / 16 },
-  h5: { fontSize: 14, lineHeight: 22 / 14 },
-  h6: { fontSize: 12, lineHeight: 15 / 12 },
-  caption: { fontSize: 12, lineHeight: 32 / 24 },
-  body1: { fontSize: 14, lineHeight: 20 / 14 },
-  body2: { fontSize: 12, lineHeight: 15 / 12 }
+  h1: { fontSize: 65, lineHeight: '64px' },
+  h2: { fontSize: 48, lineHeight: 'normal' },
+  h3: { fontSize: 26, lineHeight: 'normal' },
+  h4: { fontSize: 16, lineHeight: 'normal' },
+  h5: { fontSize: 14, lineHeight: 'normal' },
+  h6: { fontSize: 12, lineHeight: 'normal' },
+  caption: { fontSize: 12, lineHeight: 'normal' },
+  body1: { fontSize: 14, lineHeight: 'normal' },
+  body2: { fontSize: 12, lineHeight: 'normal' }
 } as TypographyOptions
 
 const getThemeColors = (mode: PaletteMode) => (mode === 'light' ? defaultThemeLightColors : defaultThemeDarkColors)

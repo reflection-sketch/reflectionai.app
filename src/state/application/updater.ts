@@ -63,11 +63,10 @@ export default function Updater(): null {
   const [timeInt, setTimeInt] = useState(0)
   useEffect(() => {
     setTimeout(() => setTimeInt(timeInt + 1), 60000)
-    providers.map(
-      (provider, index) =>
-        provider
-          ?.getBlockNumber()
-          .then(bn => dispatch(updateBlockNumber({ chainId: SUPPORT_NETWORK_CHAIN_IDS[index], blockNumber: bn })))
+    providers.map((provider, index) =>
+      provider
+        ?.getBlockNumber()
+        .then(bn => dispatch(updateBlockNumber({ chainId: SUPPORT_NETWORK_CHAIN_IDS[index], blockNumber: bn })))
     )
   }, [providers, timeInt, dispatch])
 

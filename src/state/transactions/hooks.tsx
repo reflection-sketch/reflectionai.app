@@ -46,7 +46,7 @@ export function useAllTransactions(): { [txHash: string]: TransactionDetails } {
 
   const state = useSelector<AppState, AppState['transactions']>(state => state.transactions)
 
-  return chainId ? state[chainId] ?? {} : {}
+  return chainId ? (state[chainId] ?? {}) : {}
 }
 
 export function useIsTransactionPending(transactionHash?: string): boolean {

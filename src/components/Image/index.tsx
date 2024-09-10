@@ -26,7 +26,7 @@ export default function Image({
   const srcStr = srcs.find(item => !BAD_SRCS[item ?? ''])
 
   const _styles = useMemo(() => {
-    const sizeStyle: CSSProperties = { ...style } ?? {}
+    const sizeStyle: CSSProperties = { ...style }
     if (size !== undefined) {
       sizeStyle.width = style?.width ?? size
       sizeStyle.height = style?.height ?? size

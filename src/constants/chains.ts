@@ -45,6 +45,9 @@ export const CHAINS: { [key in SupportedChainId]: ChainInfo } = {
   [SupportedChainId.LOOT]: lootChain
 }
 
+type IEnvironment = 'testnet' | 'dev' | 'prod'
+export const CURRENT_ENVIRONMENT = (process.env.NEXT_PUBLIC_VERSION_ENVIRONMENT || 'dev') as IEnvironment
+
 export const NETWORK_CHAIN_ID = Number(process.env.NEXT_PUBLIC_DEFAULT_CHAIN_ID) || SupportedChainId.MAINNET
 
 export const SUPPORT_NETWORK_CHAIN_IDS: SupportedChainId[] = process.env.NEXT_PUBLIC_CHAIN_IDS
