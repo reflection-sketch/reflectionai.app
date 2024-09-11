@@ -31,7 +31,7 @@ export default function Page() {
     >
       <Stack flexDirection={'row'} gap={20} mb={25}>
         <BoxContainer width={559} height={207}>
-          <Image src={BgUser.src} alt='' style={{ width: 695, top: 0, left: -75 }} />
+          <Image src={BgUser.src} alt="" style={{ width: 695, top: 0, left: -75 }} />
           <JumpBotton sx={{ top: 15, right: 15 }}>
             <JumpSvg />
           </JumpBotton>
@@ -45,7 +45,7 @@ export default function Page() {
           </Stack>
         </BoxContainer>
         <BoxContainer width={569} height={207}>
-          <Image src={BgRobot.src} alt='' style={{ width: 656, top: 6, left: -64 }} />
+          <Image src={BgRobot.src} alt="" style={{ width: 656, top: 6, left: -64 }} />
           <JumpBotton sx={{ top: 15, right: 15 }}>
             <JumpSvg />
           </JumpBotton>
@@ -60,7 +60,7 @@ export default function Page() {
         </BoxContainer>
       </Stack>
       <BoxContainer width={1148} height={473}>
-        <Image src={BgComputing.src} alt='' style={{ width: 1324, top: 18, left: -88, zIndex: 1 }} />
+        <Image src={BgComputing.src} alt="" style={{ width: 1324, top: 18, left: -88, zIndex: 1 }} />
         <Image src={Computing.src} alt="" style={{ top: 29, left: 27 }} />
         <Image src={BgStarLeft.src} alt="" style={{ bottom: 0, left: 252, zIndex: 2 }} />
         <Image src={BgStarRight.src} alt="" style={{ bottom: 0, left: 484, zIndex: 2 }} />
