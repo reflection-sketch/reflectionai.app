@@ -7,7 +7,7 @@ export default function Page() {
   const isSm = useBreakpoint('sm')
   isSm
   return (
-    <Stack width={'100%'} marginLeft={78} position={'relative'}>
+    <Stack width={'100%'} marginLeft={78} position={'relative'} height={1024}>
       <Typography variant="h3" fontWeight={900} color={'#1F84FF'}>
         Our Features
       </Typography>

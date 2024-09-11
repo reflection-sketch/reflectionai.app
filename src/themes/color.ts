@@ -83,7 +83,7 @@ export const defaultThemeDarkColors = {
     main: '#31B047'
   },
   background: {
-    default: '#343739',
+    default: '#000',
     paper: '#1A1C1E'
   },
   text: {
@@ -93,7 +93,7 @@ export const defaultThemeDarkColors = {
   },
   action: {
     disabledOpacity: 0.6,
-    disabledBackground: '#343739'
+    disabledBackground: '#000'
   }
 }
 
