@@ -18,34 +18,43 @@ export default function Page({ show }: { show: boolean }) {
   const [text1Show, setText1Show] = useState(false)
   const [text2Show, setText2Show] = useState(false)
   const [text3Show, setText3Show] = useState(false)
+  const [text4Show, setText4Show] = useState(false)
+  const [text5Show, setText5Show] = useState(false)
+  const [text6Show, setText6Show] = useState(false)
   const [btShow, setBtShow] = useState(false)
   useEffect(() => {
     if (!show) return
     const timer = setTimeout(() => {
       setText1Show(true)
     }, 2000)
-    const timer1 = setTimeout(() => {
+    const timer2 = setTimeout(() => {
+      setText2Show(true)
+    }, 5000)
+    const timer3 = setTimeout(() => {
       setText3Show(true)
-    }, 2500)
+    }, 8000)
+    const timer4 = setTimeout(() => {
+      setText4Show(true)
+    }, 11000)
+    const timer5 = setTimeout(() => {
+      setText5Show(true)
+    }, 14000)
+    const timer6 = setTimeout(() => {
+      setText6Show(true)
+    }, 17000)
+    const timer7 = setTimeout(() => {
+      setBtShow(true)
+    }, 18000)
     return () => {
       clearTimeout(timer)
-      clearTimeout(timer1)
+      clearTimeout(timer2)
+      clearTimeout(timer3)
+      clearTimeout(timer4)
+      clearTimeout(timer5)
+      clearTimeout(timer6)
+      clearTimeout(timer7)
     }
   }, [show])
-  useEffect(() => {
-    if (!text1Show) return
-    const timer = setTimeout(() => {
-      setText2Show(true)
-    }, 3000)
-    return () => clearTimeout(timer)
-  }, [text1Show])
-  useEffect(() => {
-    if (!text2Show) return
-    const timer = setTimeout(() => {
-      setBtShow(true)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [text2Show])
   return (
     <Stack
       width={'100%'}
@@ -93,22 +102,31 @@ export default function Page({ show }: { show: boolean }) {
             }}
           >
             <Typography variant="h6" mb={10}>
-              Landing Page of
+              Required Functionality
             </Typography>
-            <FormInput height={102} id={'container'}>
+            <FormInput height={102}>
               <CSSTransition in={text1Show} timeout={3000} classNames="text1-transition" unmountOnExit>
-                <Text>Pepe,meme,money,crypto,hot,project,ACG,GameFi,De</Text>
+                <Text>An AI-powered system capable of automatically detecting on</Text>
               </CSSTransition>
-              <CSSTransition in={text2Show} timeout={1000} classNames="text2-transition" unmountOnExit>
-                <Text>fi,BitcoinChain.</Text>
+              <CSSTransition in={text2Show} timeout={3000} classNames="text1-transition" unmountOnExit>
+                <Text>-chain mining opportunities and assisting with automated st</Text>
+              </CSSTransition>
+              <CSSTransition in={text3Show} timeout={3000} classNames="text1-transition" unmountOnExit>
+                <Text>aking of ETH, BTC, and USDT. The goal is to potentially achieve</Text>
+              </CSSTransition>
+              <CSSTransition in={text4Show} timeout={3000} classNames="text1-transition" unmountOnExit>
+                <Text>higher annualized yields while maintaining a lower risk profile.</Text>
               </CSSTransition>
             </FormInput>
             <Typography variant="h6" mb={10}>
-              Landing Page of
+              Platform Requirements
             </Typography>
             <FormInput height={102}>
-              <CSSTransition in={text3Show} timeout={1500} classNames="text3-transition" unmountOnExit>
-                <Text>Hasaki,Bitcoin,Ton,telgram.</Text>
+              <CSSTransition in={text5Show} timeout={3000} classNames="text1-transition" unmountOnExit>
+                <Text>{`Support for both BSC (Binance Smart Chain) and ETH (Ethere`}</Text>
+              </CSSTransition>
+              <CSSTransition in={text6Show} timeout={1000} classNames="text2-transition" unmountOnExit>
+                <Text>{`um) networks.`}</Text>
               </CSSTransition>
             </FormInput>
             <CSSTransition in={btShow} timeout={1000} classNames="bt-transition">
@@ -141,8 +159,8 @@ const RadiusBox = styled(Box)`
   bottom: 200px;
 `
 
-const FormBox = styled(Box)`
-  width: 387px;
+export const FormBox = styled(Box)`
+  width: 430px;
   flex-shrink: 0;
   margin: 365px auto 0;
   border-radius: 28px;
@@ -153,7 +171,7 @@ const FormBox = styled(Box)`
   overflow: hidden;
 `
 
-const FormInput = styled(Box)`
+export const FormInput = styled(Box)`
   width: 100%;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.05);
@@ -162,7 +180,7 @@ const FormInput = styled(Box)`
   padding: 13px;
 `
 
-const ButtonBox = styled(Box)`
+export const ButtonBox = styled(Box)`
   width: 100%;
   height: 32px;
   text-align: center;
@@ -177,6 +195,10 @@ const ButtonBox = styled(Box)`
   line-height: 32px;
   letter-spacing: -0.84px;
   margin-top: 21px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.5;
+  }
 `
 
 const Text = styled(Typography)`
@@ -186,4 +208,5 @@ const Text = styled(Typography)`
   font-weight: 400;
   line-height: normal;
   overflow: hidden;
+  white-space: nowrap;
 `

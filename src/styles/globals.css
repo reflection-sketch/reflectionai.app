@@ -60,12 +60,12 @@ body {
 }
 
 .text1-transition-enter-active {
-  width: 299px;
+  width: 342.8px;
   transition: 3s linear,
 }
 
 .text1-transition-enter-done {
-  width: 299px;
+  width: 342.8px;
 }
 
 .text2-transition-enter {
@@ -73,12 +73,12 @@ body {
 }
 
 .text2-transition-enter-active {
-  width: 82px;
+  width: 78.4px;
   transition: 1s linear,
 }
 
 .text2-transition-enter-done {
-  width: 82px;
+  width: 78.4px;
 }
 
 .text3-transition-enter {

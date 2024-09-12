@@ -36,7 +36,7 @@ export default function Page() {
             <JumpSvg />
           </JumpBotton>
           <Image src={User.src} alt="" style={{ top: 36, left: 32 }} />
-          <Stack gap={10} sx={{ marginLeft: 112, marginTop: 39, width: 420 }}>
+          <Stack gap={10} sx={{ position: 'absolute', top: 39, left: 112, width: 420, zIndex: 4 }}>
             <TypographyTitle>Extensive User Base</TypographyTitle>
             <TypographyText>
               Reflection aims to attract over 100M users, offering abundant social space and growth opportunities for
@@ -50,7 +50,7 @@ export default function Page() {
             <JumpSvg />
           </JumpBotton>
           <Image src={Robot.src} alt="" style={{ top: 30, left: 30 }} />
-          <Stack gap={10} sx={{ marginLeft: 107, marginTop: 39, width: 430 }}>
+          <Stack gap={10} sx={{ position: 'absolute', top: 39, left: 107, width: 430, zIndex: 4 }}>
             <TypographyTitle>Extensive User Base</TypographyTitle>
             <TypographyText>
               Reflection aims to attract over 100M users, offering abundant social space and growth opportunities for
@@ -69,7 +69,7 @@ export default function Page() {
         <JumpBotton sx={{ top: 30, right: 30 }}>
           <JumpSvg />
         </JumpBotton>
-        <Stack gap={10} sx={{ marginLeft: 100, marginTop: 37, width: 942 }}>
+        <Stack gap={10} sx={{ position: 'absolute', top: 37, left: 100, width: 942, zIndex: 4 }}>
           <TypographyTitle>Robust Computing Power</TypographyTitle>
           <TypographyText>
             With over 6K A100 computing cards, our platform offers robust hardware support, ensuring efficient and
@@ -90,6 +90,7 @@ const BoxContainer = styled(Box)`
   backdrop-filter: blur(2px);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 `
 
 const TypographyTitle = styled(Typography)`
