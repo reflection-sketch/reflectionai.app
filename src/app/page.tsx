@@ -1,6 +1,5 @@
 'use client'
-import { Stack, styled } from '@mui/material'
-import useBreakpoint from 'hooks/useBreakpoint'
+import { Stack, debounce, styled } from '@mui/material'
 import Features from './Features'
 import Highlights from './Highlights'
 import FirstPage from './FirstPage'
@@ -9,12 +8,27 @@ import FAQ from './FAQ'
 import Footer from './Footer'
 import Image from 'components/Image'
 import Background from 'assets/home/bgBottom.png'
+import SecondPage from './SecondPage'
+import { useEffect, useState } from 'react'
 export default function Page() {
-  const isSm = useBreakpoint('sm')
-  isSm
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      if (window.scrollY > 1024) setShow(true)
+    }, 200)
+    if (window.scrollY > 1024) {
+      setShow(true)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
   return (
-    <Stack alignItems={'center'} width={1440} margin={'0 auto'} position={'relative'} overflow={'hidden'}>
+    <Stack alignItems={'center'} width={1440} margin={'0 auto'} position={'relative'}>
       <FirstPage />
+      <SecondPage show={show} />
       <Features />
       <Highlights />
       <RoadMap />

@@ -11,3 +11,130 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
+
+
+.desk-transition-enter {
+  transform: scale(1);
+}
+
+.desk-transition-enter-active {
+  transform: scale(1.2);
+  transition: 2s linear;
+}
+
+.desk-transition-enter-done {
+  transform: scale(1.2);
+}
+
+.shadow-transition-enter {
+  opacity: 0;
+}
+
+.shadow-transition-enter-active {
+  opacity: 1;
+  transition: 2s linear;
+}
+
+.shadow-transition-enter-done {
+  opacity: 1;
+}
+
+.form-transition-enter {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.form-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 2s linear, opacity 2s linear;
+}
+
+.form-transition-enter-done {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.text1-transition-enter {
+  width: 0;
+}
+
+.text1-transition-enter-active {
+  width: 299px;
+  transition: 3s linear,
+}
+
+.text1-transition-enter-done {
+  width: 299px;
+}
+
+.text2-transition-enter {
+  width: 0;
+}
+
+.text2-transition-enter-active {
+  width: 82px;
+  transition: 1s linear,
+}
+
+.text2-transition-enter-done {
+  width: 82px;
+}
+
+.text3-transition-enter {
+  width: 0;
+}
+
+.text3-transition-enter-active {
+  width: 145px;
+  transition: 1.5s linear,
+}
+
+.text3-transition-enter-done {
+  width: 145px;
+}
+
+.bt-transition-enter {
+  opacity: 1;
+}
+
+.bt-transition-enter-active {
+  opacity: 0.5;
+  transition: 1.5s linear,
+}
+
+.bt-transition-enter-done {
+  opacity: 1;
+}
+
+.feature1-enter {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.feature1-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 1s linear, opacity 1s linear;
+}
+
+.feature1-enter-done {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.feature1-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.feature1-exit-active {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: transform 0.3s linear, opacity 0.3s linear;
+}
+
+.feature1-exit-done {
+  opacity: 0;
+  transform: translateX(100px);
+}

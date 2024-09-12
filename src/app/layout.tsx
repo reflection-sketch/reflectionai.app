@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'title',
   description: 'description',
   icons: {
-    icon: '/favicon.svg'
+    icon: '/favicon.ico'
   }
 }
 
@@ -31,7 +31,7 @@ export default function RootLayout({
       </head>
       <body>
         <Provider>
-          <div id="body" style={{ height: '100vh' }}>
+          <div id="body">
             <Header />
             {children}
           </div>

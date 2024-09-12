@@ -2,11 +2,15 @@
 import { Box, styled, Stack, Typography } from '@mui/material'
 import useBreakpoint from 'hooks/useBreakpoint'
 import ProjectName from 'assets/header/projectName.png'
-import Telegram from 'assets/home/telegram.png'
+import Telegram from 'assets/home/first/telegram.png'
 import Image from 'components/Image'
 import ArrowSvg from 'assets/header/arrow.svg'
 import { useEffect, useState } from 'react'
 import StarUp from 'components/StarUp'
+import Icon from 'assets/home/first/icon.png'
+import BgFirst from 'assets/home/first/bgFirst.png'
+import DeskFirst from 'assets/home/first/deskFirst.png'
+
 const textArray = ['Search Your AI Models.', 'Search Your AI Models22.', 'Search Your AI Models333.']
 const textWidthArray = [170.5, 189, 198]
 export default function Page() {
@@ -20,7 +24,7 @@ export default function Page() {
     // Set a timer to update textWidth after 2 seconds
     const timer = setTimeout(() => {
       setIsDelay(true)
-    }, 5000)
+    }, 1500)
     return () => clearTimeout(timer)
   }, [])
   useEffect(() => {
@@ -39,16 +43,28 @@ export default function Page() {
   }, [isDelay])
 
   return (
-    <>
+    <Stack
+      width={'100%'}
+      alignItems={'center'}
+      sx={{
+        height: 1024,
+        overflow: 'hidden',
+        background: `url(${BgFirst.src})`,
+        position: 'relative'
+      }}
+    >
+      <Cover />
       <StarUp />
       <RadiusBox />
-      {/*icon image */}
+      <DeskImg src={DeskFirst.src} alt="" />
       <Box
         marginTop={128}
         width={99}
         height={99}
-        sx={{ borderRadius: '50%', border: '1px solid rgba(255, 255, 255, 0.25)' }}
-      ></Box>
+        sx={{ borderRadius: '50%', border: '1px solid rgba(255, 255, 255, 0.25)', position: 'relative' }}
+      >
+        <Image src={Icon.src} alt="" style={{ position: 'absolute', left: 11, top: 20 }} />
+      </Box>
       <Image src={ProjectName.src} alt="" width={127} height={43} />
       <Typography1 variant="h1" sx={{ margin: '61px 0 7px' }}>
         Your next AI Model is
@@ -69,7 +85,7 @@ export default function Page() {
           Open Telegram MiniApp
         </Typography>
       </Stack>
-    </>
+    </Stack>
   )
 }
 
@@ -126,6 +142,10 @@ const StartButton = styled(Box)`
   align-items: center;
   border-radius: 15px;
   border: 2px solid #fff;
+  cursor: pointer;
+  // :hover {
+  //   background:linear-gradient(132deg, #823A12 -6.89%, #000 41.37%, #000 58.65%, #2C6EBE 122.98%);
+  // }
 `
 
 const StartText = styled(Typography)(({ width }: { width: number | string }) => ({
@@ -137,7 +157,7 @@ const StartText = styled(Typography)(({ width }: { width: number | string }) => 
   color: '#abaebc',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
-  animation: 'blink 8s linear infinite 5s',
+  animation: 'blink 8s linear infinite 1.5s',
   '@keyframes blink': {
     '0%': {
       width: 0
@@ -153,3 +173,43 @@ const StartText = styled(Typography)(({ width }: { width: number | string }) => 
     }
   }
 }))
+
+const Cover = styled(Box)`
+  width: 100%;
+  height: 1024px;
+  background: #000;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation-duration: 1.5s;
+  animation-name: black;
+  animation-iteration-count: 1;
+  z-index: 4;
+  @keyframes black {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+`
+
+const DeskImg = styled(Image)`
+  position: absolute;
+  bottom: 0;
+  left: 268px;
+  animation-duration: 1s;
+  animation-name: up;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  @keyframes up {
+    from {
+      transform: translateY(134px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+`

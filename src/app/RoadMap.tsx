@@ -3,14 +3,14 @@
 import { Box, Stack, Typography, styled } from '@mui/material'
 import StreamerButton from 'components/Button/Streamer'
 import CheckIcon from '@mui/icons-material/Check'
-import VerticalLineSvg from 'assets/home/verticalLine.svg'
-import TerminalIcon from '@mui/icons-material/Terminal'
-import BgRoadMap from 'assets/home/bgRoadMap.png'
+import VerticalLineSvg from 'assets/home/roadmap/verticalLine.svg'
+import TerminalIcon from 'assets/home/roadmap/textIcon.svg'
+import BgRoadMap from 'assets/home/roadmap/bgRoadMap.png'
 import Image from 'components/Image'
 
 const RoadMapList = [
   {
-    active: true,
+    active: 1,
     time: '2024 Q2',
     title: 'Early Development and Telegram Integration',
     msg: [
@@ -29,7 +29,7 @@ const RoadMapList = [
     ]
   },
   {
-    active: false,
+    active: 0,
     time: '2024 Q2',
     title: 'Early Development and Telegram Integration',
     msg: [
@@ -48,7 +48,7 @@ const RoadMapList = [
     ]
   },
   {
-    active: false,
+    active: 0,
     time: '2024 Q2',
     title: 'Early Development and Telegram Integration',
     msg: [
@@ -67,7 +67,7 @@ const RoadMapList = [
     ]
   },
   {
-    active: false,
+    active: 0,
     time: '2024 Q2',
     title: 'Early Development and Telegram Integration',
     msg: [
@@ -86,7 +86,7 @@ const RoadMapList = [
     ]
   },
   {
-    active: false,
+    active: 0,
     time: '2024 Q2',
     title: 'Early Development and Telegram Integration',
     msg: [
@@ -164,7 +164,7 @@ export default function RoadMap() {
   )
 }
 
-const CheckBox = styled(Box)(({ active }: { active?: boolean }) => ({
+const CheckBox = styled(Box)(({ active }: { active: number }) => ({
   width: 29,
   height: 29,
   flexShrink: 0,
@@ -177,7 +177,7 @@ const CheckBox = styled(Box)(({ active }: { active?: boolean }) => ({
   background: active ? '#fff' : 'rgba(255, 255, 255, 0.25)'
 }))
 
-const MileageTime = styled(Typography)(({ active }: { active?: boolean }) => ({
+const MileageTime = styled(Typography)(({ active }: { active: number }) => ({
   padding: '0 26px',
   height: 29,
   borderRadius: 10,

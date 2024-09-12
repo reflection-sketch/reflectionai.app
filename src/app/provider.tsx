@@ -27,6 +27,9 @@ function Updater() {
 }
 
 export default function Provider({ children }: { children: ReactNode }) {
+  if (process.env.NODE_ENV === 'production' && typeof window === 'object') {
+    window.console.log = function () {}
+  }
   return (
     <StateProvider>
       <ConnectProvider>

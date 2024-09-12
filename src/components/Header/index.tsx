@@ -12,7 +12,7 @@ import { useRouter, usePathname } from 'next/navigation'
 // import Link from 'next/link'
 const Web3Status = dynamic(() => import('./Web3Status'), { ssr: false })
 import Image from 'components/Image'
-import { ROUTES } from 'constants/routes'
+// import { ROUTES } from 'constants/routes'
 
 // const StyledLogo = styled(WhiteHeaderLogoSvg)(() => ({
 //   cursor: 'pointer',
@@ -275,18 +275,18 @@ export default function Header({
   // const headerBgOpacity = useHeaderBgOpacity()
 
   const links: RouteLinkParams[] = [
-    {
-      label: 'Home',
-      link: ROUTES.home,
-      active: '/',
-      type: 'link'
-    },
-    {
-      label: 'Node',
-      link: ROUTES.home,
-      active: '/',
-      type: 'link'
-    }
+    // {
+    //   label: 'Home',
+    //   link: ROUTES.home,
+    //   active: '/',
+    //   type: 'link'
+    // },
+    // {
+    //   label: 'Node',
+    //   link: ROUTES.home,
+    //   active: '/',
+    //   type: 'link'
+    // }
   ]
   const isMd = useBreakpoint('md')
   // const isActive = (active: string) => {

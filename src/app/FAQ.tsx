@@ -9,25 +9,25 @@ import { useState } from 'react'
 import { Typography1 } from './FirstPage'
 const QList = [
   {
-    active: true,
+    active: 1,
     height: 127,
     title: 'The Reflection AI',
     text: 'Our Discord community and staff are here to help! Your feedback will help Reflection AI improve in future versions.'
   },
   {
-    active: false,
+    active: 0,
     height: 127,
     title: 'The Reflection AI',
     text: 'Our Discord community and staff are here to help! Your feedback will help Reflection AI improve in future versions.'
   },
   {
-    active: false,
+    active: 0,
     height: 127,
     title: 'The Reflection AI',
     text: 'Our Discord community and staff are here to help! Your feedback will help Reflection AI improve in future versions.'
   },
   {
-    active: false,
+    active: 0,
     height: 127,
     title: 'The Reflection AI',
     text: 'Our Discord community and staff are here to help! Your feedback will help Reflection AI improve in future versions.'
@@ -38,7 +38,9 @@ export default function Page() {
   const [list, setList] = useState(QList)
 
   const handleClick = (index: number) => {
-    setList(prevItems => prevItems.map((item, i) => (i === index ? { ...item, active: !item.active } : item)))
+    setList(prevItems =>
+      prevItems.map((item, i) => (i === index ? { ...item, active: item.active === 1 ? 0 : 1 } : item))
+    )
   }
   return (
     <Stack alignItems={'center'} width={1440} position={'relative'} mb={76} height={1621}>
@@ -122,7 +124,7 @@ export default function Page() {
   )
 }
 
-const QBox = styled(Box)(({ active, height }: { active: boolean; height: number | string }) => ({
+const QBox = styled(Box)(({ active, height }: { active: number; height: number | string }) => ({
   width: 716,
   height: active ? height : 64,
   borderRadius: 10,
