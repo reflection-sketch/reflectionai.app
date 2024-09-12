@@ -4,6 +4,7 @@ const withSvgr = require('next-plugin-svgr')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',
   transpilePackages: ['ahooks'],
   webpack: config => {
     config.externals.push('pino-pretty', 'lokijs', 'encoding')
