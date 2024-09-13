@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import StarUp from 'components/StarUp'
 import Icon from 'assets/home/first/icon.png'
 import BgFirst from 'assets/home/first/bgFirst.png'
-import DeskFirst from 'assets/home/first/deskFirst.png'
+import SecondPage from './SecondPage'
 
 const arr = [
   {
@@ -18,7 +18,7 @@ const arr = [
     step: 20
   }
 ]
-export default function Page() {
+export default function Page({ show }: { show: boolean }) {
   const isMd = useBreakpoint('md')
   const [textNum, setTextNum] = useState(0)
   const [textArr, setTextArr] = useState(arr[textNum])
@@ -56,10 +56,10 @@ export default function Page() {
       width={'100%'}
       alignItems={'center'}
       sx={{
-        height: isMd ? 899 : 1024,
+        height: isMd ? 899 : 'auto',
         width: isMd ? 1014 : 1440,
         overflow: 'hidden',
-        background: `url(${BgFirst.src})`,
+        background: `url(${BgFirst.src}) no-repeat`,
         position: 'relative'
       }}
     >
@@ -77,7 +77,6 @@ export default function Page() {
       {!isMd && <Cover sx={{ zIndex: zIndex }} />}
       <StarUp />
       <RadiusBox />
-      {!isMd && <DeskImg src={DeskFirst.src} alt="" />}
       <Box
         marginTop={isMd ? 188 : 128}
         width={99}
@@ -119,6 +118,7 @@ export default function Page() {
           Open Telegram MiniApp
         </Typography>
       </Stack>
+      {!isMd && <SecondPage show={show} />}
     </Stack>
   )
 }
@@ -242,24 +242,6 @@ const Cover = styled(Box)`
     }
     to {
       opacity: 0;
-    }
-  }
-`
-
-const DeskImg = styled(Image)`
-  position: absolute;
-  bottom: 0;
-  left: 268px;
-  animation-duration: 1s;
-  animation-name: up;
-  animation-iteration-count: 1;
-  animation-timing-function: linear;
-  @keyframes up {
-    from {
-      transform: translateY(134px);
-    }
-    to {
-      transform: translateY(0);
     }
   }
 `

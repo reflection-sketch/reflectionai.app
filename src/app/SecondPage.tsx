@@ -2,7 +2,7 @@
 import { Box, styled, Stack, Typography } from '@mui/material'
 import useBreakpoint from 'hooks/useBreakpoint'
 import Image from 'components/Image'
-import BgSecond from 'assets/home/second/bgSecond.png'
+// import BgSecond from 'assets/home/second/bgSecond.png'
 import DeskSecond from 'assets/home/second/deskSecond.png'
 import ShadowSecond from 'assets/home/second/shadowSecond.png'
 import ThreeStar from 'assets/home/second/threeStar.png'
@@ -61,17 +61,16 @@ export default function Page({ show }: { show: boolean }) {
       alignItems={'center'}
       sx={{
         height: 1024,
-        overflow: 'hidden',
-        background: `url(${BgSecond.src}) no-repeat`,
+        // overflow: 'hidden',
+        // background: `url(${BgSecond.src}) no-repeat`,
         position: 'relative'
       }}
     >
-      <RadiusBox />
       <CSSTransition in={isShow} timeout={2000} classNames="desk-transition">
         <Image
           src={DeskSecond.src}
           alt=""
-          style={{ position: 'absolute', width: 860, height: 614, top: 237, left: 301, zIndex: 1 }}
+          style={{ position: 'absolute', width: 860, height: 614, top: 81, left: 301, zIndex: 1 }}
         />
       </CSSTransition>
       <CSSTransition in={isShow} timeout={2000} classNames="shadow-transition" unmountOnExit>
@@ -139,30 +138,10 @@ export default function Page({ show }: { show: boolean }) {
   )
 }
 
-const RadiusBox = styled(Box)`
-  width: 1487px;
-  height: 1486px;
-  flex-shrink: 0;
-  border-radius: 1487px;
-  opacity: 0.3;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(255, 255, 255, 0) 53%,
-    rgba(247, 247, 247, 0.08) 64%,
-    rgba(240, 240, 240, 0.13) 76%,
-    rgba(233, 233, 233, 0.31) 84.5%,
-    rgba(225, 225, 225, 0.57) 92.5%,
-    #d9d9d9 100%
-  );
-  box-shadow: 0px -20px 40px 0px rgba(255, 255, 255, 0.6);
-  position: absolute;
-  bottom: 200px;
-`
-
-export const FormBox = styled(Box)`
+const FormBox = styled(Box)`
   width: 430px;
   flex-shrink: 0;
-  margin: 365px auto 0;
+  margin: 200px auto 0;
   border-radius: 28px;
   border: 1px solid rgba(154, 154, 154, 0.5);
   background: rgba(12, 12, 12, 0.5);

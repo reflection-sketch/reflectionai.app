@@ -8,7 +8,6 @@ import FAQ from './FAQ'
 import Footer from './Footer'
 import Image from 'components/Image'
 import Background from 'assets/home/bgBottom.png'
-import SecondPage from './SecondPage'
 import { useEffect, useState } from 'react'
 import useBreakpoint from 'hooks/useBreakpoint'
 export default function Page() {
@@ -16,9 +15,9 @@ export default function Page() {
   const isMd = useBreakpoint('md')
   useEffect(() => {
     const handleScroll = debounce(() => {
-      if (window.scrollY > 1024) setShow(true)
+      if (window.scrollY > 550) setShow(true)
     }, 200)
-    if (window.scrollY > 1024) {
+    if (window.scrollY > 550) {
       setShow(true)
     }
     window.addEventListener('scroll', handleScroll)
@@ -34,8 +33,7 @@ export default function Page() {
       position={'relative'}
       sx={{ overflowX: isMd ? 'hidden' : 'unset' }}
     >
-      <FirstPage />
-      {!isMd && <SecondPage show={show} />}
+      <FirstPage show={show} />
       <Features />
       <Highlights />
       <RoadMap />
