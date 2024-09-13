@@ -7,6 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import TerminalIcon from '@mui/icons-material/Terminal'
 import { useState } from 'react'
 import { Typography1 } from './FirstPage'
+import useBreakpoint from 'hooks/useBreakpoint'
 const QList = [
   {
     active: 1,
@@ -35,35 +36,56 @@ const QList = [
 ]
 
 export default function Page() {
+  const isMd = useBreakpoint('md')
   const [list, setList] = useState(QList)
-
   const handleClick = (index: number) => {
     setList(prevItems =>
       prevItems.map((item, i) => (i === index ? { ...item, active: item.active === 1 ? 0 : 1 } : item))
     )
   }
   return (
-    <Stack alignItems={'center'} width={1440} position={'relative'} mb={76} height={1621}>
+    <Stack
+      alignItems={'center'}
+      width={isMd ? '100%' : 1440}
+      position={'relative'}
+      mb={isMd ? 0 : 76}
+      height={isMd ? 'auto' : 1621}
+      overflow={'hidden'}
+    >
       <RaduisBox />
-      <Stack alignItems={'center'} width={'100%'} bgcolor={'#000'} paddingTop={162}>
-        <Typography variant="h3" color={'#1F84FF'} fontWeight={900}>
+      <Stack alignItems={'center'} width={'100%'} bgcolor={'#000'} paddingTop={isMd ? 129 : 0}>
+        <Typography variant="h3" fontSize={isMd ? 17 : 26} color={'#1F84FF'} fontWeight={900}>
           FAQ
         </Typography>
-        <Typography variant="h2" color={'#fff'} fontWeight={900} marginTop={13}>{`Got questions?`}</Typography>
-        <Typography variant="h2" color={'#fff'} fontWeight={900} marginBottom={35}>{`Join the community.`}</Typography>
-        <Typography variant="h4" color={'#fff'} sx={{ opacity: 0.5 }}>
+        <Typography
+          variant="h2"
+          fontSize={isMd ? 25 : 48}
+          color={'#fff'}
+          fontWeight={900}
+          marginTop={isMd ? 11 : 13}
+        >{`Got questions?`}</Typography>
+        <Typography
+          variant="h2"
+          fontSize={isMd ? 25 : 48}
+          color={'#fff'}
+          fontWeight={900}
+          marginBottom={isMd ? 10 : 35}
+        >{`Join the community.`}</Typography>
+        <Typography variant="h4" fontSize={isMd ? 12 : 16} color={'#fff'} sx={{ opacity: 0.5 }}>
           Our Discord community and staff are here to help!
         </Typography>
-        <Typography variant="h4" color={'#fff'} sx={{ opacity: 0.5 }}>
+        <Typography variant="h4" fontSize={isMd ? 12 : 16} color={'#fff'} sx={{ opacity: 0.5 }}>
           Your feedback will help Reflection AI improve in future versions.
         </Typography>
-        <StreamerButton text={'Join Discord'} width={146} sx={{ margin: '40px 0 61px' }} />
-        <Stack gap={15} mb={65}>
+        <StreamerButton text={'Join Discord'} width={146} sx={{ margin: isMd ? '30px 0 48px' : '40px 0 61px' }} />
+        <Stack gap={15} mb={isMd ? 0 : 65}>
           {list.map((item, index) => {
             return (
               <QBox
                 key={index}
-                height={item.height}
+                width={isMd ? 'calc(100vw - 40px)' : 716}
+                height={isMd ? 'auto' : item.height}
+                padding={isMd ? '19px 19px 17px 22px' : '11px 18px 13px 11px'}
                 active={item.active}
                 onClick={() => {
                   handleClick(index)
@@ -71,22 +93,24 @@ export default function Page() {
               >
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                   <RowBox>
-                    <Box
-                      display={'flex'}
-                      alignItems={'center'}
-                      justifyContent={'center'}
-                      borderRadius="50%"
-                      bgcolor={'#5D627D'}
-                      padding={'8px 9px'}
-                    >
-                      <TerminalIcon />
-                    </Box>
+                    {!isMd && (
+                      <Box
+                        display={'flex'}
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                        borderRadius="50%"
+                        bgcolor={'#5D627D'}
+                        padding={'8px 9px'}
+                      >
+                        <TerminalIcon />
+                      </Box>
+                    )}
                     <Title>{item.title}</Title>
                   </RowBox>
                   {item.active ? <RemoveIcon /> : <AddIcon />}
                 </Box>
 
-                <Box margin={'10px 18px 11px 56px'}>
+                <Box margin={isMd ? '19px 0 17px' : '10px 18px 11px 56px'}>
                   <Text>{item.text}</Text>
                 </Box>
               </QBox>
@@ -99,16 +123,29 @@ export default function Page() {
         alignItems={'center'}
         justifyContent={'flex-end'}
         width={'100%'}
-        height={413}
+        height={isMd ? 253 : 413}
         sx={{ background: 'linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 100%)' }}
       >
-        <Typography1>Your next AI Model is just</Typography1>
-        <Typography1>one click away.</Typography1>
-        <Box mt={42} width={685}>
-          <Typography2 width={875}>
-            ing Models&nbsp;&nbsp;•&nbsp;&nbsp;Finance Models&nbsp;&nbsp;•&nbsp;&nbsp;Learning
-            Models&nbsp;&nbsp;•&nbsp;&nbsp;Socia
-          </Typography2>
+        {isMd ? (
+          <Typography1>{`Your next big idea's just one prompt away.`}</Typography1>
+        ) : (
+          <>
+            <Typography1>Your next AI Model is just</Typography1>
+            <Typography1>one click away.</Typography1>
+          </>
+        )}
+        <Box mt={isMd ? 23 : 42} width={isMd ? 274 : 685}>
+          {isMd ? (
+            <Typography2 width={283}>
+              MemeCoin&nbsp;&nbsp;•&nbsp;&nbsp;DogsCoin&nbsp;&nbsp;•&nbsp;&nbsp;PePe
+              Coin&nbsp;&nbsp;•&nbsp;&nbsp;MemeCoin
+            </Typography2>
+          ) : (
+            <Typography2 width={875}>
+              ing Models&nbsp;&nbsp;•&nbsp;&nbsp;Finance Models&nbsp;&nbsp;•&nbsp;&nbsp;Learning
+              Models&nbsp;&nbsp;•&nbsp;&nbsp;Socia
+            </Typography2>
+          )}
         </Box>
       </Stack>
       <StreamerButton
@@ -118,18 +155,16 @@ export default function Page() {
         height={80}
         gap={16}
         scale={1.5}
-        sx={{ margin: '55px 0 142px' }}
+        sx={{ margin: isMd ? '33px 0 84px' : '55px 0 142px' }}
       />
     </Stack>
   )
 }
 
 const QBox = styled(Box)(({ active, height }: { active: number; height: number | string }) => ({
-  width: 716,
   height: active ? height : 64,
   borderRadius: 10,
   background: 'rgba(255, 255, 255, 0.25)',
-  padding: '11px 18px 13px 11px',
   cursor: 'pointer',
   overflow: 'hidden',
   transition: 'height 1s linear'
@@ -178,6 +213,10 @@ const RaduisBox = styled(Box)`
   position: absolute;
   top: 135px;
   z-index: -2;
+  @media only screen and (max-width: 640px) {
+    width: 801px;
+    height: 800px;
+  }
 `
 
 export const Typography2 = styled(Typography)`
@@ -191,4 +230,7 @@ export const Typography2 = styled(Typography)`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  @media only screen and (max-width: 640px) {
+    font-size: 12px;
+  }
 `

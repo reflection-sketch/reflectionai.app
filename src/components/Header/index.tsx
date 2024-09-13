@@ -350,8 +350,8 @@ export default function Header({
               }
             }}
           >
-            <Image src={ProjectIcon.src} alt="" />
-            <Image src={ProjectName.src} alt="" />
+            <Image src={ProjectIcon.src} alt="" width={31.7} height={25.8} />
+            <Image src={ProjectName.src} alt="" width={135.8} height={45} />
           </Stack>
           <Stack
             direction={'row'}

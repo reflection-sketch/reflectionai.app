@@ -11,30 +11,39 @@ import Icon from 'assets/home/first/icon.png'
 import BgFirst from 'assets/home/first/bgFirst.png'
 import DeskFirst from 'assets/home/first/deskFirst.png'
 
-const textArray = ['Search Your AI Models.', 'Search Your AI Models22.', 'Search Your AI Models333.']
-const textWidthArray = [170.5, 189, 198]
+const arr = [
+  {
+    text: 'Search Your AI Models.',
+    width: 170.5,
+    step: 20
+  }
+]
 export default function Page() {
-  const isSm = useBreakpoint('sm')
-  isSm
+  const isMd = useBreakpoint('md')
   const [textNum, setTextNum] = useState(0)
+  const [textArr, setTextArr] = useState(arr[textNum])
   const [isDelay, setIsDelay] = useState(false)
-  const [textWidth, setTextWidth] = useState(textWidthArray[textNum])
-  const [text, setText] = useState(textArray[textNum])
+  const [zIndex, setZIndex] = useState(4)
   useEffect(() => {
     // Set a timer to update textWidth after 2 seconds
     const timer = setTimeout(() => {
       setIsDelay(true)
     }, 1500)
-    return () => clearTimeout(timer)
+    const timer1 = setTimeout(() => {
+      setZIndex(-1)
+    }, 1500)
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(timer1)
+    }
   }, [])
   useEffect(() => {
     if (!isDelay) return
     // Function to update textNum and corresponding text and textWidth
     const updateText = () => {
       setTextNum(prevTextNum => {
-        const newTextNum = (prevTextNum + 1) % textArray.length
-        setText(textArray[newTextNum])
-        setTextWidth(textWidthArray[newTextNum])
+        const newTextNum = (prevTextNum + 1) % arr.length
+        setTextArr(arr[newTextNum])
         return newTextNum
       })
     }
@@ -47,18 +56,30 @@ export default function Page() {
       width={'100%'}
       alignItems={'center'}
       sx={{
-        height: 1024,
+        height: isMd ? 899 : 1024,
+        width: isMd ? 1014 : 1440,
         overflow: 'hidden',
         background: `url(${BgFirst.src})`,
         position: 'relative'
       }}
     >
-      <Cover />
+      {isMd && (
+        <Box
+          sx={{
+            width: '100vw',
+            height: 180,
+            background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%)',
+            position: 'absolute',
+            bottom: 0
+          }}
+        ></Box>
+      )}
+      {!isMd && <Cover sx={{ zIndex: zIndex }} />}
       <StarUp />
       <RadiusBox />
-      <DeskImg src={DeskFirst.src} alt="" />
+      {!isMd && <DeskImg src={DeskFirst.src} alt="" />}
       <Box
-        marginTop={128}
+        marginTop={isMd ? 188 : 128}
         width={99}
         height={99}
         sx={{ borderRadius: '50%', border: '1px solid rgba(255, 255, 255, 0.25)', position: 'relative' }}
@@ -66,16 +87,29 @@ export default function Page() {
         <Image src={Icon.src} alt="" style={{ position: 'absolute', left: 11, top: 20 }} />
       </Box>
       <Image src={ProjectName.src} alt="" width={127} height={43} />
-      <Typography1 variant="h1" sx={{ margin: '61px 0 7px' }}>
-        Your next AI Model is
-      </Typography1>
-      <Typography1 variant="h1">just one click away.</Typography1>
+      {isMd ? (
+        <Typography1 sx={{ margin: '66px 0 77px' }}>
+          Decentralized AI virtual personality and Social Computing Platform.
+        </Typography1>
+      ) : (
+        <>
+          <Typography1 variant="h1" sx={{ margin: '61px 0 7px' }}>
+            Your next AI Model is
+          </Typography1>
+          <Typography1 variant="h1">just one click away.</Typography1>
+        </>
+      )}
+
       <StartBox>
-        <StartText width={textWidth}>{text}</StartText>
+        <StartText width={textArr.width} step={textArr.step}>
+          {textArr.text}
+        </StartText>
         <StartButton>
-          <Typography variant="h4" color={'#FFF'}>
-            Get Start
-          </Typography>
+          {!isMd && (
+            <Typography variant="h4" color={'#FFF'}>
+              Get Start
+            </Typography>
+          )}
           <ArrowSvg />
         </StartButton>
       </StartBox>
@@ -107,6 +141,9 @@ const RadiusBox = styled(Box)`
   box-shadow: 0px -20px 40px 0px rgba(255, 255, 255, 0.6);
   position: absolute;
   top: 176px;
+  @media only screen and (max-width: 640px) {
+    top: 236px;
+  }
 `
 
 export const Typography1 = styled(Typography)`
@@ -119,6 +156,13 @@ export const Typography1 = styled(Typography)`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  @media only screen and (max-width: 640px) {
+    width: calc(100vw - 98px);
+    font-size: 36px;
+    line-height: normal;
+    text-align: center;
+    word-break: break-word;
+  }
 `
 
 const StartBox = styled(Box)`
@@ -131,6 +175,10 @@ const StartBox = styled(Box)`
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(2px);
+  @media only screen and (max-width: 640px) {
+    width: calc(100vw - 50px);
+    margin: 0 0 42px;
+  }
 `
 
 const StartButton = styled(Box)`
@@ -146,9 +194,12 @@ const StartButton = styled(Box)`
   // :hover {
   //   background:linear-gradient(132deg, #823A12 -6.89%, #000 41.37%, #000 58.65%, #2C6EBE 122.98%);
   // }
+  @media only screen and (max-width: 640px) {
+    width: auto;
+  }
 `
 
-const StartText = styled(Typography)(({ width }: { width: number | string }) => ({
+const StartText = styled(Typography)(({ width, step }: { width: number | string; step: number }) => ({
   width: 0,
   fontSize: 16,
   fontStyle: 'normal',
@@ -157,7 +208,7 @@ const StartText = styled(Typography)(({ width }: { width: number | string }) => 
   color: '#abaebc',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
-  animation: 'blink 8s linear infinite 1.5s',
+  animation: `blink 8s steps(${step},end) infinite 1.5s`,
   '@keyframes blink': {
     '0%': {
       width: 0
@@ -185,7 +236,6 @@ const Cover = styled(Box)`
   animation-duration: 1.5s;
   animation-name: black;
   animation-iteration-count: 1;
-  z-index: 4;
   @keyframes black {
     from {
       opacity: 1;

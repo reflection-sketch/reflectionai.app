@@ -10,9 +10,10 @@ import Image from 'components/Image'
 import Background from 'assets/home/bgBottom.png'
 import SecondPage from './SecondPage'
 import { useEffect, useState } from 'react'
+import useBreakpoint from 'hooks/useBreakpoint'
 export default function Page() {
   const [show, setShow] = useState(false)
-
+  const isMd = useBreakpoint('md')
   useEffect(() => {
     const handleScroll = debounce(() => {
       if (window.scrollY > 1024) setShow(true)
@@ -26,9 +27,15 @@ export default function Page() {
     }
   }, [])
   return (
-    <Stack alignItems={'center'} width={1440} margin={'0 auto'} position={'relative'}>
+    <Stack
+      alignItems={'center'}
+      width={isMd ? '100vw' : 1440}
+      margin={'0 auto'}
+      position={'relative'}
+      sx={{ overflowX: isMd ? 'hidden' : 'unset' }}
+    >
       <FirstPage />
-      <SecondPage show={show} />
+      {!isMd && <SecondPage show={show} />}
       <Features />
       <Highlights />
       <RoadMap />

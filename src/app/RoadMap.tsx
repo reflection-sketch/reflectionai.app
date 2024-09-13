@@ -3,10 +3,10 @@
 import { Box, Stack, Typography, styled } from '@mui/material'
 import StreamerButton from 'components/Button/Streamer'
 import CheckIcon from '@mui/icons-material/Check'
-import VerticalLineSvg from 'assets/home/roadmap/verticalLine.svg'
 import TerminalIcon from 'assets/home/roadmap/textIcon.svg'
 import BgRoadMap from 'assets/home/roadmap/bgRoadMap.png'
 import Image from 'components/Image'
+import useBreakpoint from 'hooks/useBreakpoint'
 
 const RoadMapList = [
   {
@@ -107,37 +107,67 @@ const RoadMapList = [
 ]
 
 export default function RoadMap() {
+  const isMd = useBreakpoint('md')
   return (
-    <Stack width={'100%'} alignItems={'center'} position={'relative'} height={1458} paddingTop={135}>
+    <Stack width={'100%'} alignItems={'center'} position={'relative'} height={isMd ? 'auto' : 1458} paddingTop={135}>
       <BGroundBox src={BgRoadMap.src} alt="" />
-      <Typography variant="h3" color={'#1F84FF'} fontWeight={900}>
+      <Typography variant="h3" fontSize={isMd ? 17 : 26} color={'#1F84FF'} fontWeight={900}>
         RoadMap
       </Typography>
-      <Typography variant="h2" color={'#fff'} fontWeight={900} margin={'13px 0 31px'}>
+      <Typography
+        variant="h2"
+        fontSize={isMd ? 25 : 48}
+        color={'#fff'}
+        fontWeight={900}
+        margin={isMd ? '18px 0 28px' : '13px 0 31px'}
+        textAlign={'center'}
+      >
         Igniting the Web3 AI Revolution
       </Typography>
-      <Typography variant="h4" color={'#fff'} sx={{ width: 670, opacity: 0.5, textAlign: 'center' }}>
-        {`Reflection AI merges cutting-edge AI with Web3 technologies. We're building a decentralized marketplace for AI
+      {!isMd && (
+        <Typography variant="h4" color={'#fff'} sx={{ width: 670, opacity: 0.5, textAlign: 'center' }}>
+          {`Reflection AI merges cutting-edge AI with Web3 technologies. We're building a decentralized marketplace for AI
         model collaboration and trading.`}
-      </Typography>
-      <StreamerButton text={'Learn More'} width={135} sx={{ margin: '50px 0 88px' }} />
-      <Stack width={'100%'} paddingLeft={199}>
+        </Typography>
+      )}
+      <StreamerButton
+        text={'Learn More'}
+        width={135}
+        height={42}
+        sx={{ margin: isMd ? '0 0 59px 0' : '50px 0 88px' }}
+      />
+      <Stack width={'100%'} padding={isMd ? '0 30px' : '0 0 0 199px'}>
         {RoadMapList.map((item, index) => {
           return (
-            <Box key={index} display={'flex'} gap={22}>
+            <Box key={index} display={'flex'} gap={isMd ? 13 : 22} mb={7}>
               <Stack gap={6} alignItems={'center'}>
-                <CheckBox active={item.active}>{item.active && <CheckIcon sx={{ color: '#000' }} />}</CheckBox>
-                {index + 1 !== RoadMapList.length && <VerticalLineSvg />}
+                <CheckBox
+                  width={isMd ? 20 : 29}
+                  height={isMd ? 20 : 29}
+                  borderRadius={isMd ? 6 : 10}
+                  active={item.active}
+                  mt={isMd ? 4 : 0}
+                >
+                  {item.active ? <CheckIcon sx={{ color: '#000', fontSize: isMd ? 16 : 24 }} /> : <></>}
+                </CheckBox>
+                {index + 1 !== RoadMapList.length && (
+                  <Box
+                    sx={{
+                      height: '100%',
+                      borderLeft: '4px dashed rgba(255, 255, 255, 0.25)'
+                    }}
+                  ></Box>
+                )}
               </Stack>
               <Stack gap={17}>
-                <RowBox>
+                <RowBox style={{ flexDirection: 'row' }}>
                   <MileageTime active={item.active}>{item.time}</MileageTime>
                   <Title>{item.title}</Title>
                 </RowBox>
-                <RowBox>
+                <RowBox mb={isMd ? 0 : 27}>
                   {item.msg.map((i, j) => {
                     return (
-                      <MileageMsg key={j}>
+                      <MileageMsg key={j} mb={!isMd ? 0 : j !== item.msg.length - 1 ? 14 : 0}>
                         <Box
                           display={'flex'}
                           alignItems={'center'}
@@ -148,7 +178,7 @@ export default function RoadMap() {
                         >
                           <TerminalIcon />
                         </Box>
-                        <Typography variant="h6" color={'#fff'} width={i.width}>
+                        <Typography variant="h6" color={'#fff'} width={isMd ? 'auto' : i.width}>
                           {i.text}
                         </Typography>
                       </MileageMsg>
@@ -165,20 +195,16 @@ export default function RoadMap() {
 }
 
 const CheckBox = styled(Box)(({ active }: { active: number }) => ({
-  width: 29,
-  height: 29,
-  flexShrink: 0,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: 10,
   border: '1px solid',
   borderColor: active ? '#fff' : 'rgba(255, 255, 255, 0.50)',
   background: active ? '#fff' : 'rgba(255, 255, 255, 0.25)'
 }))
 
 const MileageTime = styled(Typography)(({ active }: { active: number }) => ({
-  padding: '0 26px',
+  width: 89,
   height: 29,
   borderRadius: 10,
   fontSize: 16,
@@ -207,6 +233,13 @@ const Title = styled(Typography)`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  word-break: break-word;
+  @media only screen and (max-width: 640px) {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14px;
+    flex: 1;
+  }
 `
 
 const RowBox = styled(Box)`
@@ -214,6 +247,11 @@ const RowBox = styled(Box)`
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
+  @media only screen and (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+  }
 `
 
 const BGroundBox = styled(Image)`

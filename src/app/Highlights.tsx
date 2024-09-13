@@ -13,16 +13,90 @@ import BgStarLeft from 'assets/home/highlights/bgStarLeft.png'
 import BgStarRight from 'assets/home/highlights/bgStarRight.png'
 import BgCoin from 'assets/home/highlights/bgCoin.png'
 import BgCionRight from 'assets/home/highlights/bgCionRight.png'
+import { FormCm } from './Features'
 
 export default function Page() {
-  const isSm = useBreakpoint('sm')
-  isSm
+  const isMd = useBreakpoint('md')
+  if (isMd) {
+    return (
+      <Stack gap={20} paddingTop={50}>
+        <BoxContainer height={380}>
+          <Image
+            src={BgComputing.src}
+            alt=""
+            style={{ position: 'absolute', width: 560, height: 380, top: 0, left: -100, zIndex: 1 }}
+          />
+          <Image src={Computing.src} alt="" />
+          <Image
+            src={BgCoin.src}
+            alt=""
+            style={{ position: 'absolute', bottom: -23, left: -25, zIndex: 2, width: 266, height: 206 }}
+          />
+          <Image src={BgCionRight.src} alt="" style={{ position: 'absolute', bottom: -18, right: 0, zIndex: 2 }} />
+          <JumpBotton sx={{ position: 'absolute', top: 18, right: 20 }}>
+            <JumpSvg />
+          </JumpBotton>
+          <Stack gap={10} mt={16}>
+            <TypographyTitle>Robust Computing Power</TypographyTitle>
+            <TypographyText>
+              With over 6K A100 computing cards, our platform offers robust hardware support, ensuring efficient and
+              reliable services for creating and nurturing virtual AI personalities.
+            </TypographyText>
+          </Stack>
+          <FormCm
+            sx={{
+              width: 221,
+              borderRadius: 10,
+              backdropFilter: 'blur(2px)',
+              border: '1px solid rgba(255, 255, 255, 0.25)',
+              position: 'absolute',
+              bottom: -10,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 3,
+              top: 220,
+              background: 'rgba(12, 12, 12, 1)'
+            }}
+          />
+        </BoxContainer>
+        <BoxContainer>
+          <Image src={BgUser.src} alt="" style={{ position: 'absolute', width: 695, top: 0, left: -75 }} />
+          <JumpBotton sx={{ position: 'absolute', top: 18, right: 20 }}>
+            <JumpSvg />
+          </JumpBotton>
+          <Image src={User.src} alt="" />
+          <Stack gap={10} mt={16}>
+            <TypographyTitle>Extensive User Base</TypographyTitle>
+            <TypographyText>
+              Reflection aims to attract over 100M users, offering abundant social space and growth opportunities for
+              developing virtual AI personalities in a lively and dynamic environment.
+            </TypographyText>
+          </Stack>
+        </BoxContainer>
+        <BoxContainer>
+          <Image src={BgRobot.src} alt="" style={{ position: 'absolute', width: 656, top: 6, left: -64 }} />
+          <JumpBotton sx={{ position: 'absolute', top: 18, right: 20 }}>
+            <JumpSvg />
+          </JumpBotton>
+          <Image src={Robot.src} alt="" />
+          <Stack gap={10} mt={16}>
+            <TypographyTitle>Extensive User Base</TypographyTitle>
+            <TypographyText>
+              Reflection aims to attract over 100M users, offering abundant social space and growth opportunities for
+              developing virtual AI personalities in a lively and dynamic environment.
+            </TypographyText>
+          </Stack>
+        </BoxContainer>
+      </Stack>
+    )
+  }
   return (
     <Stack
       width={'100%'}
       alignItems={'center'}
       height={1024}
-      paddingTop={137}
+      paddingTop={80}
+      flexDirection={'column'}
       sx={{
         '& img': {
           position: 'absolute'
@@ -76,7 +150,22 @@ export default function Page() {
             reliable services for creating and nurturing virtual AI personalities.
           </TypographyText>
         </Stack>
-        <FromBox></FromBox>
+        <FormCm
+          sx={{
+            width: 285,
+            height: 293,
+            borderRadius: 10,
+            backdropFilter: 'blur(2px)',
+            border: '1px solid rgba(255, 255, 255, 0.25)',
+            position: 'absolute',
+            bottom: -10,
+            left: 416,
+            zIndex: 3,
+            '& img': {
+              position: 'unset'
+            }
+          }}
+        />
       </BoxContainer>
     </Stack>
   )
@@ -91,6 +180,10 @@ const BoxContainer = styled(Box)`
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  @media only screen and (max-width: 640px) {
+    width: calc(100vw - 42px);
+    padding: 29px 18px 29px 27px;
+  }
 `
 
 const TypographyTitle = styled(Typography)`
@@ -100,6 +193,9 @@ const TypographyTitle = styled(Typography)`
   font-weight: 900;
   line-height: normal;
   word-break: break-word;
+  @media only screen and (max-width: 640px) {
+    font-size: 16px;
+  }
 `
 
 const TypographyText = styled(Typography)`
@@ -110,6 +206,10 @@ const TypographyText = styled(Typography)`
   line-height: normal;
   opacity: 0.5;
   word-break: break-word;
+  @media only screen and (max-width: 640px) {
+    font-size: 12px;
+    opacity: 1;
+  }
 `
 
 const JumpBotton = styled(Box)`
@@ -123,16 +223,4 @@ const JumpBotton = styled(Box)`
   border: 2px solid #fff;
   opacity: 0.5;
   position: absolute;
-`
-const FromBox = styled(Box)`
-  width: 285px;
-  height: 293px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(2px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  position: absolute;
-  bottom: -10px;
-  left: 416px;
-  z-index: 3;
 `

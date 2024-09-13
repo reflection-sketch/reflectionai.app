@@ -1,5 +1,5 @@
 'use client'
-import { styled, Stack, Typography, Box } from '@mui/material'
+import { styled, Stack, Typography, Box, SxProps, Theme } from '@mui/material'
 import useBreakpoint from 'hooks/useBreakpoint'
 import { useEffect, useState } from 'react'
 import Star from 'assets/home/features/star.png'
@@ -16,6 +16,60 @@ import { CSSTransition } from 'react-transition-group'
 import { ButtonBox, FormInput } from './SecondPage'
 import ThreeStar from 'assets/home/second/threeStar.png'
 import ClearIcon from '@mui/icons-material/Clear'
+import StarLine from 'assets/home/features/starLine.png'
+import DeskSecond from 'assets/home/second/deskSecond.png'
+
+export const FormCm = ({ sx }: { sx?: SxProps<Theme> }) => {
+  const isMd = useBreakpoint('md')
+  return (
+    <FormBox sx={{ ...sx }}>
+      <Box
+        display={'flex'}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+        width={'100%'}
+        padding={isMd ? '11px 7px' : '11px 26px 7px 11px'}
+        bgcolor={'rgba(217, 217, 217, 0.05)'}
+      >
+        <Box display={'flex'} alignItems={'center'}>
+          <Image src={ThreeStar.src} alt="" width={isMd ? 20 : 40} height={isMd ? 20 : 41} />
+          <Typography variant="h4" fontSize={isMd ? 14 : 18} fontWeight={900} color={'#fff'}>
+            The Reflection AI
+          </Typography>
+        </Box>
+        <ClearIcon style={{ fontSize: isMd ? 16 : 24 }} />
+      </Box>
+      <Box
+        sx={{
+          width: '100%',
+          padding: isMd ? '11px 16px' : '20px 30px 31px'
+        }}
+      >
+        <Typography variant="h6" mb={10}>
+          Required Functionality
+        </Typography>
+        <FormInput>
+          <Typography variant="h6" sx={{ wordBreak: 'break-word' }}>
+            An AI-powered system capable of automatically detecting on-chain mining opportunities and assisting with
+            automated staking of ETH, BTC, and USDT. The goal is to potentially achieve higher annualized yields while
+            maintaining a lower risk profile.
+          </Typography>
+        </FormInput>
+        <Typography variant="h6" mb={10}>
+          Platform Requirements
+        </Typography>
+        <FormInput>
+          <Typography
+            variant="h6"
+            sx={{ wordBreak: 'break-word' }}
+          >{`Support for both BSC (Binance Smart Chain) and ETH (Ethereum) networks.`}</Typography>
+        </FormInput>
+        <ButtonBox>Generate</ButtonBox>
+      </Box>
+    </FormBox>
+  )
+}
+
 const TabList = [
   {
     title: 'AI Marketplace',
@@ -37,8 +91,7 @@ const stepTime = 20
 const steps = Math.ceil(duration / stepTime)
 
 export default function Page() {
-  const isSm = useBreakpoint('sm')
-  isSm
+  const isMd = useBreakpoint('md')
   const [tab, setTab] = useState(0)
   const [number, setNumber] = useState(0)
 
@@ -56,6 +109,58 @@ export default function Page() {
     }, stepTime)
     return () => clearInterval(interval)
   }, [stepValue])
+  if (isMd) {
+    return (
+      <Stack
+        width={'100vw'}
+        sx={{
+          padding: '80px 42px 70px',
+          position: 'relative'
+        }}
+      >
+        <Typography variant="h4" fontSize={17} fontWeight={900} color={'#1F84FF'} textAlign={'center'}>
+          AI Pipeline
+        </Typography>
+        <Typography
+          variant="h3"
+          fontSize={25}
+          fontWeight={900}
+          color={'#fff'}
+          lineHeight={'50px'}
+          textAlign={'center'}
+          mt={9}
+          mb={34}
+        >
+          What is Reflection AI?
+        </Typography>
+        <Image src={DeskSecond.src} alt="" width={'100%'} style={{ opacity: 0.7 }} />
+        <Box
+          sx={{
+            width: 'calc(100vw - 84px)',
+            height: 92,
+            background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%)',
+            position: 'absolute',
+            top: 372
+          }}
+        ></Box>
+        <Stack gap={30}>
+          {TabList.map((item, index) => {
+            return (
+              <Stack key={index} gap={10}>
+                <Typography variant="h4" fontWeight={900} color={'#fff'}>
+                  {item.title}
+                </Typography>
+                <Typography variant="h6" color={'#fff'} sx={{ wordBreak: 'break-word' }}>
+                  {item.text}
+                </Typography>
+              </Stack>
+            )
+          })}
+          <StreamerButton text="Learn More" width={154} sx={{ mt: 11 }} />
+        </Stack>
+      </Stack>
+    )
+  }
   return (
     <Box display={'flex'} justifyContent={'space-between'} marginLeft={78} width={'100%'} mt={140} gap={92}>
       <Stack position={'relative'} height={1024} mt={57}>
@@ -104,51 +209,7 @@ export default function Page() {
           <Box position={'relative'} width={'100%'} sx={{ opacity: tab === 0 ? 1 : 0 }}>
             <Image src={Desktop.src} alt="" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }} />
             <Image src={Shadow.src} alt="" style={{ position: 'absolute', top: -65, left: -65, zIndex: 2 }} />
-            <FormBox>
-              <Box
-                display={'flex'}
-                alignItems={'center'}
-                justifyContent={'space-between'}
-                width={'100%'}
-                padding={'11px 26px 7px 11px'}
-                bgcolor={'rgba(217, 217, 217, 0.05)'}
-              >
-                <Box display={'flex'} alignItems={'center'}>
-                  <Image src={ThreeStar.src} alt="" />
-                  <Typography variant="h4" fontSize={18} fontWeight={900} color={'#fff'}>
-                    The Reflection AI
-                  </Typography>
-                </Box>
-                <ClearIcon />
-              </Box>
-              <Box
-                sx={{
-                  width: '100%',
-                  padding: '20px 30px 31px'
-                }}
-              >
-                <Typography variant="h6" mb={10}>
-                  Required Functionality
-                </Typography>
-                <FormInput>
-                  <Typography variant="h6" sx={{ wordBreak: 'break-word' }}>
-                    An AI-powered system capable of automatically detecting on-chain mining opportunities and assisting
-                    with automated staking of ETH, BTC, and USDT. The goal is to potentially achieve higher annualized
-                    yields while maintaining a lower risk profile.
-                  </Typography>
-                </FormInput>
-                <Typography variant="h6" mb={10}>
-                  Platform Requirements
-                </Typography>
-                <FormInput>
-                  <Typography
-                    variant="h6"
-                    sx={{ wordBreak: 'break-word' }}
-                  >{`Support for both BSC (Binance Smart Chain) and ETH (Ethereum) networks.`}</Typography>
-                </FormInput>
-                <ButtonBox>Generate</ButtonBox>
-              </Box>
-            </FormBox>
+            <FormCm />
           </Box>
         </CSSTransition>
         <CSSTransition in={tab === 1} timeout={1000} classNames="feature1">
@@ -178,6 +239,10 @@ export default function Page() {
                   padding: '50px 30px 28px'
                 }}
               >
+                <video loop autoPlay muted style={{ width: 1000, height: 1000, margin: '-400px 0' }}>
+                  <source src="/video.webm" type="video/webm" />
+                  <source src="/video.webm" type="video/mp4" />
+                </video>
                 <Text mb={34} mt={18}>
                   Exploring Your Mini-App possibilities...
                 </Text>
@@ -191,7 +256,14 @@ export default function Page() {
           </Box>
         </CSSTransition>
         <CSSTransition in={tab === 2} timeout={1000} classNames="feature1">
-          <Box position={'relative'} width={'100%'} sx={{ opacity: tab === 2 ? 1 : 0 }}></Box>
+          <Box
+            position={'relative'}
+            width={'100%'}
+            sx={{ opacity: tab === 2 ? 1 : 0, '& img': { position: 'absolute' } }}
+          >
+            <Image src={Desktop.src} alt="" style={{ top: 0, left: 0, zIndex: 2 }} />
+            <Image src={StarLine.src} alt="" style={{ top: 50, left: -205, zIndex: 1 }} />
+          </Box>
         </CSSTransition>
       </Stack>
     </Box>
