@@ -15,9 +15,9 @@ export default function Page() {
   const isMd = useBreakpoint('md')
   useEffect(() => {
     const handleScroll = debounce(() => {
-      if (window.scrollY > 550) setShow(true)
+      if (window.scrollY > 476) setShow(true)
     }, 200)
-    if (window.scrollY > 550) {
+    if (window.scrollY > 476) {
       setShow(true)
     }
     window.addEventListener('scroll', handleScroll)

@@ -14,7 +14,7 @@ import useDebounce from 'hooks/useDebounce'
 export default function Page({ show }: { show: boolean }) {
   const isSm = useBreakpoint('sm')
   isSm
-  const isShow = useDebounce(show, 500)
+  const isShow = useDebounce(show, 200)
   const [text1Show, setText1Show] = useState(false)
   const [text2Show, setText2Show] = useState(false)
   const [text3Show, setText3Show] = useState(false)
