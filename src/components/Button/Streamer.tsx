@@ -8,6 +8,7 @@ export default function StreamerButton({
   text,
   onClick,
   icon,
+  showIcon = true,
   width,
   height,
   fontSize,
@@ -18,6 +19,7 @@ export default function StreamerButton({
   text: string
   onClick?: () => void
   icon?: React.ReactNode
+  showIcon?: boolean
   width?: string | number
   height?: string | number
   fontSize?: string | number
@@ -31,7 +33,7 @@ export default function StreamerButton({
         <Typography variant="h4" color={'#FFF'} fontSize={fontSize || 16}>
           {text}
         </Typography>
-        {icon ? icon : <ArrowSvg style={{ transform: `scale(${scale || 1})` }} />}
+        {showIcon && (icon ? icon : <ArrowSvg style={{ transform: `scale(${scale || 1})` }} />)}
       </ConnectButton>
     </ConnectBox>
   )

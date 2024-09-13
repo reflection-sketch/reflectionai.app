@@ -3,25 +3,11 @@ import { Box, Drawer, Stack, SwipeableDrawer, Typography, styled } from '@mui/ma
 import ProjectIcon from 'assets/header/projectIcon.png'
 import ProjectName from 'assets/header/projectName.png'
 import PointSvg from 'assets/header/point.svg'
-// import MenuSvg from 'assets/svg/menu.svg'
-// import BouncebitSvg from 'assets/svg/bouncebitApp.svg'
-// import WhiteHeaderLogoSvg from 'assets/svg/white-logo.svg'
 import useBreakpoint from 'hooks/useBreakpoint'
 import dynamic from 'next/dynamic'
 import { useRouter, usePathname } from 'next/navigation'
-// import Link from 'next/link'
 const Web3Status = dynamic(() => import('./Web3Status'), { ssr: false })
 import Image from 'components/Image'
-// import { ROUTES } from 'constants/routes'
-
-// const StyledLogo = styled(WhiteHeaderLogoSvg)(() => ({
-//   cursor: 'pointer',
-//   '& g': {
-//     '& g': {
-//       fill: 'var(--ps-text-100)'
-//     }
-//   }
-// }))
 
 const StyleLabel = styled(Typography)(({}) => ({
   width: 'fit-content',
@@ -301,13 +287,13 @@ export default function Header({
   // }
 
   // ---hidden header in Clubs' functions
-  const hiddenPaths = ['/clubs/persona/create', '/clubs/chat']
+  // const hiddenPaths = ['/clubs/persona/create', '/clubs/chat']
 
-  const shouldHideHeader = hiddenPaths.some(path => pathname.startsWith(path))
+  // const shouldHideHeader = hiddenPaths.some(path => pathname.startsWith(path))
 
-  if (shouldHideHeader && isMd) {
-    return null // not render Header
-  }
+  // if (shouldHideHeader && isMd) {
+  //   return null // not render Header
+  // }
 
   if (isMd) {
     return (
@@ -317,13 +303,17 @@ export default function Header({
           justifyContent={'space-between'}
           sx={{
             position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
+            top: 21,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'calc(100vw - 20px)',
             maxWidth: '100vw',
             height: 68,
             zIndex: 999,
-            padding: '0 16px',
+            border: '1px solid #333',
+            boxShadow: '0px 4px 10px 0px rgba(255, 255, 255, 0.10)',
+            padding: '13px 9px',
+            borderRadius: 22,
             // background:
             //   mode === 'light'
             //     ? isClub
@@ -336,7 +326,7 @@ export default function Header({
             //         ? `rgba(0,0,0,${headerBgOpacity})`
             //         : 'linear-gradient(180deg, #0D0D0D 0%, rgba(13, 13, 13, 0.00) 100%)'
             //       : `rgba(0,0,0,${headerBgOpacity})`,
-            background: 'var(--ps-neutral)',
+            background: '#000',
             ...mobileStyle
           }}
         >
@@ -350,8 +340,8 @@ export default function Header({
               }
             }}
           >
-            <Image src={ProjectIcon.src} alt="" width={31.7} height={25.8} />
-            <Image src={ProjectName.src} alt="" width={135.8} height={45} />
+            <Image src={ProjectIcon.src} alt="" width={30} height={24.4} />
+            <Image src={ProjectName.src} alt="" width={100} height={33.1} />
           </Stack>
           <Stack
             direction={'row'}
