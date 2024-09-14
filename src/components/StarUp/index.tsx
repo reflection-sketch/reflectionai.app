@@ -75,17 +75,17 @@ export default function StarUp() {
       <Star src={Star25.src} alt="" top={668} left={300} delay={1} />
       <Star src={Star29.src} alt="" top={380} left={350} delay={1} />
       {/* right */}
-      <Star src={Star17.src} alt="" top={136} left={1237} delay={1} />
-      <Star src={Star17.src} alt="" top={186} left={1400} delay={1} />
-      <Star src={Star17.src} alt="" top={236} left={1300} delay={1} />
-      <Star src={Star21.src} alt="" top={360} left={1200} delay={2} />
-      <Star src={Star17.src} alt="" top={426} left={1406} delay={3} />
-      <Star src={Star17.src} alt="" top={592} left={1323} delay={4} duration={3} />
-      <Star src={Star17.src} alt="" top={746} left={1256} delay={5} />
-      <Star src={Star25.src} alt="" top={820} left={1378} delay={3} />
-      <Star src={Star21.src} alt="" top={560} left={1250} delay={2} duration={3} />
-      <Star src={Star21.src} alt="" top={454} left={1295} delay={1} />
-      <Star src={Star21.src} alt="" top={687} left={1390} delay={3} />
+      <Star src={Star17.src} alt="" top={136} right={203} delay={1} />
+      <Star src={Star17.src} alt="" top={186} right={40} delay={1} />
+      <Star src={Star17.src} alt="" top={236} right={140} delay={1} />
+      <Star src={Star21.src} alt="" top={360} right={240} delay={2} />
+      <Star src={Star17.src} alt="" top={426} right={34} delay={3} />
+      <Star src={Star17.src} alt="" top={592} right={117} delay={4} duration={3} />
+      <Star src={Star17.src} alt="" top={746} right={184} delay={5} />
+      <Star src={Star25.src} alt="" top={820} right={62} delay={3} />
+      <Star src={Star21.src} alt="" top={560} right={190} delay={2} duration={3} />
+      <Star src={Star21.src} alt="" top={454} right={145} delay={1} />
+      <Star src={Star21.src} alt="" top={687} right={50} delay={3} />
     </>
   )
 }

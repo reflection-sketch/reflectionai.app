@@ -453,7 +453,8 @@ export default function Header({
         justifyContent={'space-between'}
         sx={{
           position: 'relative',
-          width: 1440,
+          width: '100%',
+          maxWidth: 1440,
           padding: '0 36px 0 54px',
           margin: '0 auto'
         }}

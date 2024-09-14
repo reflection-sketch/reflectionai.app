@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'title',
+  title: 'Reflection',
   description: 'description',
   icons: {
     icon: '/favicon.ico'

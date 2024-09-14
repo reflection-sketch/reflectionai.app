@@ -1,5 +1,4 @@
 'use client'
-import FooterLine from 'assets/home/footerLine.svg'
 import { Box, Stack, Typography, styled } from '@mui/material'
 import ProjectIcon from 'assets/header/projectIcon.png'
 import ProjectName from 'assets/header/projectName.png'
@@ -99,14 +98,23 @@ export default function Page() {
     )
   }
   return (
-    <>
-      <FooterLine />
+    <Stack width={'100%'} padding={'0 105px'}>
+      <Box
+        sx={{
+          width: 'calc(100% - 20px)',
+          height: 2,
+          background: '#fff',
+          opacity: 0.5,
+          mixBlendMode: 'soft-light',
+          marginRight: 20
+        }}
+      ></Box>
       <Box
         sx={{
           width: '100%',
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '30px 62px 45px 105px'
+          padding: '30px 0 45px'
         }}
       >
         <Box>
@@ -122,7 +130,7 @@ export default function Page() {
           <LinkBox title="Airdrop Quest" list={Company} />
         </Box>
       </Box>
-    </>
+    </Stack>
   )
 }
 

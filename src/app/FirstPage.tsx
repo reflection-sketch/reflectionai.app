@@ -57,7 +57,7 @@ export default function Page({ show }: { show: boolean }) {
       alignItems={'center'}
       sx={{
         height: isMd ? 899 : 'auto',
-        width: isMd ? 1014 : 1440,
+        width: isMd ? 1014 : '100%',
         overflow: 'hidden',
         background: `url(${BgFirst.src}) no-repeat`,
         position: 'relative'
@@ -75,7 +75,9 @@ export default function Page({ show }: { show: boolean }) {
         ></Box>
       )}
       {!isMd && <Cover sx={{ zIndex: zIndex }} />}
-      <StarUp />
+      <Box sx={{ position: 'relative', maxWidth: 1440, width: isMd ? '100vw' : '100%' }}>
+        <StarUp />
+      </Box>
       <RadiusBox />
       <Box
         marginTop={isMd ? 188 : 128}
@@ -227,7 +229,7 @@ const StartText = styled(Typography)(({ width, step }: { width: number | string;
 
 const Cover = styled(Box)`
   width: 100%;
-  height: 1024px;
+  height: 1676px;
   background: #000;
   opacity: 0;
   position: absolute;

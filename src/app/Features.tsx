@@ -162,7 +162,15 @@ export default function Page() {
     )
   }
   return (
-    <Box display={'flex'} justifyContent={'space-between'} marginLeft={78} width={'100%'} mt={140} gap={92}>
+    <Box
+      display={'flex'}
+      justifyContent={'space-between'}
+      marginLeft={78}
+      width={'100%'}
+      maxWidth={1440}
+      mt={140}
+      gap={92}
+    >
       <Stack position={'relative'} height={1024} mt={57}>
         <Typography variant="h3" fontWeight={900} color={'#1F84FF'}>
           Our Features

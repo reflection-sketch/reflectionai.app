@@ -66,13 +66,12 @@ export default function Page({ show }: { show: boolean }) {
         position: 'relative'
       }}
     >
-      <CSSTransition in={isShow} timeout={2000} classNames="desk-transition">
-        <Image
-          src={DeskSecond.src}
-          alt=""
-          style={{ position: 'absolute', width: 860, height: 614, top: 81, left: 301, zIndex: 1 }}
-        />
-      </CSSTransition>
+      <Box sx={{ position: 'absolute', top: 245, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}>
+        <CSSTransition in={isShow} timeout={2000} classNames="desk-transition">
+          <Image src={DeskSecond.src} alt="" style={{ width: 896.7, height: 639.2 }} />
+        </CSSTransition>
+      </Box>
+
       <CSSTransition in={isShow} timeout={2000} classNames="shadow-transition" unmountOnExit>
         <Image src={ShadowSecond.src} alt="" style={{ position: 'absolute', top: 100, left: 280, zIndex: 2 }} />
       </CSSTransition>
@@ -141,7 +140,7 @@ export default function Page({ show }: { show: boolean }) {
 const FormBox = styled(Box)`
   width: 430px;
   flex-shrink: 0;
-  margin: 200px auto 0;
+  margin: 400px auto 0;
   border-radius: 28px;
   border: 1px solid rgba(154, 154, 154, 0.5);
   background: rgba(12, 12, 12, 0.5);

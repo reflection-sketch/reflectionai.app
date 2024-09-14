@@ -26,13 +26,7 @@ export default function Page() {
     }
   }, [])
   return (
-    <Stack
-      alignItems={'center'}
-      width={isMd ? '100vw' : 1440}
-      margin={'0 auto'}
-      position={'relative'}
-      sx={{ overflowX: isMd ? 'hidden' : 'unset' }}
-    >
+    <Stack alignItems={'center'} width={'100vw'} position={'relative'} sx={{ overflowX: isMd ? 'hidden' : 'unset' }}>
       <FirstPage show={show} />
       <Features />
       <Highlights />

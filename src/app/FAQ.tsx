@@ -46,7 +46,7 @@ export default function Page() {
   return (
     <Stack
       alignItems={'center'}
-      width={isMd ? '100%' : 1440}
+      width={'100%'}
       position={'relative'}
       mb={isMd ? 0 : 76}
       height={isMd ? 'auto' : 1621}
@@ -141,7 +141,7 @@ export default function Page() {
               Coin&nbsp;&nbsp;•&nbsp;&nbsp;MemeCoin
             </Typography2>
           ) : (
-            <Typography2 width={875}>
+            <Typography2 width={685}>
               ing Models&nbsp;&nbsp;•&nbsp;&nbsp;Finance Models&nbsp;&nbsp;•&nbsp;&nbsp;Learning
               Models&nbsp;&nbsp;•&nbsp;&nbsp;Socia
             </Typography2>

@@ -119,7 +119,7 @@ export default function RoadMap() {
         fontSize={isMd ? 25 : 48}
         color={'#fff'}
         fontWeight={900}
-        margin={isMd ? '18px 0 28px' : '13px 0 31px'}
+        margin={isMd ? '18px 20px 28px' : '13px 0 31px'}
         textAlign={'center'}
       >
         Igniting the Web3 AI Revolution
@@ -136,7 +136,7 @@ export default function RoadMap() {
         height={42}
         sx={{ margin: isMd ? '0 0 59px 0' : '50px 0 88px' }}
       />
-      <Stack width={'100%'} padding={isMd ? '0 30px' : '0 0 0 199px'}>
+      <Stack width={'100%'} maxWidth={1040} padding={isMd ? '0 30px' : '0'}>
         {RoadMapList.map((item, index) => {
           return (
             <Box key={index} display={'flex'} gap={isMd ? 13 : 22} mb={7}>
