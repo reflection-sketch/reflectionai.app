@@ -133,17 +133,19 @@ export default function Page() {
         >
           What is Reflection AI?
         </Typography>
-        <Image src={DeskSecond.src} alt="" width={'100%'} style={{ opacity: 0.7 }} />
-        <Box
-          sx={{
-            width: 'calc(100vw - 84px)',
-            height: 92,
-            background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%)',
-            position: 'absolute',
-            top: 372
-          }}
-        ></Box>
-        <Stack gap={30}>
+        <Box width={'100%'} height={'100%'} position={'relative'}>
+          <Image src={DeskSecond.src} alt="" width={'100%'} style={{ opacity: 0.7 }} />
+          <Box
+            sx={{
+              width: 'calc(100vw - 84px)',
+              height: 'calc((100vw - 84px) / 3.326)',
+              background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%)',
+              position: 'absolute',
+              bottom: 0
+            }}
+          ></Box>
+        </Box>
+        <Stack gap={30} mt={4}>
           {TabList.map((item, index) => {
             return (
               <Stack key={index} gap={10}>

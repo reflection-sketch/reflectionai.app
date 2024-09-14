@@ -1,5 +1,5 @@
 'use client'
-import { Stack, debounce, styled } from '@mui/material'
+import { Stack, styled } from '@mui/material'
 import Features from './Features'
 import Highlights from './Highlights'
 import FirstPage from './FirstPage'
@@ -14,10 +14,10 @@ export default function Page() {
   const [show, setShow] = useState(false)
   const isMd = useBreakpoint('md')
   useEffect(() => {
-    const handleScroll = debounce(() => {
-      if (window.scrollY > 476) setShow(true)
-    }, 200)
-    if (window.scrollY > 476) {
+    const handleScroll = () => {
+      if (window.scrollY > 646) setShow(true)
+    }
+    if (window.scrollY > 646) {
       setShow(true)
     }
     window.addEventListener('scroll', handleScroll)
