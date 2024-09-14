@@ -60,6 +60,7 @@ export default function Page({ show }: { show: boolean }) {
         width: isMd ? 1014 : '100%',
         overflow: 'hidden',
         background: `url(${BgFirst.src}) no-repeat`,
+        backgroundSize: 'contain',
         position: 'relative'
       }}
     >
