@@ -103,10 +103,10 @@ export default function Page({ show }: { show: boolean }) {
         </StartText>
         <StartButton>
           {!isMd && (
-                <a href="https://app.reflectionai.app/">
-            <Typography variant="h4" color={'#FFF'}>
-              Get Started
-            </Typography>
+            <a href="https://app.reflectionai.app/">
+              <Typography variant="h4" color={'#FFF'}>
+                Get Started
+              </Typography>
             </a>
           )}
           <ArrowSvg sx={{ fontSize: 16 }} />

@@ -149,15 +149,15 @@ export default function Page() {
         </Box>
       </Stack>
       <a href="https://app.reflectionai.app/">
-      <StreamerButton
-        text={'Get Started'}
-        fontSize={29}
-        width={219}
-        height={80}
-        gap={16}
-        scale={1.5}
-        sx={{ margin: isMd ? '33px 0 84px' : '55px 0 142px' }}
-      />
+        <StreamerButton
+          text={'Get Started'}
+          fontSize={29}
+          width={219}
+          height={80}
+          gap={16}
+          scale={1.5}
+          sx={{ margin: isMd ? '33px 0 84px' : '55px 0 142px' }}
+        />
       </a>
     </Stack>
   )
