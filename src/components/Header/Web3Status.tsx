@@ -1,11 +1,14 @@
-import { Button, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { shortenAddress } from '../../utils'
 import { useActiveWeb3React } from 'hooks'
 import { useWalletModalToggle } from 'state/application/hooks'
-
 import { useDisconnect } from 'wagmi'
 import StreamerButton from 'components/Button/Streamer'
 import useBreakpoint from 'hooks/useBreakpoint'
+import User from 'assets/header/user.png'
+import Image from 'components/Image'
+import OutSvg from 'assets/home/out.svg'
+
 export default function Web3Status() {
   const { chainId, account } = useActiveWeb3React()
   const WalletModalToggle = useWalletModalToggle()
@@ -22,14 +25,46 @@ export default function Web3Status() {
         />
       ) : (
         <Stack flexDirection={'row'} alignItems={'center'}>
-          <Typography variant="h5">{account ? shortenAddress(account) : 'wallet connect'}</Typography>
-          <Button
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '2px solid #3E3E3E',
+              borderRadius: 100,
+              cursor: 'pointer'
+            }}
+          >
+            <Image src={User.src} alt="" style={{ borderRadius: 100 }} />
+          </Box>
+          <Stack ml={5} mr={isMd ? 5 : 17}>
+            <Typography variant="h5" fontWeight={900} color={'#fff'}>
+              {shortenAddress(account)}
+            </Typography>
+            <Typography variant="h6" color={'rgba(255, 255, 255, 0.25)'}>
+              0 TON
+            </Typography>
+          </Stack>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 10,
+              background: 'rgba(255, 255, 255, 0.05)',
+              height: isMd ? 30 : 44,
+              width: isMd ? 30 : 44,
+              cursor: 'pointer',
+              '&:hover': {
+                background: '#FF3F3F'
+              }
+            }}
             onClick={() => {
               disconnect()
             }}
           >
-            out
-          </Button>
+            <OutSvg />
+          </Box>
         </Stack>
       )}
     </>

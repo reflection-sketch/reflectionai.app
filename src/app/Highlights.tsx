@@ -37,10 +37,9 @@ export default function Page() {
             <JumpSvg />
           </JumpBotton>
           <Stack gap={10} mt={16}>
-            <TypographyTitle>Robust Computing Power</TypographyTitle>
+            <TypographyTitle>Flexible Model Utilization</TypographyTitle>
             <TypographyText>
-              With over 6K A100 computing cards, our platform offers robust hardware support, ensuring efficient and
-              reliable services for creating and nurturing virtual AI personalities.
+              Multiple access options and scalable resources for efficient AI model deployment across various platforms.
             </TypographyText>
           </Stack>
           <FormCm
@@ -57,6 +56,10 @@ export default function Page() {
               top: 220,
               background: 'rgba(12, 12, 12, 1)'
             }}
+            title1="Landing Page of"
+            title2="Landing Page of"
+            text1="Users can communicate with the Reflection AI bot to describe their desired app functionality and requirements."
+            text2="The AI bot will analyze your needs and suggest suitable AI mini-apps or custom solutions to meet your specific requirements."
           />
         </BoxContainer>
         <BoxContainer>
@@ -66,10 +69,9 @@ export default function Page() {
           </JumpBotton>
           <Image src={User.src} alt="" />
           <Stack gap={10} mt={16}>
-            <TypographyTitle>Extensive User Base</TypographyTitle>
+            <TypographyTitle>Decentralized AI Marketplace</TypographyTitle>
             <TypographyText>
-              Reflection aims to attract over 100M users, offering abundant social space and growth opportunities for
-              developing virtual AI personalities in a lively and dynamic environment.
+              Blockchain-powered platform for AI model trading, with token-based pricing and advanced search features.{' '}
             </TypographyText>
           </Stack>
         </BoxContainer>
@@ -80,10 +82,10 @@ export default function Page() {
           </JumpBotton>
           <Image src={Robot.src} alt="" />
           <Stack gap={10} mt={16}>
-            <TypographyTitle>Extensive User Base</TypographyTitle>
+            <TypographyTitle>Community-Driven Ecosystem</TypographyTitle>
             <TypographyText>
-              Reflection aims to attract over 100M users, offering abundant social space and growth opportunities for
-              developing virtual AI personalities in a lively and dynamic environment.
+              Collaborative environment with decentralized governance, fostering partnerships and innovation through
+              developer empowerment.{' '}
             </TypographyText>
           </Stack>
         </BoxContainer>
@@ -111,10 +113,9 @@ export default function Page() {
           </JumpBotton>
           <Image src={User.src} alt="" style={{ top: 36, left: 32 }} />
           <Stack gap={10} sx={{ position: 'absolute', top: 39, left: 112, width: 420, zIndex: 4 }}>
-            <TypographyTitle>Extensive User Base</TypographyTitle>
+            <TypographyTitle>Decentralized AI Marketplace</TypographyTitle>
             <TypographyText>
-              Reflection aims to attract over 100M users, offering abundant social space and growth opportunities for
-              developing virtual AI personalities in a lively and dynamic environment.
+              Blockchain-powered platform for AI model trading, with token-based pricing and advanced search features.{' '}
             </TypographyText>
           </Stack>
         </BoxContainer>
@@ -125,10 +126,10 @@ export default function Page() {
           </JumpBotton>
           <Image src={Robot.src} alt="" style={{ top: 30, left: 30 }} />
           <Stack gap={10} sx={{ position: 'absolute', top: 39, left: 107, width: 430, zIndex: 4 }}>
-            <TypographyTitle>Extensive User Base</TypographyTitle>
+            <TypographyTitle>Community-Driven Ecosystem</TypographyTitle>
             <TypographyText>
-              Reflection aims to attract over 100M users, offering abundant social space and growth opportunities for
-              developing virtual AI personalities in a lively and dynamic environment.
+              Collaborative environment with decentralized governance, fostering partnerships and innovation through
+              developer empowerment.{' '}
             </TypographyText>
           </Stack>
         </BoxContainer>
@@ -136,35 +137,38 @@ export default function Page() {
       <BoxContainer width={1148} height={473}>
         <Image src={BgComputing.src} alt="" style={{ width: 1324, top: 18, left: -88, zIndex: 1 }} />
         <Image src={Computing.src} alt="" style={{ top: 29, left: 27 }} />
-        <Image src={BgStarLeft.src} alt="" style={{ bottom: 0, left: 252, zIndex: 2 }} />
-        <Image src={BgStarRight.src} alt="" style={{ bottom: 0, left: 484, zIndex: 2 }} />
-        <Image src={BgCoin.src} alt="" style={{ bottom: -83, left: 224, zIndex: 2 }} />
-        <Image src={BgCionRight.src} alt="" style={{ bottom: -1, right: 325, zIndex: 2 }} />
+        <Image src={BgStarLeft.src} alt="" style={{ bottom: 0, left: 236, zIndex: 2 }} />
+        <Image src={BgStarRight.src} alt="" style={{ bottom: 0, left: 544, zIndex: 2 }} />
+        <Image src={BgCoin.src} alt="" style={{ bottom: -83, left: 204, zIndex: 2 }} />
+        <Image src={BgCionRight.src} alt="" style={{ bottom: -1, right: 261, zIndex: 2 }} />
         <JumpBotton sx={{ top: 30, right: 30 }}>
           <JumpSvg />
         </JumpBotton>
         <Stack gap={10} sx={{ position: 'absolute', top: 37, left: 100, width: 942, zIndex: 4 }}>
-          <TypographyTitle>Robust Computing Power</TypographyTitle>
+          <TypographyTitle>Flexible Model Utilization</TypographyTitle>
           <TypographyText>
-            With over 6K A100 computing cards, our platform offers robust hardware support, ensuring efficient and
-            reliable services for creating and nurturing virtual AI personalities.
+            Multiple access options and scalable resources for efficient AI model deployment across various platforms.{' '}
           </TypographyText>
         </Stack>
         <FormCm
           sx={{
-            width: 285,
+            width: 347,
             height: 293,
             borderRadius: 10,
             backdropFilter: 'blur(2px)',
             border: '1px solid rgba(255, 255, 255, 0.25)',
             position: 'absolute',
             bottom: -10,
-            left: 416,
+            left: 400,
             zIndex: 3,
             '& img': {
               position: 'unset'
             }
           }}
+          title1="Landing Page of"
+          title2="Landing Page of"
+          text1="Users can communicate with the Reflection AI bot to describe their desired app functionality and requirements."
+          text2="The AI bot will analyze your needs and suggest suitable AI mini-apps or custom solutions to meet your specific requirements."
         />
       </BoxContainer>
     </Stack>

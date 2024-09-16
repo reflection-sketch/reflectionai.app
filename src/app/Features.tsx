@@ -19,7 +19,19 @@ import ClearIcon from '@mui/icons-material/Clear'
 import StarLine from 'assets/home/features/starLine.png'
 import DeskSecond from 'assets/home/second/deskSecond.png'
 
-export const FormCm = ({ sx }: { sx?: SxProps<Theme> }) => {
+export const FormCm = ({
+  sx,
+  title1,
+  text1,
+  title2,
+  text2
+}: {
+  sx?: SxProps<Theme>
+  title1?: string
+  title2?: string
+  text1?: string
+  text2?: string
+}) => {
   const isMd = useBreakpoint('md')
   return (
     <FormBox sx={{ ...sx }}>
@@ -46,23 +58,24 @@ export const FormCm = ({ sx }: { sx?: SxProps<Theme> }) => {
         }}
       >
         <Typography variant="h6" mb={10}>
-          Required Functionality
+          {title1 ? title1 : 'Required Functionality'}
         </Typography>
         <FormInput>
           <Typography variant="h6" sx={{ wordBreak: 'break-word' }}>
-            An AI-powered system capable of automatically detecting on-chain mining opportunities and assisting with
+            {text1
+              ? text1
+              : `An AI-powered system capable of automatically detecting on-chain mining opportunities and assisting with
             automated staking of ETH, BTC, and USDT. The goal is to potentially achieve higher annualized yields while
-            maintaining a lower risk profile.
+            maintaining a lower risk profile.`}
           </Typography>
         </FormInput>
         <Typography variant="h6" mb={10}>
-          Platform Requirements
+          {title2 ? title2 : 'Platform Requirements'}
         </Typography>
         <FormInput>
-          <Typography
-            variant="h6"
-            sx={{ wordBreak: 'break-word' }}
-          >{`Support for both BSC (Binance Smart Chain) and ETH (Ethereum) networks.`}</Typography>
+          <Typography variant="h6" sx={{ wordBreak: 'break-word' }}>
+            {text2 ? text2 : `Support for both BSC (Binance Smart Chain) and ETH (Ethereum) networks.`}
+          </Typography>
         </FormInput>
         <ButtonBox>Generate</ButtonBox>
       </Box>
@@ -72,16 +85,16 @@ export const FormCm = ({ sx }: { sx?: SxProps<Theme> }) => {
 
 const TabList = [
   {
-    title: 'AI Marketplace',
-    text: 'Reflection aims to accelerate AI progress through a decentralized ecosystem connecting creators and users'
-  },
-  {
     title: 'AI Mini-App Store',
-    text: 'Discover & deploy AI-powered apps that integrate multiple models, offering solutions for various industries.'
+    text: 'Discover and deploy AI-powered mini-apps tailored to your specific needs and requirements, accelerating your AI integration process.'
   },
   {
-    title: 'DID Quest Platform',
-    text: 'Engage in AI-powered tasks and challenges, earn rewards, and contribute to model training while interacting with project partners in our decentralized ecosystem.'
+    title: 'Intelligent Matching System',
+    text: 'Our diverse AI models intelligently match & recommend the most suitable AI Mini-Apps to satisfy your unique requirements.'
+  },
+  {
+    title: 'Comprehensive Ecosystem',
+    text: 'Access the most diverse AI Mini-APP marketplace, fulfilling all your AI-related needs in one centralized platform.'
   }
 ]
 
@@ -90,11 +103,19 @@ const duration = 10000
 const stepTime = 20
 const steps = Math.ceil(duration / stepTime)
 
-export default function Page() {
+export default function Page({ height }: { height: number }) {
   const isMd = useBreakpoint('md')
   const [tab, setTab] = useState(0)
   const [number, setNumber] = useState(0)
-
+  useEffect(() => {
+    if (height < 100) {
+      setTab(0)
+    } else if (height >= 100 && height < 200) {
+      setTab(1)
+    } else {
+      setTab(2)
+    }
+  }, [height])
   const stepValue = end / steps
   useEffect(() => {
     let start = 0
@@ -175,7 +196,7 @@ export default function Page() {
     >
       <Stack position={'relative'} height={1024} mt={57}>
         <Typography variant="h3" fontWeight={900} color={'#1F84FF'}>
-          Our Features
+          AI Pipeline
         </Typography>
         <Typography1 variant="h2">What is Reflection AI?</Typography1>
         <Box display={'flex'} gap={42}>
@@ -219,13 +240,18 @@ export default function Page() {
           <Box position={'relative'} width={'100%'} sx={{ opacity: tab === 0 ? 1 : 0 }}>
             <Image src={Desktop.src} alt="" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }} />
             <Image src={Shadow.src} alt="" style={{ position: 'absolute', top: -65, left: -65, zIndex: 2 }} />
-            <FormCm />
+            <FormCm
+              title1="Landing Page of"
+              title2="Landing Page of"
+              text1={`You can communicate with the Reflection AI bot to describe your desired AI-powered mini-app's functionality and requirements.`}
+              text2={`The AI bot will analyze your needs and suggest suitable AI mini-apps or custom solutions to meet your specific requirements.`}
+            />
           </Box>
         </CSSTransition>
         <CSSTransition in={tab === 1} timeout={1000} classNames="feature1">
           <Box position={'relative'} width={'100%'} sx={{ opacity: tab === 1 ? 1 : 0 }}>
             <Image src={Desktop.src} alt="" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }} />
-            <FormBox>
+            <FormBox sx={{ width: 408 }}>
               <Box
                 display={'flex'}
                 alignItems={'center'}
@@ -249,18 +275,18 @@ export default function Page() {
                   padding: '50px 30px 28px'
                 }}
               >
-                <video loop autoPlay muted style={{ width: 1000, height: 1000, margin: '-400px 0' }}>
+                <video loop autoPlay muted style={{ width: 200, height: 200 }}>
                   <source src="/video.webm" type="video/webm" />
                   <source src="/video.webm" type="video/mp4" />
                 </video>
                 <Text mb={34} mt={18}>
-                  Exploring Your Mini-App possibilities...
+                  Analyzing your AI mini-app requirements…
                 </Text>
                 <Text mb={11} sx={{ display: 'flex', gap: 4 }}>
                   {number} %
                 </Text>
                 <StyledLine />
-                <ButtonBox>Explore</ButtonBox>
+                <ButtonBox>Generate</ButtonBox>
               </Stack>
             </FormBox>
           </Box>

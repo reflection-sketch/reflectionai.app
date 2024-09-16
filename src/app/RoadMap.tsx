@@ -12,45 +12,46 @@ const RoadMapList = [
   {
     active: 1,
     time: '2024 Q2',
-    title: 'Early Development and Telegram Integration',
+    title: 'Early Development & Integration',
     msg: [
       {
         width: 264,
-        text: `Develop and test the peer-to-peer AI model trading platform.`
+        text: `Launched the Telegram Mini App, leveraging TON's blockchain infrastructure`
       },
       {
         width: 224,
         text: `Developed core technical architecture for the AI model marketplace`
       },
       {
-        width: 187,
-        text: `Conducted market research and refined the project's vision`
+        width: 257,
+        text: `Developed core technical architecture for the AI model marketplace`
       }
     ]
   },
   {
     active: 0,
-    time: '2024 Q2',
-    title: 'Early Development and Telegram Integration',
+    time: '2024 Q3',
+    title: 'AI Model Marketplace Development',
     msg: [
       {
-        width: 178,
-        text: `Develop and test the peer-to-peer AI model trading platform.`
+        width: 240,
+        text: `Develop & test the peer-to-peer AI model trading platform`
       },
       {
         width: 232,
-        text: `Create advanced search and filtering capabilities for efficient model discovery`
+        text: `Create advanced search for efficient model discovery
+`
       },
       {
         width: 224,
-        text: `Recruit early adopters and beta testers from the AI developer community`
+        text: `Recruit early adopters & beta testers from the AI developer community`
       }
     ]
   },
   {
     active: 0,
-    time: '2024 Q2',
-    title: 'Early Development and Telegram Integration',
+    time: '2024 Q4',
+    title: 'AI MiniApp Ecosystem & Developer DAO Launch',
     msg: [
       {
         width: 212,
@@ -58,7 +59,7 @@ const RoadMapList = [
       },
       {
         width: 229,
-        text: `Implement stringent quality control and performance benchmarks for MiniApps`
+        text: `Implement stringent quality control & performance benchmarks for MiniApps`
       },
       {
         width: 202,
@@ -68,8 +69,8 @@ const RoadMapList = [
   },
   {
     active: 0,
-    time: '2024 Q2',
-    title: 'Early Development and Telegram Integration',
+    time: '2025 Q1',
+    title: 'Official Platform Launch & Certification Programs',
     msg: [
       {
         width: 195,
@@ -77,30 +78,30 @@ const RoadMapList = [
       },
       {
         width: 181,
-        text: `Introduce DApp certification and listing process`
+        text: `Introduce DApp certification & listing process`
       },
       {
-        width: 160,
+        width: 200,
         text: `Expand marketing efforts to attract a wider user base`
       }
     ]
   },
   {
     active: 0,
-    time: '2024 Q2',
-    title: 'Early Development and Telegram Integration',
+    time: '2025 Q2',
+    title: 'Ecosystem Expansion & Revenue Stream Diversification',
     msg: [
       {
-        width: 307,
-        text: `Expand offerings of AI models across various domains (e.g., computer vision, NLP, predictive analytics)`
+        width: 250,
+        text: `Expand offerings of AI models across various domains`
       },
       {
-        width: 290,
-        text: `Implement multiple access options for AI models (subscription, rental, one-time purchase)`
+        width: 250,
+        text: `Implement multiple access options for AI models`
       },
       {
         width: 251,
-        text: `Host hackathons and developer conferences to stimulate ecosystem growth`
+        text: `Host hackathons & developer conferences to stimulate ecosystem growth`
       }
     ]
   }
@@ -122,12 +123,11 @@ export default function RoadMap() {
         margin={isMd ? '18px 20px 28px' : '13px 0 31px'}
         textAlign={'center'}
       >
-        Igniting the Web3 AI Revolution
+        Roadmap: Igniting the Web3 AI Revolution
       </Typography>
       {!isMd && (
         <Typography variant="h4" color={'#fff'} sx={{ width: 670, opacity: 0.5, textAlign: 'center' }}>
-          {`Reflection AI merges cutting-edge AI with Web3 technologies. We're building a decentralized marketplace for AI
-        model collaboration and trading.`}
+          {`Reflection AI merges cutting-edge AI with Web3 technologies. We're building a decentralized marketplace for AI model collaboration & trading.`}
         </Typography>
       )}
       <StreamerButton

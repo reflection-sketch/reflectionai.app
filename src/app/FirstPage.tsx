@@ -4,18 +4,19 @@ import useBreakpoint from 'hooks/useBreakpoint'
 import ProjectName from 'assets/header/projectName.png'
 import Telegram from 'assets/home/first/telegram.png'
 import Image from 'components/Image'
-import ArrowSvg from 'assets/header/arrow.svg'
+import ArrowSvg from '@mui/icons-material/ArrowForward'
 import { useEffect, useState } from 'react'
 import StarUp from 'components/StarUp'
 import Icon from 'assets/home/first/icon.png'
 import BgFirst from 'assets/home/first/bgFirst.png'
 import SecondPage from './SecondPage'
+import { CSSTransition } from 'react-transition-group'
 
 const arr = [
   {
-    text: 'Search Your AI Models.',
-    width: 170.5,
-    step: 20
+    text: 'Explore AI Models Now',
+    width: 170,
+    step: 21
   }
 ]
 export default function Page({ show }: { show: boolean }) {
@@ -60,7 +61,7 @@ export default function Page({ show }: { show: boolean }) {
         width: isMd ? 1014 : '100%',
         overflow: 'hidden',
         background: `url(${BgFirst.src}) no-repeat`,
-        backgroundSize: 'contain',
+        backgroundSize: 'cover',
         position: 'relative'
       }}
     >
@@ -79,7 +80,9 @@ export default function Page({ show }: { show: boolean }) {
       <Box sx={{ position: 'relative', maxWidth: 1440, width: isMd ? '100vw' : '100%' }}>
         <StarUp />
       </Box>
-      <RadiusBox />
+      <CSSTransition in={isDelay} timeout={2000} classNames="radius-transition">
+        <RadiusBox />
+      </CSSTransition>
       <Box
         marginTop={isMd ? 188 : 128}
         width={99}
@@ -89,18 +92,10 @@ export default function Page({ show }: { show: boolean }) {
         <Image src={Icon.src} alt="" style={{ position: 'absolute', left: 11, top: 20 }} />
       </Box>
       <Image src={ProjectName.src} alt="" width={127} height={43} />
-      {isMd ? (
-        <Typography1 sx={{ margin: '66px 0 77px' }}>
-          Decentralized AI virtual personality and Social Computing Platform.
-        </Typography1>
-      ) : (
-        <>
-          <Typography1 variant="h1" sx={{ margin: '61px 0 7px' }}>
-            Your next AI Model is
-          </Typography1>
-          <Typography1 variant="h1">just one click away.</Typography1>
-        </>
-      )}
+
+      <Typography1 width={856} sx={{ margin: isMd ? '66px 0 77px' : '61px 0 7px' }}>
+        Decentralized Platform for AI Models Collaboration & Trading
+      </Typography1>
 
       <StartBox>
         <StartText width={textArr.width} step={textArr.step}>
@@ -109,10 +104,10 @@ export default function Page({ show }: { show: boolean }) {
         <StartButton>
           {!isMd && (
             <Typography variant="h4" color={'#FFF'}>
-              Get Start
+              Get Started
             </Typography>
           )}
-          <ArrowSvg />
+          <ArrowSvg sx={{ fontSize: 16 }} />
         </StartButton>
       </StartBox>
       <Stack flexDirection={'row'} alignItems={'center'} gap={8}>
@@ -132,15 +127,35 @@ const RadiusBox = styled(Box)`
   flex-shrink: 0;
   border-radius: 1487px;
   opacity: 0.3;
+  // background: radial-gradient(
+  //   50% 50% at 50% 50%,
+  //   rgba(255, 255, 255, 0) 53%,
+  //   rgba(247, 247, 247, 0.08) 64%,
+  //   rgba(240, 240, 240, 0.13) 76%,
+  //   rgba(233, 233, 233, 0.31) 84.5%,
+  //   rgba(225, 225, 225, 0.57) 92.5%,
+  //   #d9d9d9 100%
+  // );
   background: radial-gradient(
     50% 50% at 50% 50%,
     rgba(255, 255, 255, 0) 53%,
-    rgba(247, 247, 247, 0.08) 64%,
-    rgba(240, 240, 240, 0.13) 76%,
-    rgba(233, 233, 233, 0.31) 84.5%,
-    rgba(225, 225, 225, 0.57) 92.5%,
-    #d9d9d9 100%
+    rgba(247, 247, 247, 0.04) 64%,
+    rgba(240, 240, 240, 0.06) 76%,
+    rgba(233, 233, 233, 0.16) 84.5%,
+    rgba(225, 225, 225, 0.28) 92.5%,
+    rgba(217, 217, 217, 0.5) 100%
   );
+  // background: radial-gradient(
+  //   50% 50% at 50% 50%,
+  //   rgba(255, 255, 255, 0) 53%,
+  //   rgba(247, 247, 247, 0.04) 64%,
+  //   rgba(240, 240, 240, 0.06) 76%,
+  //   rgba(233, 233, 233, 0.16) 84.5%,
+  //   rgba(225, 225, 225, 0.28) 92.5%,
+  //   rgba(217, 217, 217, 0.5) 100%
+  // );
+  // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  // filter: blur(0px);
   box-shadow: 0px -20px 40px 0px rgba(255, 255, 255, 0.6);
   position: absolute;
   top: 176px;
@@ -159,11 +174,11 @@ export const Typography1 = styled(Typography)`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-align: center;
   @media only screen and (max-width: 640px) {
-    width: calc(100vw - 98px);
+    width: calc(100vw - 32px);
     font-size: 36px;
     line-height: normal;
-    text-align: center;
     word-break: break-word;
   }
 `
@@ -186,9 +201,9 @@ const StartBox = styled(Box)`
 
 const StartButton = styled(Box)`
   display: flex;
-  width: 138px;
+  width: 139px;
   height: 45px;
-  padding: 20px 19px;
+  padding: 20px 16px;
   justify-content: space-between;
   align-items: center;
   border-radius: 15px;

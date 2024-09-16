@@ -149,9 +149,9 @@ export default function Page() {
         </Box>
       </Stack>
       <StreamerButton
-        text={'Get Start'}
+        text={'Get Started'}
         fontSize={29}
-        width={209}
+        width={219}
         height={80}
         gap={16}
         scale={1.5}

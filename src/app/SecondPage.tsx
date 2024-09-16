@@ -1,6 +1,6 @@
 'use client'
 import { Box, styled, Stack, Typography } from '@mui/material'
-import useBreakpoint from 'hooks/useBreakpoint'
+
 import Image from 'components/Image'
 // import BgSecond from 'assets/home/second/bgSecond.png'
 import DeskSecond from 'assets/home/second/deskSecond.png'
@@ -12,8 +12,10 @@ import { useEffect, useState } from 'react'
 import useDebounce from 'hooks/useDebounce'
 
 export default function Page({ show }: { show: boolean }) {
-  const isSm = useBreakpoint('sm')
-  isSm
+  const [up, setUp] = useState(false)
+  useEffect(() => {
+    setUp(true)
+  }, [])
   const isShow = useDebounce(show, 200)
   const [text1Show, setText1Show] = useState(false)
   const [text2Show, setText2Show] = useState(false)
@@ -24,6 +26,7 @@ export default function Page({ show }: { show: boolean }) {
   const [btShow, setBtShow] = useState(false)
   useEffect(() => {
     if (!show) return
+    setUp(false)
     const timer = setTimeout(() => {
       setText1Show(true)
     }, 2000)
@@ -60,14 +63,19 @@ export default function Page({ show }: { show: boolean }) {
       width={'100%'}
       alignItems={'center'}
       sx={{
-        height: 1024,
+        height: 1118,
         // overflow: 'hidden',
         // background: `url(${BgSecond.src}) no-repeat`,
         position: 'relative'
       }}
     >
-      <Box sx={{ position: 'absolute', top: 245, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}>
-        <CSSTransition in={isShow} timeout={2000} classNames="desk-transition">
+      <Box sx={{ position: 'absolute', top: 155, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}>
+        <CSSTransition in={up} timeout={{ enter: 1000, exit: 200 }} classNames="desk-up" unmountOnExit>
+          <Image src={DeskSecond.src} alt="" style={{ width: 896.7, height: 639.2 }} />
+        </CSSTransition>
+      </Box>
+      <Box sx={{ position: 'absolute', top: 155, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}>
+        <CSSTransition in={isShow} timeout={2000} classNames="desk-transition" unmountOnExit>
           <Image src={DeskSecond.src} alt="" style={{ width: 896.7, height: 639.2 }} />
         </CSSTransition>
       </Box>
@@ -140,7 +148,7 @@ export default function Page({ show }: { show: boolean }) {
 const FormBox = styled(Box)`
   width: 430px;
   flex-shrink: 0;
-  margin: 400px auto 0;
+  margin: 310px auto 0;
   border-radius: 28px;
   border: 1px solid rgba(154, 154, 154, 0.5);
   background: rgba(12, 12, 12, 0.5);
