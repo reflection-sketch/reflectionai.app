@@ -3,6 +3,7 @@ import { Box, styled, Stack, Typography } from '@mui/material'
 import useBreakpoint from 'hooks/useBreakpoint'
 import ProjectName from 'assets/header/projectName.png'
 import Telegram from 'assets/home/first/telegram.png'
+import Node from 'assets/home/first/node.png'
 import Image from 'components/Image'
 import ArrowSvg from '@mui/icons-material/ArrowForward'
 import { useEffect, useState } from 'react'
@@ -57,7 +58,7 @@ export default function Page({ show }: { show: boolean }) {
       width={'100%'}
       alignItems={'center'}
       sx={{
-        height: isMd ? 899 : 'auto',
+        height: isMd ? 750 : 'auto',
         width: isMd ? 1014 : '100%',
         overflow: 'hidden',
         background: `url(${BgFirst.src}) no-repeat`,
@@ -112,12 +113,14 @@ export default function Page({ show }: { show: boolean }) {
           <ArrowSvg sx={{ fontSize: 16 }} />
         </StartButton>
       </StartBox>
-      <Stack flexDirection={'row'} alignItems={'center'} gap={8}>
-        <Image src={Telegram.src} alt="" />
+      <a href='https://node.reflectionai.app/'>
+      <Stack style={{zIndex:999, position: "relative"}} flexDirection={'row'} alignItems={'center'} gap={8}>
+        <Image src={Node.src} alt="" width={20} />
         <Typography variant="h4" color={'#fff'} fontWeight={700}>
-          Open Telegram MiniApp
+          Just to Buy Node >>
         </Typography>
       </Stack>
+      </a>
       {!isMd && <SecondPage show={show} />}
     </Stack>
   )
@@ -179,7 +182,7 @@ export const Typography1 = styled(Typography)`
   text-align: center;
   @media only screen and (max-width: 640px) {
     width: calc(100vw - 32px);
-    font-size: 36px;
+    font-size: 28px;
     line-height: normal;
     word-break: break-word;
   }
