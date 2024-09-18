@@ -117,7 +117,7 @@ export default function Page({ show }: { show: boolean }) {
       <Stack style={{zIndex:999, position: "relative"}} flexDirection={'row'} alignItems={'center'} gap={8}>
         <Image src={Node.src} alt="" width={20} />
         <Typography variant="h4" color={'#fff'} fontWeight={700}>
-          Just to Buy Node >>
+          Just to Buy Node &gt;&gt;
         </Typography>
       </Stack>
       </a>
