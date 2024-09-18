@@ -113,13 +113,13 @@ export default function Page({ show }: { show: boolean }) {
           <ArrowSvg sx={{ fontSize: 16 }} />
         </StartButton>
       </StartBox>
-      <a href='https://node.reflectionai.app/'>
-      <Stack style={{zIndex:999, position: "relative"}} flexDirection={'row'} alignItems={'center'} gap={8}>
-        <Image src={Node.src} alt="" width={20} />
-        <Typography variant="h4" color={'#fff'} fontWeight={700}>
-          Just to Buy Node &gt;&gt;
-        </Typography>
-      </Stack>
+      <a href="https://node.reflectionai.app/">
+        <Stack style={{ zIndex: 999, position: 'relative' }} flexDirection={'row'} alignItems={'center'} gap={8}>
+          <Image src={Node.src} alt="" width={20} />
+          <Typography variant="h4" color={'#fff'} fontWeight={700}>
+            Just to Buy Node &gt;&gt;
+          </Typography>
+        </Stack>
       </a>
       {!isMd && <SecondPage show={show} />}
     </Stack>
