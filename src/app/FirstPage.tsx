@@ -2,7 +2,6 @@
 import { Box, styled, Stack, Typography } from '@mui/material'
 import useBreakpoint from 'hooks/useBreakpoint'
 import ProjectName from 'assets/header/projectName.png'
-import Telegram from 'assets/home/first/telegram.png'
 import Node from 'assets/home/first/node.png'
 import Image from 'components/Image'
 import ArrowSvg from '@mui/icons-material/ArrowForward'
