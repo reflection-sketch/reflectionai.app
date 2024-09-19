@@ -18,6 +18,10 @@ const Explore: Porps[] = [
   {
     link: 'https://t.me/reflection_ai',
     name: 'Telegram'
+  },
+  {
+    link: 'https://www.linkedin.com/company/reflectionai-pte-ltd',
+    name: 'Linkedin'
   }
 ]
 
