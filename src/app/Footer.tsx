@@ -12,15 +12,15 @@ interface Porps {
 
 const Explore: Porps[] = [
   {
-    link: 'https://x.com/ReflectionAI_',
+    link: 'https://x.com/ReflectionAI_/',
     name: 'Twitter'
   },
   {
-    link: 'https://t.me/reflection_ai',
+    link: 'https://t.me/reflection_ai/',
     name: 'Telegram'
   },
   {
-    link: 'https://www.linkedin.com/company/reflectionai-pte-ltd',
+    link: 'https://www.linkedin.com/company/reflectionai-pte-ltd/',
     name: 'Linkedin'
   }
 ]
