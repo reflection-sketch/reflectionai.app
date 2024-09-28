@@ -11,27 +11,27 @@ import useBreakpoint from 'hooks/useBreakpoint'
 const QList = [
   {
     active: 1,
-    height: 127,
-    title: 'The Reflection AI',
-    text: 'Our Discord community and staff are here to help! Your feedback will help Reflection AI improve in future versions.'
+    height: 169,
+    title: 'What is Reflection AI?',
+    text: 'Reflection AI is a decentralized platform for AI model collaboration and trading. It aims to be a comprehensive ecosystem offering, a diverse AI MiniApp marketplace, an app-specific AI model marketplace, and a DeveloperDAO to fulfil AI-driven innovation demands in centralised infrastructure.'
   },
   {
     active: 0,
-    height: 127,
-    title: 'The Reflection AI',
-    text: 'Our Discord community and staff are here to help! Your feedback will help Reflection AI improve in future versions.'
+    height: 274,
+    title: 'How does Reflection AI work?',
+    text: `Reflection AI features an AI MiniApp Store where users can discover and deploy AI-powered mini-apps tailored to their specific needs, accelerating AI integration. The platform also has an intelligent matching system that recommends the most suitable AI MiniApps based on user requirements. Users can communicate their desired AI-powered mini-app's functionality and requirements to the Reflection AI bot, which will analyze their needs and suggest suitable AI mini-apps or custom solutions. The platform is blockchain-powered and uses a token-based pricing system for AI model trading. It aims to foster a community-driven ecosystem with decentralized governance to encourage partnerships and innovation.`
   },
   {
     active: 0,
-    height: 127,
-    title: 'The Reflection AI',
-    text: 'Our Discord community and staff are here to help! Your feedback will help Reflection AI improve in future versions.'
+    height: 169,
+    title: 'Who shall join ReflectionAI and RectDAO?',
+    text: `Reflection Labs, the R&D branch of ReflectionAI, is also running RectDAO, the developer DAO for matching AI business owners/investors to AI app builders, domain knowledge dataset owners/builders, so that they can leverage ReflectionAI design, build and launch their AI-native startups.`
   },
   {
     active: 0,
-    height: 127,
-    title: 'The Reflection AI',
-    text: 'Our Discord community and staff are here to help! Your feedback will help Reflection AI improve in future versions.'
+    height: 190,
+    title: 'How can I get involved with Reflection AI?',
+    text: `You can join the Reflection AI Discord community for help and to share your ideas or feedback. You can also get involved with the project through their Airdrop Quest on various platforms such as SoQuest, Nabox, Zealy, and Taskon. Stay tuned for our upcoming launch on products, services and the RectDAO. Let’s innovate together on a WHOLE NEW paradigm!`
   }
 ]
 
