@@ -22,7 +22,7 @@ export default function Web3Status() {
           onClick={WalletModalToggle}
           height={45}
           text={isMd ? 'Connect' : 'Connect Wallet'}
-          showIcon={isMd ? false : true}
+          showIcon={!isMd}
         />
       ) : (
         <Stack flexDirection={'row'} alignItems={'center'}>
