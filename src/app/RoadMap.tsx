@@ -130,7 +130,7 @@ export default function RoadMap() {
         margin={isMd ? '18px 20px 28px' : '13px 0 31px'}
         textAlign={'center'}
       >
-        Roadmap: Igniting the Web3 AI Revolution
+        {t('roadmap_igniting')}
       </Typography>
       {!isMd && (
         <Typography variant="h4" color={'#fff'} sx={{ width: 670, opacity: 0.5, textAlign: 'center' }}>

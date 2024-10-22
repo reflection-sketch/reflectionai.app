@@ -1,11 +1,11 @@
 'use client'
 
-import { Box, Stack, Typography, styled } from '@mui/material'
+import { Box, Stack, styled, Typography } from '@mui/material'
 import StreamerButton from 'components/Button/Streamer'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import TerminalIcon from '@mui/icons-material/Terminal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Typography1 } from './FirstPage'
 import useBreakpoint from 'hooks/useBreakpoint'
 import { useTranslation } from 'react-i18next'
@@ -41,16 +41,29 @@ function useQList() {
 }
 
 export default function Page() {
-  const isMd = useBreakpoint('md')
+  const isMd = useBreakpoint()
   const QList = useQList()
   const [list, setList] = useState(QList)
   const { t } = useTranslation()
-
   const handleClick = (index: number) => {
     setList(prevItems =>
       prevItems.map((item, i) => (i === index ? { ...item, active: item.active === 1 ? 0 : 1 } : item))
     )
   }
+
+  useEffect(() => {
+    if (list[0].title != QList[0].title) {
+      setList(prevState =>
+        prevState.map((item, i) => {
+          return {
+            ...item,
+            title: QList[i].title,
+            text: QList[i].text
+          }
+        })
+      )
+    }
+  }, [QList, list])
   return (
     <Stack
       alignItems={'center'}
