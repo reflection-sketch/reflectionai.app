@@ -352,6 +352,7 @@ export default function Header({
             gap={isMd ? 8 : 16}
             flex={isMd ? 1 : 'none'}
           >
+            <LanguageSwitcher />
             <Web3Status />
             {/* <MenuSvg
               onClick={() => {

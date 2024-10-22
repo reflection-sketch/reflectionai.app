@@ -18,9 +18,10 @@ export default function Web3Status() {
     <>
       {!chainId || !account ? (
         <StreamerButton
+          width={isMd ? 90 : 156}
           onClick={WalletModalToggle}
           height={45}
-          text={'Connect Wallet'}
+          text={isMd ? 'Connect' : 'Connect Wallet'}
           showIcon={isMd ? false : true}
         />
       ) : (
@@ -39,7 +40,7 @@ export default function Web3Status() {
           </Box>
           <Stack ml={5} mr={isMd ? 5 : 17}>
             <Typography variant="h5" fontWeight={900} color={'#fff'}>
-              {shortenAddress(account)}
+              {shortenAddress(account, isMd ? 0 : 4)}
             </Typography>
             <Typography variant="h6" color={'rgba(255, 255, 255, 0.25)'}>
               0 TON

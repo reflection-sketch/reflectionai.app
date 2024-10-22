@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { MenuItem, Select } from '@mui/material'
+import useBreakpoint from '../../hooks/useBreakpoint'
 
 type Lang = 'en' | 'zh' | 'ko'
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation()
   const [lan, setLan] = useState<Lang>('en')
+  const isSm = useBreakpoint()
 
   return (
     <Select
@@ -17,10 +19,10 @@ export const LanguageSwitcher = () => {
         i18n.changeLanguage(v)
       }}
       sx={{
-        height: 40
+        height: isSm ? 30 : 40
       }}
     >
-      <MenuItem value={'en'}>English</MenuItem>
+      <MenuItem value={'en'}>En</MenuItem>
       <MenuItem value={'zh'}>中文</MenuItem>
       <MenuItem value={'ko'}>한국어</MenuItem>
     </Select>
