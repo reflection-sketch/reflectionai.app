@@ -11,6 +11,7 @@ import Icon from 'assets/home/first/icon.png'
 import BgFirst from 'assets/home/first/bgFirst.png'
 import SecondPage from './SecondPage'
 import { CSSTransition } from 'react-transition-group'
+import { useTranslation } from 'react-i18next'
 
 const arr = [
   {
@@ -25,6 +26,7 @@ export default function Page({ show }: { show: boolean }) {
   const [textArr, setTextArr] = useState(arr[textNum])
   const [isDelay, setIsDelay] = useState(false)
   const [zIndex, setZIndex] = useState(4)
+  const { t } = useTranslation()
   useEffect(() => {
     // Set a timer to update textWidth after 2 seconds
     const timer = setTimeout(() => {
@@ -94,7 +96,7 @@ export default function Page({ show }: { show: boolean }) {
       <Image src={ProjectName.src} alt="" width={127} height={43} />
 
       <Typography1 width={856} sx={{ margin: isMd ? '66px 0 77px' : '61px 0 7px' }}>
-        Decentralized Platform for AI Models Collaboration & Trading
+        {t('decentralized_platform')}
       </Typography1>
 
       <StartBox>
@@ -105,7 +107,7 @@ export default function Page({ show }: { show: boolean }) {
           {!isMd && (
             <a href="https://app.reflectionai.app/">
               <Typography variant="h4" color={'#FFF'}>
-                Get Started
+                {t('get_started')}
               </Typography>
             </a>
           )}
@@ -116,7 +118,7 @@ export default function Page({ show }: { show: boolean }) {
         <Stack style={{ zIndex: 999, position: 'relative' }} flexDirection={'row'} alignItems={'center'} gap={8}>
           <Image src={Node.src} alt="" width={20} />
           <Typography variant="h4" color={'#fff'} fontWeight={700}>
-            Just to Buy Node &gt;&gt;
+            {t('just_to_buy')}
           </Typography>
         </Stack>
       </a>

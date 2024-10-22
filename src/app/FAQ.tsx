@@ -8,36 +8,44 @@ import TerminalIcon from '@mui/icons-material/Terminal'
 import { useState } from 'react'
 import { Typography1 } from './FirstPage'
 import useBreakpoint from 'hooks/useBreakpoint'
-const QList = [
-  {
-    active: 1,
-    height: 169,
-    title: 'What is Reflection AI?',
-    text: 'Reflection AI is a decentralized platform for AI model collaboration and trading. It aims to be a comprehensive ecosystem offering, a diverse AI MiniApp marketplace, an app-specific AI model marketplace, and a DeveloperDAO to fulfil AI-driven innovation demands in centralised infrastructure.'
-  },
-  {
-    active: 0,
-    height: 274,
-    title: 'How does Reflection AI work?',
-    text: `Reflection AI features an AI MiniApp Store where users can discover and deploy AI-powered mini-apps tailored to their specific needs, accelerating AI integration. The platform also has an intelligent matching system that recommends the most suitable AI MiniApps based on user requirements. Users can communicate their desired AI-powered mini-app's functionality and requirements to the Reflection AI bot, which will analyze their needs and suggest suitable AI mini-apps or custom solutions. The platform is blockchain-powered and uses a token-based pricing system for AI model trading. It aims to foster a community-driven ecosystem with decentralized governance to encourage partnerships and innovation.`
-  },
-  {
-    active: 0,
-    height: 169,
-    title: 'Who shall join ReflectionAI and RectDAO?',
-    text: `Reflection Labs, the R&D branch of ReflectionAI, is also running RectDAO, the developer DAO for matching AI business owners/investors to AI app builders, domain knowledge dataset owners/builders, so that they can leverage ReflectionAI design, build and launch their AI-native startups.`
-  },
-  {
-    active: 0,
-    height: 190,
-    title: 'How can I get involved with Reflection AI?',
-    text: `You can join the Reflection AI Discord community for help and to share your ideas or feedback. You can also get involved with the project through their Airdrop Quest on various platforms such as SoQuest, Nabox, Zealy, and Taskon. Stay tuned for our upcoming launch on products, services and the RectDAO. Let’s innovate together on a WHOLE NEW paradigm!`
-  }
-]
+import { useTranslation } from 'react-i18next'
+
+function useQList() {
+  const { t } = useTranslation()
+  return [
+    {
+      active: 1,
+      height: 169,
+      title: t('what_is_r_ai'),
+      text: t('reflection_ai_is')
+    },
+    {
+      active: 0,
+      height: 274,
+      title: t('how_does_re'),
+      text: t('reflection_ai_features')
+    },
+    {
+      active: 0,
+      height: 169,
+      title: t('who_shall_join'),
+      text: t('reflection_labs')
+    },
+    {
+      active: 0,
+      height: 190,
+      title: t('how_can_i'),
+      text: t('you_can_join')
+    }
+  ]
+}
 
 export default function Page() {
   const isMd = useBreakpoint('md')
+  const QList = useQList()
   const [list, setList] = useState(QList)
+  const { t } = useTranslation()
+
   const handleClick = (index: number) => {
     setList(prevItems =>
       prevItems.map((item, i) => (i === index ? { ...item, active: item.active === 1 ? 0 : 1 } : item))
@@ -55,27 +63,25 @@ export default function Page() {
       <RaduisBox />
       <Stack alignItems={'center'} width={'100%'} bgcolor={'#000'} paddingTop={isMd ? 129 : 0}>
         <Typography variant="h3" fontSize={isMd ? 17 : 26} color={'#1F84FF'} fontWeight={900}>
-          FAQ
+          {t('faq')}
         </Typography>
-        <Typography
-          variant="h2"
-          fontSize={isMd ? 25 : 48}
-          color={'#fff'}
-          fontWeight={900}
-          marginTop={isMd ? 11 : 13}
-        >{`Got questions?`}</Typography>
+        <Typography variant="h2" fontSize={isMd ? 25 : 48} color={'#fff'} fontWeight={900} marginTop={isMd ? 11 : 13}>
+          {t('got_questions')}
+        </Typography>
         <Typography
           variant="h2"
           fontSize={isMd ? 25 : 48}
           color={'#fff'}
           fontWeight={900}
           marginBottom={isMd ? 10 : 35}
-        >{`Join the community.`}</Typography>
-        <Typography variant="h4" fontSize={isMd ? 12 : 16} color={'#fff'} sx={{ opacity: 0.5 }}>
-          Our Discord community and staff are here to help!
+        >
+          {t('join_the_community')}
         </Typography>
         <Typography variant="h4" fontSize={isMd ? 12 : 16} color={'#fff'} sx={{ opacity: 0.5 }}>
-          Your feedback will help Reflection AI improve in future versions.
+          {t('to_help')}
+        </Typography>
+        <Typography variant="h4" fontSize={isMd ? 12 : 16} color={'#fff'} sx={{ opacity: 0.5 }}>
+          {t('your_feedback_will_help')}
         </Typography>
         <StreamerButton text={'Join Discord'} width={146} sx={{ margin: isMd ? '30px 0 48px' : '40px 0 61px' }} />
         <Stack gap={15} mb={isMd ? 0 : 65}>
@@ -127,24 +133,20 @@ export default function Page() {
         sx={{ background: 'linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 100%)' }}
       >
         {isMd ? (
-          <Typography1>{`Your next big idea's just one prompt away.`}</Typography1>
+          <Typography1>
+            {t('your_next_big_idea')} {t('one_prompt')}
+          </Typography1>
         ) : (
           <>
-            <Typography1>Your next AI Model is just</Typography1>
-            <Typography1>one click away.</Typography1>
+            <Typography1> {t('your_next_big_idea')}</Typography1>
+            <Typography1> {t('one_prompt')}</Typography1>
           </>
         )}
         <Box mt={isMd ? 23 : 42} width={isMd ? 274 : 685}>
           {isMd ? (
-            <Typography2 width={283}>
-              MemeCoin&nbsp;&nbsp;•&nbsp;&nbsp;DogsCoin&nbsp;&nbsp;•&nbsp;&nbsp;PePe
-              Coin&nbsp;&nbsp;•&nbsp;&nbsp;MemeCoin
-            </Typography2>
+            <Typography2 width={283}>{t('meme_coin')}</Typography2>
           ) : (
-            <Typography2 width={685}>
-              ing Models&nbsp;&nbsp;•&nbsp;&nbsp;Finance Models&nbsp;&nbsp;•&nbsp;&nbsp;Learning
-              Models&nbsp;&nbsp;•&nbsp;&nbsp;Socia
-            </Typography2>
+            <Typography2 width={685}>{t('ing_models')}</Typography2>
           )}
         </Box>
       </Stack>

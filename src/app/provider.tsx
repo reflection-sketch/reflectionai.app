@@ -13,6 +13,8 @@ import Popups from 'components/essential/Popups'
 import 'styles/globals.css'
 import NiceModal from '@ebay/nice-modal-react'
 import { ReactNode } from 'react'
+import { I18nextProvider } from 'react-i18next'
+import i18n from './i18n'
 
 BigNumber.config({ EXPONENTIAL_AT: [-20, 40], ROUNDING_MODE: BigNumber.ROUND_DOWN })
 
@@ -34,12 +36,14 @@ export default function Provider({ children }: { children: ReactNode }) {
     <StateProvider>
       <ConnectProvider>
         <MuiThemeProvider>
-          <NiceModal.Provider>
-            <Updater />
-            <Popups />
-            <GoogleAnalyticsReporter />
-            <ModalProvider>{children}</ModalProvider>
-          </NiceModal.Provider>
+          <I18nextProvider i18n={i18n}>
+            <NiceModal.Provider>
+              <Updater />
+              <Popups />
+              <GoogleAnalyticsReporter />
+              <ModalProvider>{children}</ModalProvider>
+            </NiceModal.Provider>
+          </I18nextProvider>
         </MuiThemeProvider>
       </ConnectProvider>
     </StateProvider>

@@ -4,6 +4,7 @@ import ProjectIcon from 'assets/header/projectIcon.png'
 import ProjectName from 'assets/header/projectName.png'
 import Image from 'components/Image'
 import useBreakpoint from 'hooks/useBreakpoint'
+import { useTranslation } from 'react-i18next'
 
 interface Porps {
   link: string
@@ -90,6 +91,8 @@ const LinkBox = ({ list, title }: { list: Porps[]; title: string }) => {
 
 export default function Page() {
   const isMd = useBreakpoint('md')
+  const { t } = useTranslation()
+
   if (isMd) {
     return (
       <Box width={'100%'} mb={25} paddingLeft={32}>
@@ -97,7 +100,7 @@ export default function Page() {
           <Image src={ProjectIcon.src} alt="" width={25.3} height={20.7} />
           <Image src={ProjectName.src} alt="" width={108.7} height={36} />
         </Box>
-        <Text marginLeft={isMd ? 25 : 38}>Reflection AI Ltd © 2024. All Rights Reserved</Text>
+        <Text marginLeft={isMd ? 25 : 38}>{t('rights_reserved')}</Text>
       </Box>
     )
   }
@@ -126,12 +129,12 @@ export default function Page() {
             <Image src={ProjectIcon.src} alt="" />
             <Image src={ProjectName.src} alt="" />
           </Box>
-          <Text marginLeft={38}>Reflection AI Ltd © 2024. All Rights Reserved</Text>
+          <Text marginLeft={38}>{t('rights_reserved')}</Text>
         </Box>
         <Box display={'flex'} gap={35}>
-          <LinkBox title="Get In Touch" list={Explore} />
-          <LinkBox title="Get Started" list={Resources} />
-          <LinkBox title="Airdrop Quest" list={Company} />
+          <LinkBox title={t('get_in_touch')} list={Explore} />
+          <LinkBox title={t('get_started')} list={Resources} />
+          <LinkBox title={t('airdrop_quest')} list={Company} />
         </Box>
       </Box>
     </Stack>

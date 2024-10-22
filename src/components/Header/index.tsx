@@ -6,8 +6,10 @@ import PointSvg from 'assets/header/point.svg'
 import useBreakpoint from 'hooks/useBreakpoint'
 import dynamic from 'next/dynamic'
 import { useRouter, usePathname } from 'next/navigation'
+
 const Web3Status = dynamic(() => import('./Web3Status'), { ssr: false })
 import Image from 'components/Image'
+import LanguageSwitcher from '../LanguageSwitcher'
 
 const StyleLabel = styled(Typography)(({}) => ({
   width: 'fit-content',
@@ -482,7 +484,8 @@ export default function Header({
             )
           })}
         </Stack>
-        <Stack direction={'row'} justifyContent={'flex-end'} alignItems={'center'} height={'100%'}>
+        <Stack direction={'row'} spacing={8} justifyContent={'flex-end'} alignItems={'center'} height={'100%'}>
+          <LanguageSwitcher />
           <Web3Status />
         </Stack>
       </Stack>

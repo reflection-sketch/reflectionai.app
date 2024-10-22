@@ -5,6 +5,7 @@ import { Box, Typography, styled } from '@mui/material'
 import useBreakpoint from 'hooks/useBreakpoint'
 import { ReactNode } from 'react'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function DropZone({
   getFile,
@@ -16,6 +17,8 @@ export default function DropZone({
   children?: ReactNode
 }) {
   const isMd = useBreakpoint('md')
+  const { t } = useTranslation()
+
   return (
     <Dropzone accept={accept} onDrop={acceptedFiles => getFile(acceptedFiles[0])}>
       {({ getRootProps, getInputProps }) => (
@@ -30,7 +33,7 @@ export default function DropZone({
               <input {...getInputProps()} />
               <DownloadIcon />
               <Typography color={'var(--ps-neutral3)'} ml={10} fontSize={isMd ? 13 : 15} fontFamily={'IBM Plex Sans'}>
-                Drop file here to upload or <BlueHighLight>choose file</BlueHighLight>
+                Drop file here to upload or <BlueHighLight>{t('choose_file')}</BlueHighLight>
               </Typography>
             </DotBox>
           )}

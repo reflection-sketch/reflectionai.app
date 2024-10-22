@@ -4,6 +4,7 @@ import { Typography, Box } from '@mui/material'
 import { useActiveWeb3React } from 'hooks/'
 import { getEtherscanLink } from 'utils/getEtherscanLink'
 import { ExternalLink } from 'components/Global'
+import { useTranslation } from 'react-i18next'
 
 export default function TransactionPopup({
   hash,
@@ -15,6 +16,7 @@ export default function TransactionPopup({
   summary?: string
 }) {
   const { chainId } = useActiveWeb3React()
+  const { t } = useTranslation()
 
   return (
     <Box display="grid" gap="8px">
@@ -36,7 +38,7 @@ export default function TransactionPopup({
           href={getEtherscanLink(chainId ? chainId : 1, hash, 'transaction')}
           style={{ margin: '9px 32px' }}
         >
-          View on explorer
+          {t('view_on')}
         </ExternalLink>
       )}
     </Box>

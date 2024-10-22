@@ -18,6 +18,7 @@ import ThreeStar from 'assets/home/second/threeStar.png'
 import ClearIcon from '@mui/icons-material/Clear'
 import StarLine from 'assets/home/features/starLine.png'
 import DeskSecond from 'assets/home/second/deskSecond.png'
+import { useTranslation } from 'react-i18next'
 
 export const FormCm = ({
   sx,
@@ -33,6 +34,8 @@ export const FormCm = ({
   text2?: string
 }) => {
   const isMd = useBreakpoint('md')
+  const { t } = useTranslation()
+
   return (
     <FormBox sx={{ ...sx }}>
       <Box
@@ -46,7 +49,7 @@ export const FormCm = ({
         <Box display={'flex'} alignItems={'center'}>
           <Image src={ThreeStar.src} alt="" width={isMd ? 20 : 40} height={isMd ? 20 : 41} />
           <Typography variant="h4" fontSize={isMd ? 14 : 18} fontWeight={900} color={'#fff'}>
-            The Reflection AI
+            {t('the_ref_ai')}
           </Typography>
         </Box>
         <ClearIcon style={{ fontSize: isMd ? 16 : 24 }} />
@@ -58,45 +61,44 @@ export const FormCm = ({
         }}
       >
         <Typography variant="h6" mb={10}>
-          {title1 ? title1 : 'Required Functionality'}
+          {title1 ? title1 : t('required_functionality')}
         </Typography>
         <FormInput>
           <Typography variant="h6" sx={{ wordBreak: 'break-word' }}>
-            {text1
-              ? text1
-              : `An AI-powered system capable of automatically detecting on-chain mining opportunities and assisting with
-            automated staking of ETH, BTC, and USDT. The goal is to potentially achieve higher annualized yields while
-            maintaining a lower risk profile.`}
+            {text1 ? text1 : t('an_ai_power_system')}
           </Typography>
         </FormInput>
         <Typography variant="h6" mb={10}>
-          {title2 ? title2 : 'Platform Requirements'}
+          {title2 ? title2 : t('platform_requirements')}
         </Typography>
         <FormInput>
           <Typography variant="h6" sx={{ wordBreak: 'break-word' }}>
-            {text2 ? text2 : `Support for both BSC (Binance Smart Chain) and ETH (Ethereum) networks.`}
+            {text2 ? text2 : t('support_for_both')}
           </Typography>
         </FormInput>
-        <ButtonBox>Generate</ButtonBox>
+        <ButtonBox>{t('generate')}</ButtonBox>
       </Box>
     </FormBox>
   )
 }
 
-const TabList = [
-  {
-    title: 'AI Mini-App Store',
-    text: 'Discover and deploy AI-powered mini-apps tailored to your specific needs and requirements, accelerating your AI integration process.'
-  },
-  {
-    title: 'Intelligent Matching System',
-    text: 'Our diverse AI models intelligently match & recommend the most suitable AI Mini-Apps to satisfy your unique requirements.'
-  },
-  {
-    title: 'Comprehensive Ecosystem',
-    text: 'Access the most diverse AI Mini-APP marketplace, fulfilling all your AI-related needs in one centralized platform.'
-  }
-]
+function useTabList() {
+  const { t } = useTranslation()
+  return [
+    {
+      title: t('ai_mini_app'),
+      text: t('discover_and')
+    },
+    {
+      title: t('intelligent_matching'),
+      text: t('our_diverse')
+    },
+    {
+      title: t('comprehensive'),
+      text: t('access_the_most')
+    }
+  ]
+}
 
 const end = 100
 const duration = 10000
@@ -107,6 +109,9 @@ export default function Page({ height }: { height: number }) {
   const isMd = useBreakpoint('md')
   const [tab, setTab] = useState(0)
   const [number, setNumber] = useState(0)
+  const { t } = useTranslation()
+  const TabList = useTabList()
+
   useEffect(() => {
     if (height < 100) {
       setTab(0)
@@ -140,7 +145,7 @@ export default function Page({ height }: { height: number }) {
         }}
       >
         <Typography variant="h4" fontSize={17} fontWeight={900} color={'#1F84FF'} textAlign={'center'}>
-          AI Pipeline
+          {t('ai_pipeline')}
         </Typography>
         <Typography
           variant="h3"
@@ -152,7 +157,7 @@ export default function Page({ height }: { height: number }) {
           mt={9}
           mb={34}
         >
-          What is Reflection AI?
+          {t('what_is_r_ai')}
         </Typography>
         <Box width={'100%'} height={'100%'} position={'relative'}>
           <Image src={DeskSecond.src} alt="" width={'100%'} style={{ opacity: 0.7 }} />
@@ -196,9 +201,9 @@ export default function Page({ height }: { height: number }) {
     >
       <Stack position={'relative'} height={1024} mt={57}>
         <Typography variant="h3" fontWeight={900} color={'#1F84FF'}>
-          AI Pipeline
+          {t('ai_pipeline')}
         </Typography>
-        <Typography1 variant="h2">What is Reflection AI?</Typography1>
+        <Typography1 variant="h2">{t('what_is_r_ai')}</Typography1>
         <Box display={'flex'} gap={42}>
           <Box sx={{ position: 'relative' }}>
             <StepLineSvg />
@@ -241,10 +246,10 @@ export default function Page({ height }: { height: number }) {
             <Image src={Desktop.src} alt="" style={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }} />
             <Image src={Shadow.src} alt="" style={{ position: 'absolute', top: -65, left: -65, zIndex: 2 }} />
             <FormCm
-              title1="Landing Page of"
-              title2="Landing Page of"
-              text1={`You can communicate with the Reflection AI bot to describe your desired AI-powered mini-app's functionality and requirements.`}
-              text2={`The AI bot will analyze your needs and suggest suitable AI mini-apps or custom solutions to meet your specific requirements.`}
+              title1={t('landing_page_of')}
+              title2={t('landing_page_of')}
+              text1={t('you_can_communicate')}
+              text2={t('the_ai_bot')}
             />
           </Box>
         </CSSTransition>
@@ -263,7 +268,7 @@ export default function Page({ height }: { height: number }) {
                 <Box display={'flex'} alignItems={'center'}>
                   <Image src={ThreeStar.src} alt="" />
                   <Typography variant="h4" fontSize={18} fontWeight={900} color={'#fff'}>
-                    The Reflection AI
+                    {t('the_ref_ai')}
                   </Typography>
                 </Box>
                 <ClearIcon />
@@ -280,13 +285,13 @@ export default function Page({ height }: { height: number }) {
                   <source src="/video.webm" type="video/mp4" />
                 </video>
                 <Text mb={34} mt={18}>
-                  Analyzing your AI mini-app requirements…
+                  {t('analyzing_your_ai')}
                 </Text>
                 <Text mb={11} sx={{ display: 'flex', gap: 4 }}>
                   {number} %
                 </Text>
                 <StyledLine />
-                <ButtonBox>Generate</ButtonBox>
+                <ButtonBox>{t('generate')}</ButtonBox>
               </Stack>
             </FormBox>
           </Box>

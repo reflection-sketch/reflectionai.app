@@ -14,8 +14,10 @@ import BgStarRight from 'assets/home/highlights/bgStarRight.png'
 import BgCoin from 'assets/home/highlights/bgCoin.png'
 import BgCionRight from 'assets/home/highlights/bgCionRight.png'
 import { FormCm } from './Features'
+import { useTranslation } from 'react-i18next'
 
 export default function Page() {
+  const { t } = useTranslation()
   const isMd = useBreakpoint('md')
   if (isMd) {
     return (
@@ -37,10 +39,8 @@ export default function Page() {
             <JumpSvg />
           </JumpBotton>
           <Stack gap={10} mt={16}>
-            <TypographyTitle>Flexible Model Utilization</TypographyTitle>
-            <TypographyText>
-              Multiple access options and scalable resources for efficient AI model deployment across various platforms.
-            </TypographyText>
+            <TypographyTitle>{t('flexible_model')}</TypographyTitle>
+            <TypographyText>{t('multiple_access_options')}</TypographyText>
           </Stack>
           <FormCm
             sx={{
@@ -56,10 +56,10 @@ export default function Page() {
               top: 220,
               background: 'rgba(12, 12, 12, 1)'
             }}
-            title1="Landing Page of"
-            title2="Landing Page of"
-            text1="Users can communicate with the Reflection AI bot to describe their desired app functionality and requirements."
-            text2="The AI bot will analyze your needs and suggest suitable AI mini-apps or custom solutions to meet your specific requirements."
+            title1={t('landing_page_of')}
+            title2={t('landing_page_of')}
+            text1={t('users_can')}
+            text2={t('the_ai_bot')}
           />
         </BoxContainer>
         <BoxContainer>
@@ -69,10 +69,8 @@ export default function Page() {
           </JumpBotton>
           <Image src={User.src} alt="" />
           <Stack gap={10} mt={16}>
-            <TypographyTitle>Decentralized AI Marketplace</TypographyTitle>
-            <TypographyText>
-              Blockchain-powered platform for AI model trading, with token-based pricing and advanced search features.{' '}
-            </TypographyText>
+            <TypographyTitle>{t('decentralized_ai')}</TypographyTitle>
+            <TypographyText>{t('blockchain_powered')}</TypographyText>
           </Stack>
         </BoxContainer>
         <BoxContainer>
@@ -82,11 +80,8 @@ export default function Page() {
           </JumpBotton>
           <Image src={Robot.src} alt="" />
           <Stack gap={10} mt={16}>
-            <TypographyTitle>Community-Driven Ecosystem</TypographyTitle>
-            <TypographyText>
-              Collaborative environment with decentralized governance, fostering partnerships and innovation through
-              developer empowerment.{' '}
-            </TypographyText>
+            <TypographyTitle>{t('community_driven')}</TypographyTitle>
+            <TypographyText>{t('collaborative')}</TypographyText>
           </Stack>
         </BoxContainer>
       </Stack>
@@ -113,10 +108,8 @@ export default function Page() {
           </JumpBotton>
           <Image src={User.src} alt="" style={{ top: 36, left: 32 }} />
           <Stack gap={10} sx={{ position: 'absolute', top: 39, left: 112, width: 420, zIndex: 4 }}>
-            <TypographyTitle>Decentralized AI Marketplace</TypographyTitle>
-            <TypographyText>
-              Blockchain-powered platform for AI model trading, with token-based pricing and advanced search features.{' '}
-            </TypographyText>
+            <TypographyTitle>{t('decentralized_ai')}</TypographyTitle>
+            <TypographyText>{t('blockchain_powered')}</TypographyText>
           </Stack>
         </BoxContainer>
         <BoxContainer width={569} height={207}>
@@ -126,11 +119,8 @@ export default function Page() {
           </JumpBotton>
           <Image src={Robot.src} alt="" style={{ top: 30, left: 30 }} />
           <Stack gap={10} sx={{ position: 'absolute', top: 39, left: 107, width: 430, zIndex: 4 }}>
-            <TypographyTitle>Community-Driven Ecosystem</TypographyTitle>
-            <TypographyText>
-              Collaborative environment with decentralized governance, fostering partnerships and innovation through
-              developer empowerment.{' '}
-            </TypographyText>
+            <TypographyTitle>{t('community_driven')}</TypographyTitle>
+            <TypographyText>{t('collaborative')}</TypographyText>
           </Stack>
         </BoxContainer>
       </Stack>
@@ -145,10 +135,8 @@ export default function Page() {
           <JumpSvg />
         </JumpBotton>
         <Stack gap={10} sx={{ position: 'absolute', top: 37, left: 100, width: 942, zIndex: 4 }}>
-          <TypographyTitle>Flexible Model Utilization</TypographyTitle>
-          <TypographyText>
-            Multiple access options and scalable resources for efficient AI model deployment across various platforms.{' '}
-          </TypographyText>
+          <TypographyTitle>{t('flexible_model')}</TypographyTitle>
+          <TypographyText>{t('multiple_access_options')}</TypographyText>
         </Stack>
         <FormCm
           sx={{
@@ -165,10 +153,10 @@ export default function Page() {
               position: 'unset'
             }
           }}
-          title1="Landing Page of"
-          title2="Landing Page of"
-          text1="Users can communicate with the Reflection AI bot to describe their desired app functionality and requirements."
-          text2="The AI bot will analyze your needs and suggest suitable AI mini-apps or custom solutions to meet your specific requirements."
+          title1={t('landing_page_of')}
+          title2={t('landing_page_of')}
+          text1={t('users_can')}
+          text2={t('the_ai_bot')}
         />
       </BoxContainer>
     </Stack>

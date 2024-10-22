@@ -7,113 +7,120 @@ import TerminalIcon from 'assets/home/roadmap/textIcon.svg'
 import BgRoadMap from 'assets/home/roadmap/bgRoadMap.png'
 import Image from 'components/Image'
 import useBreakpoint from 'hooks/useBreakpoint'
+import { useTranslation } from 'react-i18next'
 
-const RoadMapList = [
-  {
-    active: 1,
-    time: '2024 Q2',
-    title: 'Early Development & Integration',
-    msg: [
-      {
-        width: 264,
-        text: `Launched the Telegram Mini App, leveraging TON's blockchain infrastructure`
-      },
-      {
-        width: 224,
-        text: `Developed core technical architecture for the AI model marketplace`
-      },
-      {
-        width: 257,
-        text: `Developed core technical architecture for the AI model marketplace`
-      }
-    ]
-  },
-  {
-    active: 0,
-    time: '2024 Q3',
-    title: 'AI Model Marketplace Development',
-    msg: [
-      {
-        width: 240,
-        text: `Develop & test the peer-to-peer AI model trading platform`
-      },
-      {
-        width: 232,
-        text: `Create advanced search for efficient model discovery
-`
-      },
-      {
-        width: 224,
-        text: `Recruit early adopters & beta testers from the AI developer community`
-      }
-    ]
-  },
-  {
-    active: 0,
-    time: '2024 Q4',
-    title: 'AI MiniApp Ecosystem & Developer DAO Launch',
-    msg: [
-      {
-        width: 212,
-        text: `Develop the AI MiniApp platform to incentivize multi-model integration`
-      },
-      {
-        width: 229,
-        text: `Implement stringent quality control & performance benchmarks for MiniApps`
-      },
-      {
-        width: 202,
-        text: `Launch the Developer DAO for decentralized platform governance`
-      }
-    ]
-  },
-  {
-    active: 0,
-    time: '2025 Q1',
-    title: 'Official Platform Launch & Certification Programs',
-    msg: [
-      {
-        width: 195,
-        text: `Public launch of the Reflection AI platform with open registration`
-      },
-      {
-        width: 181,
-        text: `Introduce DApp certification & listing process`
-      },
-      {
-        width: 200,
-        text: `Expand marketing efforts to attract a wider user base`
-      }
-    ]
-  },
-  {
-    active: 0,
-    time: '2025 Q2',
-    title: 'Ecosystem Expansion & Revenue Stream Diversification',
-    msg: [
-      {
-        width: 250,
-        text: `Expand offerings of AI models across various domains`
-      },
-      {
-        width: 250,
-        text: `Implement multiple access options for AI models`
-      },
-      {
-        width: 251,
-        text: `Host hackathons & developer conferences to stimulate ecosystem growth`
-      }
-    ]
-  }
-]
+function useRoadMapList() {
+  const { t } = useTranslation()
+
+  return [
+    {
+      active: 1,
+      time: '2024 Q2',
+      title: t('early_development_integration'),
+      msg: [
+        {
+          width: 264,
+          text: t('launched_telegram_mini_app')
+        },
+        {
+          width: 224,
+          text: t('developed_core_architecture_1')
+        },
+        {
+          width: 257,
+          text: t('developed_core_architecture_2')
+        }
+      ]
+    },
+    {
+      active: 0,
+      time: '2024 Q3',
+      title: t('ai_model_marketplace_development'),
+      msg: [
+        {
+          width: 240,
+          text: t('develop_test_peer_to_peer')
+        },
+        {
+          width: 232,
+          text: t('create_advanced_search')
+        },
+        {
+          width: 224,
+          text: t('recruit_early_adopters')
+        }
+      ]
+    },
+    {
+      active: 0,
+      time: '2024 Q4',
+      title: t('ai_miniapp_ecosystem_developer_dao_launch'),
+      msg: [
+        {
+          width: 212,
+          text: t('develop_ai_miniapp_platform')
+        },
+        {
+          width: 229,
+          text: t('implement_quality_control')
+        },
+        {
+          width: 202,
+          text: t('launch_developer_dao')
+        }
+      ]
+    },
+    {
+      active: 0,
+      time: '2025 Q1',
+      title: t('official_platform_launch_certification_programs'),
+      msg: [
+        {
+          width: 195,
+          text: t('public_launch_platform')
+        },
+        {
+          width: 181,
+          text: t('introduce_dapp_certification')
+        },
+        {
+          width: 200,
+          text: t('expand_marketing_efforts')
+        }
+      ]
+    },
+    {
+      active: 0,
+      time: '2025 Q2',
+      title: t('ecosystem_expansion_revenue_diversification'),
+      msg: [
+        {
+          width: 250,
+          text: t('expand_offerings_ai_models')
+        },
+        {
+          width: 250,
+          text: t('implement_multiple_access_options')
+        },
+        {
+          width: 251,
+          text: t('host_hackathons_conferences')
+        }
+      ]
+    }
+  ]
+}
 
 export default function RoadMap() {
   const isMd = useBreakpoint('md')
+  const { t } = useTranslation()
+  const RoadMapList = useRoadMapList()
+
   return (
     <Stack width={'100%'} alignItems={'center'} position={'relative'} height={isMd ? 'auto' : 1458} paddingTop={135}>
       <BGroundBox src={BgRoadMap.src} alt="" />
       <Typography variant="h3" fontSize={isMd ? 17 : 26} color={'#1F84FF'} fontWeight={900}>
-        RoadMap
+        {t('roadmap')}
       </Typography>
       <Typography
         variant="h2"
@@ -127,7 +134,7 @@ export default function RoadMap() {
       </Typography>
       {!isMd && (
         <Typography variant="h4" color={'#fff'} sx={{ width: 670, opacity: 0.5, textAlign: 'center' }}>
-          {`Reflection AI merges cutting-edge AI with Web3 technologies. We're building a decentralized marketplace for AI model collaboration & trading.`}
+          {t('were_building')}
         </Typography>
       )}
       <StreamerButton

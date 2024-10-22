@@ -10,6 +10,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { CSSTransition } from 'react-transition-group'
 import { useEffect, useState } from 'react'
 import useDebounce from 'hooks/useDebounce'
+import { useTranslation } from 'react-i18next'
 
 export default function Page({ show }: { show: boolean }) {
   const [up, setUp] = useState(false)
@@ -17,6 +18,7 @@ export default function Page({ show }: { show: boolean }) {
     setUp(true)
   }, [])
   const isShow = useDebounce(show, 200)
+  const { t } = useTranslation()
   const [text1Show, setText1Show] = useState(false)
   const [text2Show, setText2Show] = useState(false)
   const [text3Show, setText3Show] = useState(false)
@@ -96,7 +98,7 @@ export default function Page({ show }: { show: boolean }) {
             <Box display={'flex'} alignItems={'center'}>
               <Image src={ThreeStar.src} alt="" />
               <Typography variant="h4" fontSize={18} fontWeight={900} color={'#fff'}>
-                The Reflection AI
+                {t('the_ref_ai')}
               </Typography>
             </Box>
             <ClearIcon />
@@ -108,35 +110,35 @@ export default function Page({ show }: { show: boolean }) {
             }}
           >
             <Typography variant="h6" mb={10}>
-              Required Functionality
+              {t('required_functionality')}
             </Typography>
             <FormInput height={102}>
               <CSSTransition in={text1Show} timeout={3000} classNames="text1-transition" unmountOnExit>
-                <Text>An AI-powered system capable of automatically detecting on</Text>
+                <Text>{t('an_ai_power')}</Text>
               </CSSTransition>
               <CSSTransition in={text2Show} timeout={3000} classNames="text1-transition" unmountOnExit>
-                <Text>-chain mining opportunities and assisting with automated st</Text>
+                <Text>{t('chain_mining')}</Text>
               </CSSTransition>
               <CSSTransition in={text3Show} timeout={3000} classNames="text1-transition" unmountOnExit>
-                <Text>aking of ETH, BTC, and USDT. The goal is to potentially achieve</Text>
+                <Text>{t('aking_of')}</Text>
               </CSSTransition>
               <CSSTransition in={text4Show} timeout={3000} classNames="text1-transition" unmountOnExit>
-                <Text>higher annualized yields while maintaining a lower risk profile.</Text>
+                <Text>{t('higher_annualized')}</Text>
               </CSSTransition>
             </FormInput>
             <Typography variant="h6" mb={10}>
-              Platform Requirements
+              {t('platform_requirements')}
             </Typography>
             <FormInput height={102}>
               <CSSTransition in={text5Show} timeout={3000} classNames="text1-transition" unmountOnExit>
-                <Text>{`Support for both BSC (Binance Smart Chain) and ETH (Ethere`}</Text>
+                <Text>{t('support_bsc')}</Text>
               </CSSTransition>
               <CSSTransition in={text6Show} timeout={1000} classNames="text2-transition" unmountOnExit>
-                <Text>{`um) networks.`}</Text>
+                <Text>{t('um_net')}</Text>
               </CSSTransition>
             </FormInput>
             <CSSTransition in={btShow} timeout={1000} classNames="bt-transition">
-              <ButtonBox>Generate</ButtonBox>
+              <ButtonBox>{t('generate')}</ButtonBox>
             </CSSTransition>
           </Box>
         </FormBox>
@@ -182,6 +184,7 @@ export const ButtonBox = styled(Box)`
   letter-spacing: -0.84px;
   margin-top: 21px;
   cursor: pointer;
+
   :hover {
     opacity: 0.5;
   }

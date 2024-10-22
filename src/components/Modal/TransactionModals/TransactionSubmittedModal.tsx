@@ -4,6 +4,7 @@ import React from 'react'
 import { ExternalLink } from 'components/Global'
 import { getEtherscanLink } from 'utils/getEtherscanLink'
 import MessageBox from './MessageBox'
+import { useTranslation } from 'react-i18next'
 
 export default function TransactionSubmittedModal({
   hash,
@@ -16,6 +17,7 @@ export default function TransactionSubmittedModal({
 }) {
   const { chainId } = useActiveWeb3React()
   const theme = useTheme()
+  const { t } = useTranslation()
 
   return (
     <MessageBox type={'pending'} header={'Transaction Submitted'} beforeClose={beforeClose}>
@@ -29,7 +31,7 @@ export default function TransactionSubmittedModal({
             href={getEtherscanLink(chainId, hash, 'transaction')}
             style={{ fontSize: 12 }}
           >
-            View on explorer
+            {t('view_on')}
           </ExternalLink>
         )}
       </Box>
