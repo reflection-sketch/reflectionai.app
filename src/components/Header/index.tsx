@@ -10,6 +10,8 @@ import { useRouter, usePathname } from 'next/navigation'
 const Web3Status = dynamic(() => import('./Web3Status'), { ssr: false })
 import Image from 'components/Image'
 import LanguageSwitcher from '../LanguageSwitcher'
+import MenuIcon from '@mui/icons-material/Menu'
+import { ROUTES } from '../../constants/routes'
 
 const StyleLabel = styled(Typography)(({}) => ({
   width: 'fit-content',
@@ -263,18 +265,30 @@ export default function Header({
   // const headerBgOpacity = useHeaderBgOpacity()
 
   const links: RouteLinkParams[] = [
-    // {
-    //   label: 'Home',
-    //   link: ROUTES.home,
-    //   active: '/',
-    //   type: 'link'
-    // },
-    // {
-    //   label: 'Node',
-    //   link: ROUTES.home,
-    //   active: '/',
-    //   type: 'link'
-    // }
+    {
+      label: 'Node',
+      link: ROUTES.node,
+      active: '/',
+      type: 'outLink'
+    },
+    {
+      label: 'Home',
+      link: ROUTES.home,
+      active: '/',
+      type: 'outLink'
+    },
+    {
+      label: 'Stake',
+      link: ROUTES.stake,
+      active: '/',
+      type: 'outLink'
+    },
+    {
+      label: 'Doc',
+      link: ROUTES.doc,
+      active: '/',
+      type: 'outLink'
+    }
   ]
   const isMd = useBreakpoint('md')
   // const isActive = (active: string) => {
@@ -354,11 +368,11 @@ export default function Header({
           >
             <LanguageSwitcher />
             <Web3Status />
-            {/* <MenuSvg
+            <MenuIcon
               onClick={() => {
                 setOpen(!open)
               }}
-            /> */}
+            />
           </Stack>
         </Stack>
         <MenuDrawer
