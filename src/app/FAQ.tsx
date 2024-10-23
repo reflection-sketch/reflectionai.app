@@ -96,7 +96,14 @@ export default function Page() {
         <Typography variant="h4" fontSize={isMd ? 12 : 16} color={'#fff'} sx={{ opacity: 0.5 }}>
           {t('your_feedback_will_help')}
         </Typography>
-        <StreamerButton text={'Join Discord'} width={146} sx={{ margin: isMd ? '30px 0 48px' : '40px 0 61px' }} />
+        <StreamerButton
+          text={'Join Telegram'}
+          width={146}
+          sx={{ margin: isMd ? '30px 0 48px' : '40px 0 61px' }}
+          onClick={() => {
+            window.open('https://t.me/reflection_ai', '_blank')
+          }}
+        />
         <Stack gap={15} mb={isMd ? 0 : 65}>
           {list.map((item, index) => {
             return (
