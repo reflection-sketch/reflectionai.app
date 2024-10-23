@@ -97,7 +97,7 @@ export default function Page() {
           {t('your_feedback_will_help')}
         </Typography>
         <StreamerButton
-          text={'Join Telegram'}
+          text={'Join Our Community'}
           width={146}
           sx={{ margin: isMd ? '30px 0 48px' : '40px 0 61px' }}
           onClick={() => {
