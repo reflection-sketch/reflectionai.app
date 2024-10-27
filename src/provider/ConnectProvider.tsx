@@ -1,5 +1,5 @@
 import { WagmiProvider } from 'wagmi'
-import { sepolia, mainnet } from 'viem/chains'
+import { bsc, bscTestnet } from 'viem/chains'
 import React from 'react'
 // import { SupportedChainList } from '../constants/chains'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -16,7 +16,7 @@ const metadata = {
 }
 
 const config = defaultWagmiConfig({
-  chains: [sepolia, mainnet],
+  chains: [bsc, bscTestnet],
   projectId,
   metadata,
   ssr: true

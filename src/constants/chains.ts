@@ -1,58 +1,29 @@
-import { defineChain } from 'viem'
-import { sepolia, mainnet, Chain } from 'viem/chains'
+import { bsc, bscTestnet, Chain, mainnet, sepolia } from 'viem/chains'
 
 export type ChainInfo = Chain
 
-const lootChain = defineChain({
-  id: 5151706,
-  name: 'Loot Chain',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'AGLD',
-    symbol: 'AGLD'
-  },
-  rpcUrls: {
-    alchemy: {
-      http: ['https://rpc.lootchain.com/http']
-    },
-    infura: {
-      http: ['https://rpc.lootchain.com/http']
-    },
-    default: {
-      http: ['https://rpc.lootchain.com/http']
-    },
-    public: {
-      http: ['https://rpc.lootchain.com/http']
-    }
-  },
-  blockExplorers: {
-    default: {
-      name: 'loot',
-      url: 'https://explorer.lootchain.com/'
-    }
-  }
-})
-
 export enum SupportedChainId {
+  BSC = 56,
+  BSC_TEST = 97,
   MAINNET = 1,
-  SEPOLIA = 11155111,
-  LOOT = 5151706
+  SEPOLIA = 11155111
 }
 
 export const CHAINS: { [key in SupportedChainId]: ChainInfo } = {
+  [SupportedChainId.BSC]: bsc,
+  [SupportedChainId.BSC_TEST]: bscTestnet,
   [SupportedChainId.MAINNET]: mainnet,
-  [SupportedChainId.SEPOLIA]: sepolia,
-  [SupportedChainId.LOOT]: lootChain
+  [SupportedChainId.SEPOLIA]: sepolia
 }
 
 type IEnvironment = 'testnet' | 'dev' | 'prod'
 export const CURRENT_ENVIRONMENT = (process.env.NEXT_PUBLIC_VERSION_ENVIRONMENT || 'dev') as IEnvironment
 
-export const NETWORK_CHAIN_ID = Number(process.env.NEXT_PUBLIC_DEFAULT_CHAIN_ID) || SupportedChainId.MAINNET
+export const NETWORK_CHAIN_ID = Number(process.env.NEXT_PUBLIC_DEFAULT_CHAIN_ID) || SupportedChainId.BSC
 
 export const SUPPORT_NETWORK_CHAIN_IDS: SupportedChainId[] = process.env.NEXT_PUBLIC_CHAIN_IDS
   ? process.env.NEXT_PUBLIC_CHAIN_IDS.split(',').map(v => Number(v) as SupportedChainId)
-  : [SupportedChainId.MAINNET]
+  : [SupportedChainId.BSC]
 
 export const SupportedChainsInfo: { [x in SupportedChainId]: ChainInfo } = (() => {
   const list: { [x in SupportedChainId]: ChainInfo } = {} as { [x in SupportedChainId]: ChainInfo }
