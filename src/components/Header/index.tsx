@@ -266,7 +266,7 @@ export default function Header({
 
   const links: RouteLinkParams[] = [
     {
-      label: 'Node',
+      label: 'Genesis NFT',
       link: ROUTES.node,
       active: '/',
       type: 'outLink'

@@ -174,7 +174,7 @@ export const Typography1 = styled(Typography)`
   font-size: 65px;
   font-style: normal;
   font-weight: 900;
-  line-height: 64px;
+  //line-height: 64px;
   letter-spacing: -2.6px;
   background: linear-gradient(90deg, #fff 2.23%, rgba(153, 153, 153, 0.25) 99.96%);
   background-clip: text;
