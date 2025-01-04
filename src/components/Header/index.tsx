@@ -2,6 +2,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Box, Drawer, Stack, SwipeableDrawer, Typography, styled } from '@mui/material'
 import ProjectIcon from 'assets/header/projectIcon.png'
 import ProjectName from 'assets/header/projectName.png'
+import NewIcon from 'assets/header/NewIcon.jpg'
 import PointSvg from 'assets/header/point.svg'
 import useBreakpoint from 'hooks/useBreakpoint'
 import dynamic from 'next/dynamic'
@@ -357,6 +358,7 @@ export default function Header({
             }}
           >
             <Image src={ProjectIcon.src} alt="" width={30} height={24.4} />
+            <Image src={NewIcon.src} alt="" width={24} height={24}/>
             <Image src={ProjectName.src} alt="" width={100} height={33.1} />
           </Stack>
           <Stack
@@ -487,6 +489,7 @@ export default function Header({
           }}
         >
           <Image src={ProjectIcon.src} alt="" />
+          <Image src={NewIcon.src} alt="" width={32} height={32}/>
           <Image src={ProjectName.src} alt="" />
         </Stack>
         <Stack direction={'row'} gap={35} flex={1} justifyContent={'center'} alignItems={'center'}>

@@ -1,6 +1,6 @@
 export const ROUTES = {
-  home: 'https://reflectionai.app',
-  node: 'https://node.reflectionai.app',
-  stake: 'https://stake.reflectionai.app',
+  home: 'https://cmbrect.com',
+  node: 'https://node.cmbrect.com',
+  stake: 'https://node.cmbrect.com',
   doc: 'https://docs.reflectionai.app'
 }
