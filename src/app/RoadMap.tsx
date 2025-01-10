@@ -13,98 +13,136 @@ function useRoadMapList() {
   const { t } = useTranslation()
 
   return [
+    // {
+    //   active: 1,
+    //   time: '2024 Q2',
+    //   title: t('early_development_integration'),
+    //   msg: [
+    //     {
+    //       width: 264,
+    //       text: t('launched_telegram_mini_app')
+    //     },
+    //     {
+    //       width: 224,
+    //       text: t('developed_core_architecture_1')
+    //     },
+    //     {
+    //       width: 257,
+    //       text: t('developed_core_architecture_2')
+    //     }
+    //   ]
+    // },
+    // {
+    //   active: 1,
+    //   time: '2024 Q3',
+    //   title: t('ai_model_marketplace_development'),
+    //   msg: [
+    //     {
+    //       width: 240,
+    //       text: t('develop_test_peer_to_peer')
+    //     },
+    //     {
+    //       width: 232,
+    //       text: t('create_advanced_search')
+    //     },
+    //     {
+    //       width: 224,
+    //       text: t('recruit_early_adopters')
+    //     }
+    //   ]
+    // },
+    // {
+    //   active: 1,
+    //   time: '2024 Q4',
+    //   title: t('ai_miniapp_ecosystem_developer_dao_launch'),
+    //   msg: [
+    //     {
+    //       width: 212,
+    //       text: t('develop_ai_miniapp_platform')
+    //     },
+    //     {
+    //       width: 229,
+    //       text: t('implement_quality_control')
+    //     },
+    //     {
+    //       width: 202,
+    //       text: t('launch_developer_dao')
+    //     }
+    //   ]
+    // },
     {
       active: 1,
-      time: '2024 Q2',
-      title: t('early_development_integration'),
-      msg: [
-        {
-          width: 264,
-          text: t('launched_telegram_mini_app')
-        },
-        {
-          width: 224,
-          text: t('developed_core_architecture_1')
-        },
-        {
-          width: 257,
-          text: t('developed_core_architecture_2')
-        }
-      ]
-    },
-    {
-      active: 0,
-      time: '2024 Q3',
-      title: t('ai_model_marketplace_development'),
-      msg: [
-        {
-          width: 240,
-          text: t('develop_test_peer_to_peer')
-        },
-        {
-          width: 232,
-          text: t('create_advanced_search')
-        },
-        {
-          width: 224,
-          text: t('recruit_early_adopters')
-        }
-      ]
-    },
-    {
-      active: 0,
-      time: '2024 Q4',
-      title: t('ai_miniapp_ecosystem_developer_dao_launch'),
-      msg: [
-        {
-          width: 212,
-          text: t('develop_ai_miniapp_platform')
-        },
-        {
-          width: 229,
-          text: t('implement_quality_control')
-        },
-        {
-          width: 202,
-          text: t('launch_developer_dao')
-        }
-      ]
-    },
-    {
-      active: 0,
       time: '2025 Q1',
-      title: t('official_platform_launch_certification_programs'),
+      title: t('roadmap_2025_q1_title','AI Projects Incubation & $RECT Token Utilities '),
       msg: [
         {
-          width: 195,
-          text: t('public_launch_platform')
+          width: 230,
+          text: t('roadmap_2025_q1_1')
         },
         {
-          width: 181,
-          text: t('introduce_dapp_certification')
+          width: 260,
+          text: t('roadmap_2025_q1_2')
         },
         {
-          width: 200,
-          text: t('expand_marketing_efforts')
+          width: 280,
+          text: t('roadmap_2025_q1_3')
         }
       ]
     },
     {
       active: 0,
       time: '2025 Q2',
-      title: t('ecosystem_expansion_revenue_diversification'),
+      title: t('roadmap_2025_q2_title'),
       msg: [
         {
-          width: 250,
-          text: t('expand_offerings_ai_models')
+          width: 200,
+          text: t('roadmap_2025_q2_1')
         },
         {
-          width: 250,
-          text: t('implement_multiple_access_options')
+          width: 240,
+          text: t('roadmap_2025_q2_2')
         },
         {
-          width: 251,
-          text: t('host_hackathons_conferences')
+          width: 260,
+          text: t('roadmap_2025_q2_3')
+        }
+      ]
+    },
+    {
+      active: 0,
+      time: '2025 Q3',
+      title: t('roadmap_2025_q3_title'),
+      msg: [
+        {
+          width: 160,
+          text: t('roadmap_2025_q3_1')
+        },
+        {
+          width: 220,
+          text: t('roadmap_2025_q3_2')
+        },
+        {
+          width: 280,
+          text: t('roadmap_2025_q3_3')
+        }
+      ]
+    },
+    {
+      active: 0,
+      time: '2025 Q4',
+      title: t('roadmap_2025_q4_title'),
+      msg: [
+        {
+          width: 190,
+          text: t('roadmap_2025_q4_1')
+        },
+        {
+          width: 220,
+          text: t('roadmap_2025_q4_2')
+        },
+        {
+          width: 290,
+          text: t('roadmap_2025_q4_3')
         }
       ]
     }
