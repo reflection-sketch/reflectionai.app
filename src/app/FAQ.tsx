@@ -98,7 +98,7 @@ export default function Page() {
         </Typography>
         <StreamerButton
           text={'Join Our Community'}
-          width={146}
+          width={200}
           sx={{ margin: isMd ? '30px 0 48px' : '40px 0 61px' }}
           onClick={() => {
             window.open('https://t.me/reflection_ai', '_blank')

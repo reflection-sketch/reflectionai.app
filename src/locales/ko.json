@@ -85,6 +85,22 @@
     "expand_offerings_ai_models": "다양한 분야의 AI 모델 제공 확대",
     "implement_multiple_access_options": "AI 모델에 대한 여러 접근 옵션 구현",
     "host_hackathons_conferences": "생태계 성장을 촉진하기 위한 해커톤 및 개발자 회의 개최",
-    "roadmap_igniting": "로드맵: Web3 AI 혁명을 점화하다"
+    "roadmap_igniting": "로드맵: Web3 AI 혁명을 점화하다",
+    "roadmap_2025_q1_title": "AI 프로젝트 인큐베이션 및 $RECT 토큰 활용",
+    "roadmap_2025_q1_1": "AI 프로젝트 2개를 인큐베이션하여 생태계 성장을 촉진합니다.",
+    "roadmap_2025_q1_2": "$RECT 토큰 활용도를 확장하여 플랫폼 서비스 결제에 적용합니다.",
+    "roadmap_2025_q1_3": "AI 어시스턴트 기능 강화, 게임 기능 및 AI 하드웨어 제품 개발에 집중합니다.",
+    "roadmap_2025_q2_title": "생태계 확장 및 혁신",
+    "roadmap_2025_q2_1": "AI 프로젝트 3개를 인큐베이션하고 고급 AI 모델을 정교화합니다.",
+    "roadmap_2025_q2_2": "$RECT 토큰을 프로젝트 간 공통 토큰으로 포지셔닝하고 상위 거래소에 상장합니다.",
+    "roadmap_2025_q2_3": "이미지, 비디오 및 스토리 콘텐츠를 생성하는 AI 도구를 도입합니다.",
+    "roadmap_2025_q3_title": "Reflection AI 생태계 확장",
+    "roadmap_2025_q3_1": "AI 프로젝트 5개를 인큐베이션하여 생태계를 확장합니다.",
+    "roadmap_2025_q3_2": "$RECT 지갑을 통합하여 원활한 접근성을 제공합니다.",
+    "roadmap_2025_q3_3": "AI 프로젝트 런치패드 및 AMM 마켓메이킹을 출시합니다." ,
+    "roadmap_2025_q4_title": "$RECT 퍼블릭 체인 및 통합 AI 생태계",
+    "roadmap_2025_q4_1": "$RECT 퍼블릭 체인을 도입하여 블록체인 생태계를 혁신합니다.",
+    "roadmap_2025_q4_2": "분석, 자동화, 번역 및 코딩을 지원하는 AI 도구를 배포합니다.",
+    "roadmap_2025_q4_3": "AI 기반 금융 분석 및 거래 인사이트를 제공합니다."
   }
 }
